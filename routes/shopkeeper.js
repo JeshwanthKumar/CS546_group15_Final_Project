@@ -1,5 +1,6 @@
 const {ObjectId} = require('bson');
 const express = require('express');
+const { removeShop } = require('../data/shopkeeper');
 //const { ConnectionClosedEvent } = require('mongodb');
 const router = express.Router();
 const data = require('../data/shopkeeper');
@@ -77,6 +78,69 @@ router.get("/private", async(req,res)=>{
     res.render("s_private/s_private", {username : req.session.username});
     return;
 });
+
+router.get("/:id", async(req,res)=>{
+    try {
+        let user_id = req.session.id;
+        console.log(user_id);
+        const existingUser = await data.get(user_id);
+        console.log(existingUser);
+        let userinfo = existingUser;
+        if (existingUser !== null) {
+            res.render("s_edit/s_edit", userinfo);
+        }
+    } catch(e) {
+        // dp nothing
+    }
+    res.render("s_edit/s_edit");
+    return;
+})
+router.put("/edit", async(req,res)=>{
+    let shopkeeper_info = req.body;
+    if(!(ObjectId.isValid(req.session.id))){
+        res.status(400).render("s_edit/s_edit", {"error" : "There is no session created for this id"});
+    }
+    if(!shopkeeper_info){
+        res.status(400).render("s_edit/s_edit", {"error": "Must provide every details in the edit form"});
+        return;
+    }
+    if(!shopkeeper_info.ShopName){
+        res.status(400).render("s_edit/s_edit", {"error": "Must provide the Shop name"});
+        return;
+    }
+    if(!shopkeeper_info.username){
+        res.status(400).render("s_edit/s_edit", {"error" : "Must provide username"});
+        return;
+    }
+    if(!shopkeeper_info.ownerFirstname){
+        res.status(400).render("s_edit/s_edit", {"error" : "Must provide First name"});
+        return;
+    }
+    if(!shopkeeper_info.ownerLastname){
+        res.status(400).render("s_edit/s_edit", {"error" : "Must provide Last name"});
+        return;
+    }
+    if(!shopkeeper_info.email){
+        res.status(400).render("s_edit/s_edit", {"error" : "Must provide email"});
+        return;
+    }
+    if(!shopkeeper_info.phoneNumber){
+        res.status(400).render("s_edit/s_edit", {"error" : "Must provide phone number"});
+    }
+    if(!shopkeeper_info.password){
+        res.status(400).render("s_edit/s_edit", {"error" : "Must provide password"});
+        return;
+    }
+
+    // try{
+    //     await data.get(req.params.id)
+    // }
+    // catch(e){
+    //     res.status(404).json({error : "Restaurant not found"});
+    //     return;
+    // }
+
+})
 
 router.get("/logout", async(req,res)=>{
     if(!req.session.username){

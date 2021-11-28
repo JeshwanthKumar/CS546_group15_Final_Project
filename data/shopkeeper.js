@@ -1,3 +1,4 @@
+const {ObjectId} = require('bson');
 const mongoCollections = require("../config/mongoCollections");
 const bcrypt = require('bcrypt');
 const saltRounds = 16;
@@ -49,7 +50,24 @@ module.exports = {
         }
     },
 
-    async updateShopkeeper(id, ShopName, username, ownerFirstname, ownerLastname, email, password, phoneNumber){
+    async get(id){
+        if(!id)
+        throw `You must provide an id to search for`;
+        if(typeof id !== 'string')
+        throw 'You must provide a valid id';
+        if( id.length === 0)
+        throw `The given id is empty`;
+        if (!ObjectId.isValid(id))
+        throw `The given objectId <${id}> is not a valid objectId`
+        const shopkeeper_id = new ObjectId(id);
+        const shopkeeperCollections = await shopkeeper();
+        const shopkeeperid = await shopkeeperCollections.findOne({_id: shopkeeper_id});
+        if(shopkeeperid === null)
+        throw `There is no shop with <${id}>`;
+        return shopkeeperid;
+    },
+
+    async updateShopkeeper(id, ShopName, username, ownerFirstname, ownerLastname, email, phoneNumber, password){
         const UpdateInfo = await this.get(id);
         let updated_hash = await bcrypt.hash(password, saltRounds);
         let updatedLower = username.toLowerCase();
@@ -59,18 +77,19 @@ module.exports = {
             ownerFirstname : ownerFirstname,
             ownerLastname : ownerLastname,
             email : email,
-            password : updated_hash,
-            phoneNumber : phoneNumber
+            phoneNumber : phoneNumber,
+            password : updated_hash
         }
         const shopkeeperCollections = await shopkeeper();
-        const UpdatedInfo = await shopkeeperCollections.updateOne( 
-            {id : ObjectId(id)},
+        UpdateInfo = await shopkeeperCollections.updateOne( 
+            {_id : ObjectId(id)},
             {$set : shopkeeper_update}
         );
-        if(!UpdatedInfo.matchedCount && !UpdatedInfo.modifiedCount)
+        if(!UpdateInfo.matchedCount && !UpdateInfo.modifiedCount)
         throw 'Updation failed';
         return await this.get(id);
     },
+
     async removeShop(id){
         const removeId = new ObjectId(id);
         const ShopName = await this.get(id);
