@@ -1,6 +1,6 @@
 const product = require('./products');
 const shop = require('./shop');
-const user = require('./user')
+const user = require('./user');
 
 const constructorMethod = (app) => {
   app.use('/shopId', product);

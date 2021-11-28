@@ -4,10 +4,6 @@ const shops = mongoCollections.shop;
 const messages = mongoCollections.message;
 var mongoose = require('mongoose');
 var shop = require("./shop");
-const {
-    all
-} = require('../routes/products');
-//const shop = data.shop;
 
 const exportedMethods = {
 
@@ -20,7 +16,42 @@ const exportedMethods = {
                 allProducts = element;
             }
         });
+
         return allProducts;
+    },
+    async allProductBeforeExpire(id) {
+        var idd = mongoose.Types.ObjectId(id);
+        const productCollection = await products();
+        const shopCollection = await shops();
+        var allProducts = [];
+        const allProduct = await shops();
+        var allShop = await allProduct.find({}).toArray();
+        allShop.forEach(element => {
+            if (element._id == id) {
+                resDetail = element;
+            }
+        });
+
+        resDetail.item.forEach(async (x) => {
+            var todayDate = new Date().toISOString().slice(0, 10);
+            var d1 = Date.parse(x.dateofexpiry);
+            if (todayDate > x.dateofexpiry) {
+
+                await productCollection.deleteOne({
+                    _id: x._id
+                });
+                await shopCollection.updateOne({
+                    _id: idd
+                }, {
+                    $pull: {
+                        item: {
+                            _id: x._id
+                        }
+                    }
+                });
+            }
+        })
+        await this.getAllProduct(id)
     },
     async getShopIdForEditItem(id) {
         var shopCollection = await shops();
@@ -30,7 +61,7 @@ const exportedMethods = {
         const findShop = await findShopItem.findOne({
             _id: idd
         });
-        if(!findShop){
+        if (!findShop) {
             return "ok";
         }
         shopId = findShop.shopId
@@ -50,7 +81,6 @@ const exportedMethods = {
         const findMessage = await findMessageItem.findOne({
             _id: idd
         });
-        // console.log(findShop)
         shopId = findMessage.shopId
         var shopObj = mongoose.Types.ObjectId(shopId);
         const findStore = await shopCollection.findOne({
@@ -92,24 +122,22 @@ const exportedMethods = {
         var convertId = mongoose.Types.ObjectId(shopId);
         var message;
 
-        var CurrentDate = new Date();
+        var todayDate = new Date().toISOString().slice(0, 10);
+
+
         mDate = new Date(dateofmanufacture);
         eData = new Date(dateofexpiry);
-        var priceNum = parseInt(price)
-        var floarNum = parseFloat(price)
         var qtyRem = parseInt(quantityremaining)
-        // if(typeof priceNum != 'number' && typeof floarNum != "fl" ){
-        //     message = ('Price is invalid');
-        //     return message
-        // }
-        if (mDate >= CurrentDate) {
+
+        if (dateofmanufacture > todayDate) {
             message = ('Date of Manufacture can\'t be future data');
             return message
         }
-        if (eData <= CurrentDate) {
+        if (dateofexpiry < todayDate) {
             message = ('Date of Expire can\'t be past date');
             return message
         }
+
         if ((!productname) || typeof productname != 'string') {
             message = `productname "${productname}" is not valid.`
             return message
@@ -157,7 +185,6 @@ const exportedMethods = {
         if (message) {
             return message;
         }
-     //   const newaddedItem = await messageCollection.insertOne(usermessage);
 
         const newaddedItem = await productCollection.insertOne(newItem);
         const newId = newaddedItem.insertedId;
@@ -180,15 +207,18 @@ const exportedMethods = {
 
         var message;
 
-        var CurrentDate = new Date();
+        var todayDate = new Date().toISOString().slice(0, 10);
+
+
         mDate = new Date(dateofmanufacture);
         eData = new Date(dateofexpiry);
+        var qtyRem = parseInt(quantityremaining)
 
-        if (mDate >= CurrentDate) {
+        if (dateofmanufacture > todayDate) {
             message = ('Date of Manufacture can\'t be future data');
             return message
         }
-        if (eData <= CurrentDate) {
+        if (dateofexpiry < todayDate) {
             message = ('Date of Expire can\'t be past date');
             return message
         }

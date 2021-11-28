@@ -13,49 +13,45 @@ router.get('/:id', async function (req, res) {
     var shopName = shopDetail.name
     var shopId = shopDetail._id;
     var shopMessage = shopDetail.message;
+    var shopComment = shopDetail.comment;
+
+    var noItem;
+    var noMessage;
+    var noComment;
+    var messages;
+    var comments;
 
     const allProduct = await productData.getAllProduct(idd);
-    //const allMesg = await shopData.getAllMessage(idd);
-    //console.log(allProduct)
-    if (allProduct.item.length != 0 && allProduct.message.length != 0) {
-        const dataa = {
-            allItem: allProduct.item,
-            title: shopName,
-            shopId: shopId,
-            msgForShop: shopMessage
-        };
-        res.render('allItem', dataa);
-        return;
-    } else if (allProduct.message.length == 0 && allProduct.item.length == 0) {
-        const dataa = {
-            allItem: allProduct.item,
-            title: shopName,
-            shopId: shopId,
-            messageForMessage: "No message in Inbox",
-            messageProduct: "No product in Database"
-        };
-        res.render('allItem', dataa);
-        return;
-    } else if (allProduct.message.length != 0 && allProduct.item.length == 0) {
-        const dataa = {
-            allItem: allProduct.item,
-            title: shopName,
-            shopId: shopId,
-            msgForShop: shopMessage,
-            messageProduct: "No product in Database"
-        };
-        res.render('allItem', dataa);
-        return;
-    } else {
-        const dataa = {
-            allItem: allProduct.item,
-            title: shopName,
-            shopId: shopId,
-            messageForMessage: "No message in Inbox",
-        };
-        res.render('allItem', dataa);
-        return;
+    const allProductBeforeExpire = await productData.allProductBeforeExpire(idd);
+    var x = allProductBeforeExpire
+    if (allProduct.item.length == 0) {
+        noItem = "No product in Database"
     }
+    if (allProduct.message.length != 0) {
+        messages = shopMessage
+    }
+    if (allProduct.message.length == 0) {
+        noMessage = "No message in Inbox"
+    }
+    if (allProduct.comment.length != 0) {
+        comments = shopComment
+    }
+    if (allProduct.comment.length == 0) {
+        noComment = "No comment in Your Shop"
+    }
+    const dataa = {
+        allItem: allProduct.item,
+        title: shopName,
+        shopId: shopId,
+        msgForShop: messages,
+        commentForShop: comments,
+        messageForMessage: noMessage,
+        messageProduct: noItem,
+        noComment: noComment
+    };
+    res.render('allItem', dataa);
+    return;
+
 });
 
 router.get('/addItem/:id', async function (req, res) {
@@ -70,7 +66,6 @@ router.get('/addItem/:id', async function (req, res) {
 });
 
 router.get('/editItem/:id', async function (req, res) {
-    //console.log("z")
     var itemId = req.params.id;
     var restDetail = await productData.getShopIdForEditItem(itemId);
     var itemDetail = await productData.getProductDetail(restDetail._id, itemId)
@@ -83,7 +78,6 @@ router.get('/editItem/:id', async function (req, res) {
 
 router.put('/:id', async function (req, res) {
     const iddProduct = req.params.id;
-    //console.log("xxxxxxxxxxxxx")
     const {
         productname,
         productdetails,
@@ -154,7 +148,7 @@ router.put('/:id', async function (req, res) {
         });
     }
     try {
-        if ((!price) || typeof priceNum != 'number' || (!price.match(/^[0-9]{1,}$/))) {
+        if ((!price) || (!price.match(/^(?!0\d)\d*(\.\d+)?$/))) {
             var data = {
                 message: `Price "${price}" is not valid`,
                 shopId: restDetail._id,
@@ -186,7 +180,6 @@ router.put('/:id', async function (req, res) {
             error: e.message
         });
     }
-
 
     try {
         const updateStore = await productData.updateProduct(
@@ -246,18 +239,45 @@ router.post('/:id', async function (req, res) {
             dateofexpiry
         );
         if (typeof newItem == "string") {
-            //console.log("=====================================================")
-            //------------------------------------
             const shopDetail = await shopData.get(idProduct);
+            var shopMessage = shopDetail.message;
+            var shopComment = shopDetail.comment;
+            var noItem;
+            var noMessage;
+            var noComment;
+            var messages;
+            var comments;
+            const allProducts = await productData.getAllProduct(idProduct);
+            await productData.allProductBeforeExpire(idProduct);
+            if (allProducts.item.length == 0) {
+                noItem = "No product in Database"
+            }
+            if (allProducts.message.length != 0) {
+                messages = shopMessage
+            }
+            if (allProducts.message.length == 0) {
+                noMessage = "No message in Inbox"
+            }
+            if (allProducts.comment.length != 0) {
+                comments = shopComment
+            }
+            if (allProducts.comment.length == 0) {
+                noComment = "No comment in Your Shop"
+            }
+            //=========================================
             var shopName = shopDetail.name
             var shopId = shopDetail._id;
-            var allProducts = await productData.getAllProduct(idProduct);
             if (allProducts.item.length != 0) {
                 const data = {
                     allItem: allProducts.item,
                     title: shopName,
                     shopId: shopId,
-                    message: newItem
+                    msgForShop: messages,
+                    commentForShop: comments,
+                    messageForMessage: noMessage,
+                    messageProduct: noItem,
+                    noComment: noComment,
+                    messagetoCreateProduct: newItem
                 }
                 res.status(400)
                 res.render("allItem", data)
@@ -277,9 +297,7 @@ router.delete('/delete/:id', async function (req, res) {
     try {
         var restDetail = await productData.getShopIdForEditItem(itemorMessageId);
         if (typeof restDetail == 'string') {
-            // console.log("a-route")
             restDetailforMessage = await productData.getShopIdForDeleteMessage(itemorMessageId);
-            //console.log("b-route")
             const shopDetailId = await productData.removeMessage(restDetailforMessage, itemorMessageId);
             res.redirect(`/shopId/${shopDetailId}`)
         } else {
@@ -293,6 +311,5 @@ router.delete('/delete/:id', async function (req, res) {
     }
 
 })
-
 
 module.exports = router;

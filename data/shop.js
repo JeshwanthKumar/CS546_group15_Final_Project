@@ -3,11 +3,12 @@ const shop = mongoCollections.shop;
 const messages = mongoCollections.message;
 var mongoose = require('mongoose');
 const user = require('./user')
+const comments = mongoCollections.comment;
+
 
 
 const exportedMethods = {
     async getAll() {
-        // console.log("BB")
         const movieCollection = await shop();
         const movieList = await movieCollection.find({}).toArray();
         return movieList;
@@ -18,7 +19,6 @@ const exportedMethods = {
         var noshopWithItem;
         const movieCollection = await shop();
         const allShop = await movieCollection.find({}).toArray();
-        //console.log(allShop)
         allShop.forEach(i => {
             i.item.forEach((element) => {
                 if (element.length != 0) {
@@ -31,7 +31,6 @@ const exportedMethods = {
             return noshopWithItem
         }
         var x = [...new Set(shopListWithItem)];
-        //console.log(x)
         return x;
 
     },
@@ -39,15 +38,11 @@ const exportedMethods = {
     async get(id) {
         var x = id.toString()
         var convertId = mongoose.Types.ObjectId(id);
-        // console.log(convertId)
         const findShop = await shop();
-        // console.log("a")
         const shopData = await findShop.findOne({
             _id: convertId
         });
-        if (!shopData) {
-            return shopData;
-        }
+        return shopData;
     },
 
     async create(name, item) {
@@ -55,11 +50,11 @@ const exportedMethods = {
         const newShop = {
             name: name,
             item: [],
-            message: []
+            message: [],
+            comment: []
         };
         const newInsertInformation = await resaurantCollection.insertOne(newShop);
         const newId = newInsertInformation.insertedId;
-        // console.log(typeof newId)
         return await this.get(newInsertInformation.insertedId);
     },
     async getAllMessage(id) {
@@ -82,9 +77,9 @@ const exportedMethods = {
         const userInformation = await user.getUser(userInfo._id);
         var usermessage = {
             _id: id,
-            'name': userInformation.name,
-            'id': userInformation._id,
-            'message': message,
+            idUser: userInformation._id,
+            message: message,
+            userName: userInformation.name,
             shopId: shopId
         }
         const newaddedItem = await messageCollection.insertOne(usermessage);
@@ -93,6 +88,44 @@ const exportedMethods = {
         }, {
             $push: {
                 message: usermessage
+            }
+        })
+        return;
+    },
+
+    async getAllComment(id) {
+        var allComment;
+        const allCommentsdata = await comments();
+        var allComments = await allCommentsdata.find({}).toArray();
+        allComments.forEach(element => {
+            if (element._id == id) {
+                allComment = element;
+            }
+        });
+        return allComment;
+    },
+    async comment(userInfo, shopId, comment) {
+        var id = mongoose.Types.ObjectId();
+        var today = new Date();
+        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        var convertId = mongoose.Types.ObjectId(shopId);
+        const resaurantCollection = await shop();
+        const commentCollection = await comments();
+        const userInformation = await user.getUser(userInfo._id);
+        var userComment = {
+            _id: id,
+            idUser: userInformation._id,
+            userName: userInformation.name,
+            comment: comment,
+            shopId: shopId,
+            date: date
+        }
+        const newaddedItem = await commentCollection.insertOne(userComment);
+        const newInsertInformation = await resaurantCollection.updateOne({
+            _id: convertId
+        }, {
+            $push: {
+                comment: userComment
             }
         })
         return;

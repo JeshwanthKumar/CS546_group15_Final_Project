@@ -1,11 +1,12 @@
-<a class="get-home" href="/user">To Home Page</a>
+{{!-- <a class="get-home" href="/user">To Home Page</a>
 
 <main id="ab">
-    <p>Welcome {{userData.name}} in {{shopName}}</p>
+    <title>Welcome {{userData.name}} in {{shopName}}</title>
 
     <h3>shopId: {{shopId}}</h3>
     <h3>UserId: {{userData._id}}</h3>
-    <table width="35%" border="2">
+    <table width="35%" border="0">
+        <tr>
         <tr style='text-align:left; background-color:#CCC'>
             <th> Product Name</th>
             <th> Product Details</th>
@@ -36,59 +37,25 @@
             </td>
         </tr>
         {{/each}}
+
+
     </table>
 
-</main>
 
-<tr>
-    {{#if message}}
-    <p id="message">{{message}}</p>
+    {{#if comment}}
+    <p id="message">{{comment}}</p>
     {{/if}}
 
-    <br>
-    <form method="post" id="addItem-form" action="/user/{{userData._id}}/shop/{{shopDetail._id}}">
-        <label for="">Message</label>
-        <input required oninvalid="this.setCustomValidity('Please Enter Message for ShopKeeper.')"
-            oninput="this.setCustomValidity('')" type="message" name="message" />
-        <button type="submit" id="submit addNew" class="btn btn-default">Send</button>
-    </form>
-
-    {{#if mess}}
-    <p>{{mess}}</p>
-    {{/if}}
-
+    <br><br>
     <form method="post" id="addItem-form" action="/user/{{userData._id}}/shop/{{shopDetail._id}}">
         <label for="">Comment</label>
-        <input required oninvalid="this.setCustomValidity('Please Write review of your experience.')"
-            oninput="this.setCustomValidity('')" type="comment" name="comment" />
+        <input type="message" name="message" />
         <button type="submit" id="submit addNew" class="btn btn-default">Send Comment</button>
     </form>
 
-    {{#if comm}}
-    <p>{{comm}}</p>
+    {{#if mess}}
+    <p id="message">{{mess}}</p>
     {{/if}}
-</tr>
 
-
-
-{{#if commentForShop}}
-<h2> Review from Customer</h2>
-<table id="comment" width="60%" border="5">
-    <tr>
-        <th>User Name</th>
-        <th>Comment</th>
-        <th>Date</th>
     </tr>
-    {{#each commentForShop}}
-    <tr>
-        <td>{{this.userName}}</td>
-        <td>{{this.comment}}</td>
-        <td>
-            {{this.date}}
-        </td>
-    </tr>
-
-    {{/each}}
-
-</table>
-{{/if}}
+</main> --}}

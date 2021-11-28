@@ -5,7 +5,6 @@ var mongoose = require('mongoose');
 
 const exportedMethods = {
     async getAll() {
-        // console.log("BB")
         const movieCollection = await user();
         const movieList = await movieCollection.find({}).toArray();
         return movieList;
@@ -22,15 +21,11 @@ const exportedMethods = {
     async get(id) {
         var x = id.toString()
         var convertId = mongoose.Types.ObjectId(id);
-        // console.log(convertId)
         const findShop = await user();
-        // console.log("a")
         const shopData = await findShop.findOne({
             _id: convertId
         });
-        if (!shopData) {
-            return shopData;
-        }
+        return shopData;
     },
 
     async create(name, item) {
@@ -41,7 +36,6 @@ const exportedMethods = {
         };
         const newInsertInformation = await resaurantCollection.insertOne(newShop);
         const newId = newInsertInformation.insertedId;
-        // console.log(typeof newId)
         return await this.get(newInsertInformation.insertedId);
     },
 
