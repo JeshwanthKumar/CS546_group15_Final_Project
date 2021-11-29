@@ -1,6 +1,6 @@
 const {ObjectId} = require('bson');
 const express = require('express');
-const { removeShop } = require('../data/shopkeeper');
+//const { removeShop } = require('../data/shopkeeper');
 //const { ConnectionClosedEvent } = require('mongodb');
 const router = express.Router();
 const data = require('../data/shopkeeper');
@@ -26,6 +26,7 @@ router.get("/signup", async(req,res)=>{
         return;
     }
 });
+
 router.post("/signup", async(req,res)=>{
     try{
         try{
@@ -55,7 +56,7 @@ router.post("/login", async(req,res)=>{
             console.log(req.body.password);
             const existingUser = await data.checkShopkeeper(req.body.username, req.body.password);
             console.log(existingUser)
-            if(existingUser.authenticated){
+            if(existingUser){
                 req.session.username = req.body.username;
                 res.redirect("/private");
                 return;
@@ -79,27 +80,26 @@ router.get("/private", async(req,res)=>{
     return;
 });
 
-router.get("/:id", async(req,res)=>{
-    try {
-        let user_id = req.session.id;
-        console.log(user_id);
-        const existingUser = await data.get(user_id);
-        console.log(existingUser);
-        let userinfo = existingUser;
-        if (existingUser !== null) {
-            res.render("s_edit/s_edit", userinfo);
-        }
-    } catch(e) {
-        // dp nothing
+router.get("/logout", async (req,res)=>{
+    console.log('inside logout')
+    if(!req.session.username){
+        res.redirect('/');
+        return;
     }
-    res.render("s_edit/s_edit");
+    req.session.destroy();
+    res.render("logout/logout");
     return;
-})
+});
+
+router.get("/:id", async(req,res)=>{
+    res.render("s_edit/s_edit", {_id : req.session.id});
+    return;
+});
 router.put("/edit", async(req,res)=>{
     let shopkeeper_info = req.body;
-    if(!(ObjectId.isValid(req.session.id))){
-        res.status(400).render("s_edit/s_edit", {"error" : "There is no session created for this id"});
-    }
+    // if(!(ObjectId.isValid(req.params.id))){
+    //     res.status(400).render("s_edit/s_edit", {"error" : "There is no session created for this id"});
+    // }
     if(!shopkeeper_info){
         res.status(400).render("s_edit/s_edit", {"error": "Must provide every details in the edit form"});
         return;
@@ -139,15 +139,8 @@ router.put("/edit", async(req,res)=>{
     //     res.status(404).json({error : "Restaurant not found"});
     //     return;
     // }
-
-})
-
-router.get("/logout", async(req,res)=>{
-    if(!req.session.username){
-        res.redirect('/');
-        return;
-    }
-    req.session.destroy();
-    res.render("logout/logout")
 });
+
+
+
 module.exports = router;
