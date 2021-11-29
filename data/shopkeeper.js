@@ -40,8 +40,10 @@ module.exports = {
         let comparedPass = false;
         try{
             comparedPass = await bcrypt.compare(password, findShopKeeper.password);
-            if(comparedPass === true)
-            return {authenticated : true};
+            if(comparedPass === true){
+                let authentication = {authenticated : true, authenticatedUser : findShopKeeper };
+                return authentication;
+            } 
             else
             throw 'Either the username or password is incorrect';
         }
