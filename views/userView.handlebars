@@ -1,6 +1,10 @@
 <a class="get-home" href="/user">To Home Page</a>
 
 <main id="ab">
+    {{#if noData}}
+    <label for="overAllRating">{{noData}}</label>
+    {{/if}}
+    {{#if allItem}}
     <p>Welcome {{userData.name}} in {{shopName}}</p>
 
     <h3>shopId: {{shopId}}</h3>
@@ -37,15 +41,90 @@
         </tr>
         {{/each}}
     </table>
-
+    {{/if}}
 </main>
+
+<br>
+{{#if averageRating}}
+<h3 style="background-color:rgb(206, 101, 201);" for="overAllRating">Average ratinig of {{shopDetail.name}} sohp:
+    {{averageRating}}
+</h3>
+{{/if}}
+{{#if noRating}}
+<h3 style="background-color:rgb(206, 101, 201);" for="noRating">{{noRating}}
+</h3>
+{{/if}}
+{{#if noSecond}}
+<h3 style="background-color:rgb(206, 101, 106);" for="noRating">{{noSecond}}
+</h3>
+{{/if}}
+<form method="post" action="/user/{{userData._id}}/shop/{{shopDetail._id}}">
+    <label for="cars">Rate for Shop</label>
+
+    <select style="width: 10%; background-color:rgb(108, 194, 161)" name="review" id="cars">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+    <br><br>
+    <input type="submit" value="Submit">
+</form>
+{{#if forRating}}
+<h3 style="background-color:rgb(117, 219, 171);" for="noRating">{{noRating}}
+</h3>
+{{/if}}
+
+<br>
+{{!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzxxxxxxxxxxxxxxxxxxxxxzzzzzzzzzzz --}}
+
+{{#if userData.replayMessages}}
+<h2> Message from Customer</h2>
+<table id="message" width="50%" border="5">
+
+    <tr>
+        <th>User Name</th>
+        <th>Message</th>
+        <th></th>
+    </tr>
+    {{#each userData.replayMessages}}
+    <tr>
+        {{!-- <td>{{this.idUser}}</td> --}}
+        <td>{{this.shopNmae}}</td>
+        <td>{{this.message}}</td>
+        <td>
+            <form method="post" action="/shopId/delete/{{this._id}}?_method=DELETE" <input type="hidden" name="_method"
+                value="DELETE">
+                <input type="submit" name="delete" value='Delete' />
+            </form>
+        </td>
+        <td>
+            <form method="post" id="addItem-form" action="/shopId/{{this.idUser}}/{{this.shopId}}">
+                <label for="">Message</label>
+                <input required oninvalid="this.setCustomValidity('Please Enter Message for ShopKeeper.')"
+                    oninput="this.setCustomValidity('')" type="message" name="replayMessage" />
+                <button type="submit" id="submit addNew" class="btn btn-default">Send Replay</button>
+            </form>
+        </td>
+    </tr>
+
+    {{/each}}
+
+</table>
+{{/if}}
+{{!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzxxxxxxxxxxxxxxxxxxxxxzzzzzzzzzzz --}}
 
 <tr>
     {{#if message}}
     <p id="message">{{message}}</p>
     {{/if}}
-
+    {{!-- <form method="post" action="/shopId/delete/{{this._id}}?_method=DELETE" <input type="hidden" name="_method"
+        value="DELETE">
+        <input type="submit" name="delete" value='Delete' />
+    </form> --}}
     <br>
+
     <form method="post" id="addItem-form" action="/user/{{userData._id}}/shop/{{shopDetail._id}}">
         <label for="">Message</label>
         <input required oninvalid="this.setCustomValidity('Please Enter Message for ShopKeeper.')"
@@ -69,7 +148,9 @@
     {{/if}}
 </tr>
 
-
+{{#if noComment}}
+<p id="message">{{noComment}}</p>
+{{/if}}
 
 {{#if commentForShop}}
 <h2> Review from Customer</h2>
