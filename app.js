@@ -25,6 +25,15 @@ app.use('/private', (req,res,next)=>{
     }
 });
 
+app.use('/edit', (req,res,next)=>{
+    if(req.body._method === "PUT"){
+        console.log("EDIT");
+        req.method = "put";
+    }
+    next();
+    
+})
+
 app.use((req,res,next)=>{
     let str = "";
     if(req.session.username)

@@ -34,12 +34,14 @@ module.exports = {
     async checkShopkeeper(username, password){
         const shopkeeperCollections = await shopkeeper();
         const findShopKeeper = await shopkeeperCollections.findOne({username : username});
+        console.log(findShopKeeper);
         if(findShopKeeper === null){
             throw 'Either the username or password is incorrect';
         }
         let comparedPass = false;
         try{
             comparedPass = await bcrypt.compare(password, findShopKeeper.password);
+            console.log(comparedPass);
             if(comparedPass === true){
                 let authentication = {authenticated : true, authenticatedUser : findShopKeeper };
                 return authentication;
@@ -63,10 +65,19 @@ module.exports = {
         throw `The given objectId <${id}> is not a valid objectId`
         const shopkeeper_id = new ObjectId(id);
         const shopkeeperCollections = await shopkeeper();
-        const shopkeeperid = await shopkeeperCollections.findOne({_id: shopkeeper_id});
+        const shopkeeperid = await shopkeeperCollections.findOne({_id: ObjectId(shopkeeper_id)});
         if(shopkeeperid === null)
         throw `There is no shop with <${id}>`;
         return shopkeeperid;
+    },
+    async removeShop(id){
+        const removeId = new ObjectId(id);
+        const ShopName = await this.get(id);
+        const shopkeeperCollections = await shopkeeper();
+        const deleteInfo = await shopkeeperCollections.deleteOne({_id : ObjectId(removeId)});
+        if(deleteInfo.deletedCount === 0)
+        throw `Could not delete the shop with ${id}`;
+        return `${ShopName['shopName']} deleted successfully`;
     },
 
     async updateShopkeeper(id, ShopName, username, ownerFirstname, ownerLastname, email, phoneNumber, password){
@@ -79,26 +90,15 @@ module.exports = {
             ownerFirstname : ownerFirstname,
             ownerLastname : ownerLastname,
             email : email,
-            phoneNumber : phoneNumber,
-            password : updated_hash
+            phoneNumber : phoneNumber
         }
         const shopkeeperCollections = await shopkeeper();
-        UpdateInfo = await shopkeeperCollections.updateOne( 
+        const UpdatedInfo = await shopkeeperCollections.updateOne( 
             {_id : ObjectId(id)},
             {$set : shopkeeper_update}
         );
-        if(!UpdateInfo.matchedCount && !UpdateInfo.modifiedCount)
+        if(!UpdatedInfo.matchedCount && !UpdatedInfo.modifiedCount)
         throw 'Updation failed';
-        return await this.get(id);
-    },
-
-    async removeShop(id){
-        const removeId = new ObjectId(id);
-        const ShopName = await this.get(id);
-        const shopkeeperCollections = await shopkeeper();
-        const deleteInfo = await shopkeeperCollections.deleteOne({id : removeId});
-        if(deleteInfo.deletedCount === 0)
-        throw `Could not delete the shop with ${id}`;
-        return `${ShopName['shopName']} deleted successfully`;
+        return {updateInserted : true};
     }
 }

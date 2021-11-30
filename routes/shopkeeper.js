@@ -58,6 +58,7 @@ router.post("/login", async(req,res)=>{
             console.log(existingUser)
             if(existingUser){
                 req.session.username = req.body.username;
+                req.session.userId = existingUser.authenticatedUser._id.toString();
                 res.redirect("/private");
                 return;
             }
@@ -76,8 +77,19 @@ router.post("/login", async(req,res)=>{
 });
 
 router.get("/private", async(req,res)=>{
-    res.render("s_private/s_private", {username : req.session.username});
-    return;
+    try{
+    const User = await data.get(req.session.userId);
+    console.log(User);
+    if(User){
+        // req.session.username = req.body.username;
+        // req.session.userId = User._id.toString();
+        res.render("s_private/s_private", {username : User.username});
+        return;
+    }
+    }
+    catch(e){
+        console.log(e);
+    }
 });
 
 router.get("/logout", async (req,res)=>{
@@ -91,11 +103,30 @@ router.get("/logout", async (req,res)=>{
     return;
 });
 
-router.get("/:id", async(req,res)=>{
-    res.render("s_edit/s_edit", {_id : req.session.id});
+router.get("/edit", async(req,res)=>{
+    res.render("s_edit/s_edit", { userId : req.session.userId});
     return;
 });
-router.put("/edit", async(req,res)=>{
+router.delete("/:id", async(req,res)=>{
+    // try{
+    //     await data.get(req.params.id);
+    // }
+    // catch(e){
+    //     res.status(404).json({error : "User not found"});
+    //     return;
+    // }
+    try{
+        const remove_shop = await data.removeShop(req.session.userId);
+        if(remove_shop){
+            res.redirect("/", {"message" : "Account deleted successfully"});;
+            return;
+        }
+    }
+    catch(e){
+        //do nothing
+    }
+});
+router.put("/edit/:id", async(req,res)=>{
     let shopkeeper_info = req.body;
     // if(!(ObjectId.isValid(req.params.id))){
     //     res.status(400).render("s_edit/s_edit", {"error" : "There is no session created for this id"});
@@ -127,10 +158,40 @@ router.put("/edit", async(req,res)=>{
     if(!shopkeeper_info.phoneNumber){
         res.status(400).render("s_edit/s_edit", {"error" : "Must provide phone number"});
     }
-    if(!shopkeeper_info.password){
-        res.status(400).render("s_edit/s_edit", {"error" : "Must provide password"});
+
+    try{
+        await data.get(req.params.id)
+    }
+    catch(e){
+        res.status(500).json({error : "Internal server error"});
         return;
     }
+        try{
+            console.log(req.body.username);
+            console.log(req.body.password);
+            const newShopkeeper = await data.updateShopkeeper(
+                req.params.id, 
+                shopkeeper_info.ShopName,
+                shopkeeper_info.username, 
+                shopkeeper_info.ownerFirstname, 
+                shopkeeper_info.ownerLastname, 
+                shopkeeper_info.Address, 
+                shopkeeper_info.email, 
+                shopkeeper_info.pincode, 
+                shopkeeper_info.phoneNumber
+                );
+                console.log(newShopkeeper);
+            if(newShopkeeper.updateInserted){
+                res.redirect("/private");
+                console.log("EDIT//");
+                return;
+            }
+        }
+        catch(e){
+                res.status(400).render("s_edit/s_edit", {"error" : e});
+                return;
+        }
+    
 
     // try{
     //     await data.get(req.params.id)

@@ -4,7 +4,7 @@
             Edit Profile
         </h1>
     </header>
-    <form action = "/edit" method ="POST" id = "edit-form">
+    <form action = "/edit/{{userId}}" method ="POST" id = "edit-form">
     <label class = "user-text" for = "shopName">
             Shop Name:
         </label>
@@ -18,7 +18,7 @@
         <label class = "user-text" for = "ownerFirstname">
             First Name:
         </label>
-        <input name = "ownerFirstname" id = "ownerFirstname" type = "text">
+        <input name = "ownerFirstname" id = "ownerFirstname" type = "text" value = "{{userinfo.ownerFirstname}}">
         <br>
         <label class = "password-text" for = "ownerLastname">
             Last Name :
@@ -45,16 +45,13 @@
         </label>
         <input name = "phoneNumber" id = "phoneNumber" type = "number">
         <br>
-        <label class = "password-text" for = "password">
-            Password : 
-        </label>
-        <input name = "password" id = "spassword" type = "password">
         <br>
+        <input name = "_method" hidden value = "PUT"> 
+        <input class = "submit-button" type = "submit" value = "Done">
     </form>
     {{#if error}}
     <p class = "error">{{error}}</p>
     {{/if}}
-    <a href="/private">Done</a>
-<p id = "success-signup" hidden>Account created successfully</p>
+<p id = "success-edit" hidden>Account upadted successfully</p>
 <p id = "suser-error" hidden>Either the username or password is incorrect</p>
 </article> 
