@@ -49,7 +49,8 @@ const exportedMethods = {
         return shopData;
     },
 
-    async create(name, item) {
+    async create(name, address, pincode, item) {
+        intPin = parseInt(pincode)
         const resaurantCollection = await shop();
         const newShop = {
             name: name,
@@ -57,7 +58,9 @@ const exportedMethods = {
             item: [],
             message: [],
             comment: [],
-            rating: []
+            rating: [],
+            address: address,
+            pincode: intPin
         };
         const newInsertInformation = await resaurantCollection.insertOne(newShop);
         const newId = newInsertInformation.insertedId;
@@ -81,12 +84,16 @@ const exportedMethods = {
         const resaurantCollection = await shop();
         const messageCollection = await messages();
         const userInformation = await user.getUser(userInfo._id);
+        var today = new Date();
+        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+       
         var usermessage = {
             _id: id,
             idUser: userInformation._id,
             message: message,
             userName: userInformation.name,
-            shopId: shopId
+            shopId: shopId,
+            date: date
         }
         const newaddedItem = await messageCollection.insertOne(usermessage);
         const newInsertInformation = await resaurantCollection.updateOne({
@@ -146,22 +153,16 @@ const exportedMethods = {
             _id: convertId
         })
         var rat = store.overallRating;
-        var xx;
-        //console.log(typeof userInfo._id)
+        var xx; 
         store.rating.forEach(x => {
             var y = (x.idUser).toString()
             if (y == userId) {
                 xx = rat
                 return
             }
-            return //return x;
-
-        })
-
-        return xx;
-        // console.log("----")
-        // console.log(findStore)
-        // return findStore
+            return   
+        }) 
+        return xx; 
     },
     async review(userInfo, shopId, reviewss) {
         var id = mongoose.Types.ObjectId();
@@ -205,8 +206,7 @@ const exportedMethods = {
         }
         var numsCount = allReview.length;
         var average = totalSum / numsCount;
-        var averages = (Number(average).toFixed(2));
-        //console.log(average)
+        var averages = (Number(average).toFixed(2)); 
         const updateFinal = await resaurantCollection.updateOne({
             _id: convertId
         }, {
