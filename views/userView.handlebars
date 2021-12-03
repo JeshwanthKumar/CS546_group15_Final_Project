@@ -5,23 +5,7 @@
     <label for="overAllRating">{{noData}}</label>
     {{/if}}
     {{#if allItem}}
-    <p>Welcome {{userData.name}} in {{shopName}}</p>
-
-
-
-
-    {{!-- <div class="verify-location">Is the your location incorrect? <a>Click here to enter your location manually</a></div>
-    <form id="calculate-route" name="calculate-route" action="#" method="get">
-        <label for="from">From:</label>
-        <input type="text" id="from" name="from" placeholder="An address" size="30" />
-        <button type="submit">Submit</button>
-    </form>
-    <div id="map"></div>
-    <p id="error"></p>
-    <p class="distance-in-km"></p> --}}
-
-    {{!-- <iframe src=”https://www.google.com/maps/embed?pb=!…” width=”600″ height=”450″ frameborder=”0″
-        style=”border:0″ allowfullscreen></iframe> --}}
+    <p>Welcome {{userData.firstname}} in {{shopName}}</p>
 
     <a style="font-weight: 900; background-color: yellow;" href="https://www.google.com/maps/place/{{shopAddress}} {{pincode}}" target="_blank">Click to get Location of Restaurant </a>
 

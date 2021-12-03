@@ -129,6 +129,7 @@ const exportedMethods = {
         eData = new Date(dateofexpiry);
         var qtyRem = parseInt(quantityremaining)
 
+        //else if (/^\s+$/.test(keyword))
         if (!productname) {
             message = ('Please enter productname');
             return message
