@@ -6,8 +6,6 @@ const productData = data.products;
 const userData = data.user;
 var mongoose = require('mongoose');
 
-
-
 router.get('/:id', async function (req, res) {
     const idd = req.params.id;
     const shopDetail = await shopData.get(idd);
@@ -266,7 +264,7 @@ router.post('/:id', async function (req, res) {
             dateofexpiry
         );
         if (typeof newItem == "string") {
-            console.log(newItem)
+      
             const shopDetail = await shopData.get(idProduct);
             var shopMessage = shopDetail.message;
             var shopComment = shopDetail.comment;

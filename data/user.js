@@ -61,7 +61,7 @@ const exportedMethods = {
     },
     //lkkk
     async create(firstname, lastname, email, address, city, zipcode, password) {
-        console.log("1")
+     
         // if (!firstname) throw "enter first name"
         // if (!lastname) throw "Enter last name"
         // if (!pass) throw "Enter password"
@@ -312,7 +312,7 @@ const exportedMethods = {
 
         var today = new Date();
         var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-        console.log(userInfo)
+    
 
         var userReplaymessage = {
             _id: id,

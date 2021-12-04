@@ -5,12 +5,10 @@ let userfirstname = document.getElementById('userfirstname');
 
 $(profilebtn).on('click', function() {
     $(userfirstname).attr('readonly', !readonly);
-
     readonly = !readonly;
     $(profilebtn).val( readonly ? 'Edit' : 'Save' );
     return false;
 })
-
 
 // const ratingStars = [...document.getElementsByClassName("rating__star")];
 
