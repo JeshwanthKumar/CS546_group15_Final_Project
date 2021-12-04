@@ -506,21 +506,21 @@ router.post('/:idUser/shop/:shopId', async (req, res) => {
             }
         }
 
-        // if (message) {
-        //     try {
-        //         if (!message || (/^\s+$/.test(message))) {
-        //             var data = {
-        //                 messageError: 'Please add review',
-        //             }
-        //             res.status(400)
-        //             res.render('userView', data)
-        //             return;
-        //         }
-        //     } catch (e) {
-        //         res.status(500).json({
-        //             error: e.message
-        //         });
-        //     }
+        if (message) {
+            // try {
+            //     if (!message || (/^\s+$/.test(message))) {
+            //         var data = {
+            //             messageError: 'Please add review',
+            //         }
+            //         res.status(400)  
+            //         res.render('userView', data)
+            //         return;
+            //     }
+            // } catch (e) {
+            //     res.status(500).json({
+            //         error: e.message
+            //     });
+            // }
             await shopData.message(userInfo, shopId, message)
             const getShopbyId = await productData.getAllProduct(shopId);
 

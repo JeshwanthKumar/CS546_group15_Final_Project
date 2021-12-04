@@ -13,7 +13,7 @@ router.get('/:id', async function (req, res) {
     var shopId = shopDetail._id;
     var shopMessage = shopDetail.message;
     var shopComment = shopDetail.comment;
-    var overRating = shopDetail.overallRating; 
+    var overRating = shopDetail.overallRating;
     var noItem;
     var noMessage;
     var noComment;
@@ -264,7 +264,7 @@ router.post('/:id', async function (req, res) {
             dateofexpiry
         );
         if (typeof newItem == "string") {
-      
+            console.log(newItem)
             const shopDetail = await shopData.get(idProduct);
             var shopMessage = shopDetail.message;
             var shopComment = shopDetail.comment;
@@ -277,7 +277,7 @@ router.post('/:id', async function (req, res) {
             var averageRating;
             const allProducts = await productData.getAllProduct(idProduct);
             await productData.allProductBeforeExpire(idProduct);
-
+            console.log("a")
             if (allProducts.item.length == 0) {
                 noItem = "No product in Database"
             }
@@ -298,10 +298,11 @@ router.post('/:id', async function (req, res) {
             } else {
                 averageRating = allProducts.overRating
             }
+            console.log("ab")
 
             var shopName = shopDetail.name
             var shopId = shopDetail._id;
-            if (allProducts.item.length != 0) {
+           // if (allProducts.item.length != 0) {
                 const data = {
                     allItem: allProducts.item,
                     title: shopName,
@@ -315,10 +316,11 @@ router.post('/:id', async function (req, res) {
                     noRating: noRating,
                     averageRating: averageRating,
                 }
+                console.log(data.messagetoCreateProduct)
                 res.status(400)
                 res.render("allItem", data)
                 return;
-            }
+            //}
         }
         res.redirect(`/shopId/${idProduct}`)
     } catch (e) {
