@@ -9,9 +9,9 @@ module.exports={
 //user database
     async create(firstname, lastname,email,address,city, zipcode,password){
 
-        if(!firstname) throw "enter first name"
+        if(!firstname) throw "enter the first name"
         if(!lastname) throw "Enter last name"
-        if(!pass) throw "Enter password"
+        if(!password) throw "Enter password"
         if(!email) throw "enter email id"
         if(!address) throw "enter address"
         if(!city) throw "enter city"
@@ -24,7 +24,14 @@ module.exports={
                   throw " it should not be an empty string"
               }
         }else{throw "firstname, lastname, email, website, priceRange should be a string"}
-          
+        function val(input,name) {
+            if(/\s/g.test(input)==true){throw `${name} cannot have empty space`;}
+        }
+        val(firstname,'firstname')
+        val(lastname,'lastname')
+        val(password,'password')
+        val(zipcode,'zipcoe')
+        val(email,'email')
         
         if( validator.validate(email)==false){
             throw "enter a valid email address"
@@ -166,6 +173,12 @@ module.exports={
         if(!address) throw "enter address"
         if(!city) throw "enter city"
         if(!zipcode) throw "enter zipcode"
+        function val(input,name) {
+            if(/\s/g.test(input)==true){throw `${name} cannot have empty space`;}
+        }
+        val(firstname,'firstname')
+        val(lastname,'lastname')
+        val(zipcode,'zipcoe')
         var pat1=/(^\d{5}$)|(^\d{5}-\d{4}$)/
         if(pat1.test(zipcode)==false){
             throw "enter a valid zipcode"
@@ -203,6 +216,30 @@ module.exports={
         if( validator.validate(email)==false){
             throw "enter a valid email address"
         }
+        
+        if(typeof email ==='boolean'|typeof password ==='boolean'){
+            throw "input cannot be a boolean"
+        }
+        if(typeof email === 'string'&typeof password === 'string'){
+            if(email.trim()==""|password.trim()==""){
+                throw " it should not be an empty string"
+            }
+        }else{throw "firstname, lastname, email, website, priceRange should be a string"}
+
+        function val(input,name) {
+          if(/\s/g.test(input)==true){throw `${name} cannot have empty space`;}
+        }
+     
+      
+        val(password,'password')
+        val(email,'email')
+        if(password.length<6) throw "Password should have atleast 6 characters"
+
+
+      const re =/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+      if (re.test(email.toLowerCase())==false) {
+          throw `Email Address (${email}) is not valid`; }
         emaillow=email.toLowerCase()
         const mongoColl = await user()
         const reslis = await mongoColl.find({email:emaillow}).toArray();

@@ -1,7 +1,10 @@
 <h1 class="mai">This is a signup page</h1>
+<div id="errorDiv"  hidden><p>{{error}}</p>
+        
+</div>
 <form action="/users/signup" id="signup-form" method="post">
     <label for="email"><b>email</b></label>
-    <input type="email" placeholder="Enter Email" name="email" id="useremail" value="{{user.email}}" >
+    <input type="email" placeholder="Enter Email" name="email" id="useremail" value="{{user.email}}"required >
     <br>
     <label for="password"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="password" id="password" value="{{user.password}}"  required>

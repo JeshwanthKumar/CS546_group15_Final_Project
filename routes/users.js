@@ -39,7 +39,7 @@ router.post('/login',async(req,res) =>{
         if( logininfo.authenticated==false){
             throw "there is some server issue"
         }
-        res.json(a)
+        res.render('pages/seeprofile')
 
     }catch(e){
         res.render('pages/login', { title: 'login page',message:e })
@@ -77,7 +77,14 @@ router.post('/signup',async(req,res)=>{
             if(!address) throw "enter address"
             if(!city) throw "enter city"
             if(!zipcode) throw "enter zipcode"
-
+            function val(input,name) {
+                if(/\s/g.test(input)==true){throw `${name} cannot have empty space`;}
+            }
+            val(firstname,'firstname')
+            val(lastname,'lastname')
+            val(password,'password')
+            val(zipcode,'zipcode')
+            val(email,'email')
             var pat1=/(^\d{5}$)|(^\d{5}-\d{4}$)/
             if(pat1.test(zipcode)==false){
             throw "enter a valid zipcode"
@@ -100,9 +107,21 @@ router.post('/signup',async(req,res)=>{
         }
 })
 
-router.get('/profile',async(req,res) =>{
+router.get('/seeprofile',async(req,res) =>{
     try{
-       let a = "profile"
+       //let a = "profile"
+        //const user=req.session.user
+       
+        res.render('pages/seeprofile')
+
+    }catch(e){
+        res.status(404).json({message:e})
+    }
+})
+
+router.get('/profiledetail',async(req,res) =>{
+    try{
+       //let a = "profile"
         const user=req.session.user
        
         res.render('pages/profile', user);
@@ -111,8 +130,7 @@ router.get('/profile',async(req,res) =>{
         res.status(404).json({message:e})
     }
 })
-
-router.post('/profile',async(req,res) =>{
+router.get('/updateprofile',async(req,res) =>{
     try{
        let a = "profile"
         const user=req.session.user
@@ -124,7 +142,7 @@ router.post('/profile',async(req,res) =>{
     }
 })
 
-router.post('/profile/:id',async(req,res) =>{
+router.post('/updateprofile/:id',async(req,res) =>{
     try{
         const id = req.params.id;
         const us = req.body;
@@ -146,7 +164,7 @@ router.post('/profile/:id',async(req,res) =>{
         req.session.user = { id:id2,firstName: proinfo.firstname, lastname:proinfo.lastname , email: proinfo.email, 
             address: proinfo.address,city: proinfo.city,zipcode: proinfo.zipcode} 
         req.method = 'GET'    
-        res.redirect('/users/profile');
+        res.redirect('/users/profiledetail');
     }catch(e){
         res.status(404).json({message:e})
     }

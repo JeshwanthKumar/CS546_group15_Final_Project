@@ -1,6 +1,8 @@
 
-<form action="/users/profile/{{id}}" id="signup-form" method="post">
-
+<form action="/users/updateprofile/{{id}}" id="update_user_profile" method="post">
+<div id="errorDiv"  hidden> <p>{{error}}</p>
+        
+    </div>
 <label for="firstname"><b>firstname</b></label>
     <input type="text" placeholder="Enter firstname" name="firstname" id="userfirstname"  value="{{firstName}}"  >
     <br>
