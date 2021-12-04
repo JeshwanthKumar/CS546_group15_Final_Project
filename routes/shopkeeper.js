@@ -107,25 +107,7 @@ router.get("/edit", async(req,res)=>{
     res.render("s_edit/s_edit", { userId : req.session.userId});
     return;
 });
-router.delete("/:id", async(req,res)=>{
-    // try{
-    //     await data.get(req.params.id);
-    // }
-    // catch(e){
-    //     res.status(404).json({error : "User not found"});
-    //     return;
-    // }
-    try{
-        const remove_shop = await data.removeShop(req.session.userId);
-        if(remove_shop){
-            res.redirect("/", {"message" : "Account deleted successfully"});;
-            return;
-        }
-    }
-    catch(e){
-        //do nothing
-    }
-});
+
 router.put("/edit/:id", async(req,res)=>{
     let shopkeeper_info = req.body;
     // if(!(ObjectId.isValid(req.params.id))){
@@ -202,6 +184,24 @@ router.put("/edit/:id", async(req,res)=>{
     // }
 });
 
-
+router.delete("/delete/:id", async(req,res)=>{
+    try{
+        // const delete_id = await data.get(req.params.id);
+        const remove_shop = await data.removeShop( req.body.userId);
+       if(remove_shop){
+        req.session.username = req.body.username;
+        console.log(req.session.username);
+        req.session.userId = existingUser.authenticatedUser._id.toString();
+        console.log("Delete");
+        if(remove_shop.deleted){
+        res.render("s_delete/s_delete", {"message" : "Account deleted successfully"});
+         return;
+        }
+       }
+    }
+    catch(e){
+        //do nothing
+    }
+});
 
 module.exports = router;

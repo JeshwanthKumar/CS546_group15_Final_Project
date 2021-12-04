@@ -34,6 +34,13 @@ app.use('/edit', (req,res,next)=>{
     
 })
 
+// app.use((req,res,next)=>{
+//     if(req.body._mehtod === "DELETE"){
+//         req.method = "delete"
+//     }
+//     next();
+// })
+
 app.use((req,res,next)=>{
     let str = "";
     if(req.session.username)

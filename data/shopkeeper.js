@@ -77,12 +77,11 @@ module.exports = {
         const deleteInfo = await shopkeeperCollections.deleteOne({_id : ObjectId(removeId)});
         if(deleteInfo.deletedCount === 0)
         throw `Could not delete the shop with ${id}`;
-        return `${ShopName['shopName']} deleted successfully`;
+        return {deleted : true};
     },
 
     async updateShopkeeper(id, ShopName, username, ownerFirstname, ownerLastname, email, phoneNumber, password){
         const UpdateInfo = await this.get(id);
-        let updated_hash = await bcrypt.hash(password, saltRounds);
         let updatedLower = username.toLowerCase();
         let shopkeeper_update = {
             ShopName : ShopName,
