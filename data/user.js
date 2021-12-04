@@ -61,7 +61,7 @@ const exportedMethods = {
     },
     //lkkk
     async create(firstname, lastname, email, address, city, zipcode, password) {
-console.log("1")
+        console.log("1")
         // if (!firstname) throw "enter first name"
         // if (!lastname) throw "Enter last name"
         // if (!pass) throw "Enter password"
@@ -133,6 +133,15 @@ console.log("1")
         if (!address) throw "enter address"
         if (!city) throw "enter city"
         if (!zipcode) throw "enter zipcode"
+
+        function val(input, name) {
+            if (/\s/g.test(input) == true) {
+                throw `${name} cannot have empty space`;
+            }
+        }
+        val(firstname, 'firstname')
+        val(lastname, 'lastname')
+        val(zipcode, 'zipcoe')
         var pat1 = /(^\d{5}$)|(^\d{5}-\d{4}$)/
         if (pat1.test(zipcode) == false) {
             throw "enter a valid zipcode"
@@ -180,6 +189,35 @@ console.log("1")
         if (validator.validate(email) == false) {
             throw "enter a valid email address"
         }
+
+        if (typeof email === 'boolean' | typeof password === 'boolean') {
+            throw "input cannot be a boolean"
+        }
+        if (typeof email === 'string' & typeof password === 'string') {
+            if (email.trim() == "" | password.trim() == "") {
+                throw " it should not be an empty string"
+            }
+        } else {
+            throw "firstname, lastname, email, website, priceRange should be a string"
+        }
+
+        function val(input, name) {
+            if (/\s/g.test(input) == true) {
+                throw `${name} cannot have empty space`;
+            }
+        }
+
+
+        val(password, 'password')
+        val(email, 'email')
+        if (password.length < 6) throw "Password should have atleast 6 characters"
+
+
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+        if (re.test(email.toLowerCase()) == false) {
+            throw `Email Address (${email}) is not valid`;
+        }
         emaillow = email.toLowerCase()
         const mongoColl = await user()
         const reslis = await mongoColl.find({
@@ -189,7 +227,6 @@ console.log("1")
             throw "Either the username or password is invalid"
         }
         a = reslis
-        console.log("aaaaaaa")
         for (let k of a) {
             const hash2 = await bcrypt.compare(password, k.password);
             if (hash2) {
@@ -275,13 +312,13 @@ console.log("1")
 
         var today = new Date();
         var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-
+        console.log(userInfo)
 
         var userReplaymessage = {
             _id: id,
             idUser: iduserCon,
             message: replayMessages,
-            userName: userInfo.name,
+            userName: userInfo.firstname, //kk
             shopNmae: shopDetail.name,
             isShop: storeIdCon,
             date: date

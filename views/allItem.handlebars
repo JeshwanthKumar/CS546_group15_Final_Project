@@ -136,7 +136,8 @@
     {{#each msgForShop}}
     <tr>
         {{!-- <td>{{this.idUser}}</td> --}}
-        <td>{{this.date}}</td>
+        <td>{{this.date}}</td>  firstname
+        {{!-- <td>{{this.firstname}}</td> --}}
         <td>{{this.userName}}</td>
         <td>{{this.message}}</td>
         <td>
@@ -172,6 +173,7 @@
     {{#each commentForShop}}
     <tr>
         <td>{{this.userName}}</td>
+        {{!-- <td>{{this.firstname}}</td> --}}
         <td>{{this.comment}}</td>
         <td>
             {{this.date}}

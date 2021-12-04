@@ -91,7 +91,7 @@ const exportedMethods = {
             _id: id,
             idUser: userInformation._id,
             message: message,
-            userName: userInformation.name,
+            userName: userInformation.firstname,
             shopId: shopId,
             date: date
         }
@@ -129,7 +129,7 @@ const exportedMethods = {
         var userComment = {
             _id: id,
             idUser: userInformation._id,
-            userName: userInformation.name,
+            userName: userInformation.firstname,
             comment: comment,
             shopId: shopId,
             date: date
@@ -174,7 +174,7 @@ const exportedMethods = {
         var userReview = {
             _id: id,
             idUser: userInformation._id,
-            userName: userInformation.name,
+            userName: userInformation.firstname,
             review: review,
             shopId: shopId,
         }
