@@ -86,12 +86,12 @@ const exportedMethods = {
         const userInformation = await user.getUser(userInfo._id);
         var today = new Date();
         var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-       
+
         var usermessage = {
             _id: id,
             idUser: userInformation._id,
             message: message,
-            userName: userInformation.name,
+            userName: userInformation.firstname,
             shopId: shopId,
             date: date
         }
@@ -106,7 +106,7 @@ const exportedMethods = {
         return;
     },
     ////////////////////////////////////////
-  
+
     async getAllComment(id) {
         var allComment;
         const allCommentsdata = await comments();
@@ -129,7 +129,7 @@ const exportedMethods = {
         var userComment = {
             _id: id,
             idUser: userInformation._id,
-            userName: userInformation.name,
+            userName: userInformation.firstname,
             comment: comment,
             shopId: shopId,
             date: date
@@ -153,16 +153,16 @@ const exportedMethods = {
             _id: convertId
         })
         var rat = store.overallRating;
-        var xx; 
+        var xx;
         store.rating.forEach(x => {
             var y = (x.idUser).toString()
             if (y == userId) {
                 xx = rat
                 return
             }
-            return   
-        }) 
-        return xx; 
+            return
+        })
+        return xx;
     },
     async review(userInfo, shopId, reviewss) {
         var id = mongoose.Types.ObjectId();
@@ -174,7 +174,7 @@ const exportedMethods = {
         var userReview = {
             _id: id,
             idUser: userInformation._id,
-            userName: userInformation.name,
+            userName: userInformation.firstname,
             review: review,
             shopId: shopId,
         }
@@ -206,7 +206,7 @@ const exportedMethods = {
         }
         var numsCount = allReview.length;
         var average = totalSum / numsCount;
-        var averages = (Number(average).toFixed(2)); 
+        var averages = (Number(average).toFixed(2));
         const updateFinal = await resaurantCollection.updateOne({
             _id: convertId
         }, {
