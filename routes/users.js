@@ -9,8 +9,11 @@ const { user } = require('../data');
 
 router.get('/login',async(req,res) =>{
     try{
+        if(req.session.username){
+            res.redirect('/private')
+        }else{
        let a = "login page"
-       res.render('pages/login', { title: 'login page' })
+       res.render('pages/login', { title: 'login page' })}
 
     }catch(e){
         res.status(404).json({message:e})
@@ -20,6 +23,7 @@ router.get('/login',async(req,res) =>{
 
 router.post('/login',async(req,res) =>{
     try{
+        
         let a = "logined page"
         const ul = req.body;
         email=xss(ul.email)
@@ -39,6 +43,7 @@ router.post('/login',async(req,res) =>{
         if( logininfo.authenticated==false){
             throw "there is some server issue"
         }
+
         res.render('pages/seeprofile')
 
     }catch(e){
@@ -170,14 +175,28 @@ router.post('/updateprofile/:id',async(req,res) =>{
     }
 })
 
-router.get('/test',async(req,res) =>{
+router.get("/private", async(req,res)=>{
     try{
-      res.json("test page")
-
-    }catch(e){
-        res.status(404).json({message:e})
+        const user=req.session.user
+    //console.log(User);
+    if(req.session.user){
+        
+        res.render('pages/seeprofile',user)
+        return;
     }
-})
-
+    }
+    catch(e){
+        console.log(e);
+    }
+});
+router.get("/logout", async(req,res)=>{
+    try{
+        let a = "login page"
+        res.render('pages/login', { title: 'login page' })
+     }
+    catch(e){
+        console.log(e);
+    }
+});
 
 module.exports = router;
