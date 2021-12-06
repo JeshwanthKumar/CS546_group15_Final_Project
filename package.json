@@ -1,13 +1,13 @@
 {
-  "name": "cs-546-lab-8",
+  "name": "group 15 final project",
   "version": "1.0.0",
-  "description": "My lab 8 module",
+  "description": "update from branch partUpdate for search 80%",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
-  "author": "Parthkumar Hirpara 10474533",
+  "author": "deng",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.24.0",
