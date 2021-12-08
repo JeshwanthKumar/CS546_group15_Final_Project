@@ -1,5 +1,4 @@
-
-const mongoCollections = require('./config/collection');
+const mongoCollections = require('../config/mongoCollections');
 var validator = require("email-validator");
 const bcrypt = require('bcrypt');
 const ObjectId = require('mongodb').ObjectId

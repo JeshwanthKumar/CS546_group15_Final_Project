@@ -5,7 +5,6 @@ var validator = require("email-validator");
 const userdata=require('../data')
 const userdata2=userdata.user
 const ObjectId = require('mongodb').ObjectId;
-const { user } = require('../data');
 
 router.get('/login',async(req,res) =>{
     try{

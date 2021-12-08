@@ -10,5 +10,6 @@ const getCollectionFn = (collection) => {
   };
 };
 module.exports = {
-    shopkeeper: getCollectionFn('shopkeeper')
+    shopkeeper: getCollectionFn('shopkeeper'),
+    user: getCollectionFn("user"),
 }
