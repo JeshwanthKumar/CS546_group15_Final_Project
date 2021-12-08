@@ -55,6 +55,7 @@ router.post("/login", async(req,res)=>{
             console.log(req.body.username);
             console.log(req.body.password);
             const existingUser = await data.checkShopkeeper(req.body.username, req.body.password);
+            req.session.user=existingUser;
             console.log(existingUser)
             if(existingUser){
                 req.session.username = req.body.username;
@@ -104,7 +105,8 @@ router.get("/logout", async (req,res)=>{
 });
 
 router.get("/edit", async(req,res)=>{
-    res.render("s_edit/s_edit", { userId : req.session.userId});
+    let details = req.session.user.authenticatedUser
+    res.render("s_edit/s_edit", { userId : details});
     return;
 });
 
