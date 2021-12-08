@@ -2,20 +2,21 @@
   "name": "cs-546-final-project",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Jeshwanth Kumar 20007496",
+  "author": "kaushal solanki",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.23.0",
     "bcrypt": "^5.0.1",
-    "epxress": "0.0.1-security",
+    "email-validator": "^2.0.4",
     "express": "^4.17.1",
-    "express-handlebars": "^5.3.5",
+    "express-handlebars": "^5.3.1",
     "express-session": "^1.17.2",
-    "mongodb": "^4.2.0"
+    "jquery": "^3.6.0",
+    "mongodb": "^4.1.4",
+    "node-simple-validator": "^2.0.0",
+    "xss": "^1.0.10"
   }
 }

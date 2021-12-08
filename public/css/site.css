@@ -1,3 +1,15 @@
+div {
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+input[type="text"] {
+    font-size: 14px;
+}
+
+input[type="text"][readonly] {
+    border: 2px solid rgba(0,0,0,0);
+}
 body {
     display: flex;
     justify-content: center;
