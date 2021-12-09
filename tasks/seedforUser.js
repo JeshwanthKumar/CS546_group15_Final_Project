@@ -7,13 +7,13 @@ async function main() {
  // await db.dropDatabase();
 
   try {
-    const res1 = await restaurants.create("Parth Hirpara");
+    const res1 = await restaurants.create("Parth", "hirpara");
     console.log(res1);
   } catch (e) {
     console.log(e);
   }
   try {
-    const res2 = await restaurants.create("vivek Borad ");
+    const res2 = await restaurants.create("vivek", "Hirpara");
     console.log(res2);
   } catch (e) {
     console.log(e);

@@ -150,13 +150,13 @@
         <th>Date</th>
         <th>User Name</th>
         <th>Message</th>
-        <th></th>
+  
     </tr>
     {{#each msgForShop}}
     <tr>
         {{!-- <td>{{this.idUser}}</td> --}}
 
-        <td>{{this.date}}</td> firstname
+        <td>{{this.date}}</td> 
         {{!-- <td>{{this.firstname}}</td> --}}
         <td>{{this.userName}}</td>
         <td>{{this.message}}</td>
@@ -171,9 +171,10 @@
 
             <form method="post" id="shopToUserMessaage" action="/shopId/{{this.idUser}}/{{this.shopId}}">
 
-                <label for="">Message</label>
-                <input required oninvalid="this.setCustomValidity('Please Enter Message for ShopKeeper.')"
-                    oninput="this.setCustomValidity('')" type="message" name="replayMessage" />
+                <label for="">Replay Message</label>
+                <input type="message" name="replayMessage" />
+                {{!-- required oninvalid="this.setCustomValidity('Please Enter Message for ShopKeeper.')"
+                    oninput="this.setCustomValidity('')"  --}}
                 <button type="submit" id="submit addNew" class="btn btn-default">Send Replay</button>
             </form>
         </td>

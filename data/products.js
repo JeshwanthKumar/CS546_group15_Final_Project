@@ -1,6 +1,6 @@
 const mongoCollections = require('../config/mongoCollections');
 const products = mongoCollections.products;
-const shops = mongoCollections.shop;
+const shops = mongoCollections.shopkeeper;
 const messages = mongoCollections.message;
 var mongoose = require('mongoose');
 var shop = require("./shop");
@@ -195,24 +195,12 @@ const exportedMethods = {
 
         var id = mongoose.Types.ObjectId();
         var convertId = mongoose.Types.ObjectId(shopId);
-       
-        var y = checkValidations( productname, productdetails, producthighlights, price, quantityremaining, dateofmanufacture, dateofexpiry)
-        if(y){
+
+        var y = checkValidations(productname, productdetails, producthighlights, price, quantityremaining, dateofmanufacture, dateofexpiry)
+        if (y) {
             return y;
         }
         var message;
-
-  
-        var todayDate = new Date().toISOString().slice(0, 10);
-
-
-        mDate = new Date(dateofmanufacture);
-        eData = new Date(dateofexpiry);
-        var qtyRem = parseInt(quantityremaining)
-
- 
-
-
         const shopCollection = await shops();
         const newItem = {
             _id: id,
@@ -225,7 +213,6 @@ const exportedMethods = {
             dateofmanufacture: dateofmanufacture,
             dateofexpiry: dateofexpiry
         };
-
         const findStore = await shopCollection.findOne({
             _id: convertId
         });
@@ -256,25 +243,14 @@ const exportedMethods = {
     async updateProduct(productId, productname, productdetails, producthighlights, price, quantityremaining, dateofmanufacture, dateofexpiry) {
         var id = mongoose.Types.ObjectId();
         var convertId = mongoose.Types.ObjectId(productId);
-
-        var message;
-        // var todayDate = new Date().toISOString().slice(0, 10);
-
-
-        var todayDate = new Date().toISOString().slice(0, 10);
-
-
-        mDate = new Date(dateofmanufacture);
-        eData = new Date(dateofexpiry);
-        var qtyRem = parseInt(quantityremaining)
-
-
+        var y = checkValidations(productname, productdetails, producthighlights, price, quantityremaining, dateofmanufacture, dateofexpiry)
+        if (y) {
+            return y;
+        }
         const shopCollection = await shops();
         const productCollection = await products();
-
         const restDetail = await this.getShopIdForEditItem(productId);
         const AllitemDetailofspecificItem = await this.getProductDetail(restDetail._id, productId)
-
         const updateItem = {
             _id: AllitemDetailofspecificItem._id,
             productname: productname,

@@ -4,8 +4,6 @@ const data = require('../data');
 const shopData = data.shop;
 const productData = data.products;
 const userData = data.user;
-var mongoose = require('mongoose');
-
 
 router.get('/:id', async function (req, res) {
     const idd = req.params.id;

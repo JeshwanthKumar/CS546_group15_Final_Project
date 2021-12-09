@@ -6,23 +6,6 @@ const shopData = data.shop;
 const productData = data.products;
 
 
-var xss = require('xss');
-var validator = require("email-validator");
-const ObjectId = require('mongodb').ObjectId;
-
-//kkkk
-
-router.get('/test', async (req, res) => {
-    try {
-        res.json("test page")
-    } catch (e) {
-        res.status(404).json({
-            message: e
-        })
-    }
-})
-
-
 router.get('/', async (req, res) => {
     try {
         const userList = await user.getAll();
@@ -43,7 +26,7 @@ router.get('/:id1/allshop', async (req, res) => {
     try {
 
         const userid = req.params.id1;
-        const restaurantList = await shopData.getShopWithItem(); 
+        const restaurantList = await shopData.getShopWithItem();
 
         const userInfo = await user.getUser(userid);
         var userId = userInfo._id
@@ -241,7 +224,7 @@ router.post('/:idUser/shop/:shopId', async (req, res) => {
                 res.render('userView', dataa);
                 return;
             }
-
+        }
 
         if (message) {
 
@@ -339,7 +322,6 @@ router.post('/:idUser/shop/:shopId', async (req, res) => {
 
 
 router.delete('/:iduser/shop/:idshop/:messId', async (req, res) => {
-    //const idUsers = req.params.idUser;
     const messageId = req.params.messId;
     const iduser = req.params.iduser;
     const idshop = req.params.idshop;

@@ -1,5 +1,5 @@
 const mongoCollections = require('../config/mongoCollections');
-const shop = mongoCollections.shop;
+const shop = mongoCollections.shopkeeper;
 const messages = mongoCollections.message;
 const reviews = mongoCollections.reviews;
 const replayMessage = mongoCollections.replayMessages;
@@ -79,7 +79,6 @@ const exportedMethods = {
     },
     async message(userInfo, shopId, message) {
         var id = mongoose.Types.ObjectId();
-
         var convertId = mongoose.Types.ObjectId(shopId);
         const resaurantCollection = await shop();
         const messageCollection = await messages();
@@ -91,11 +90,7 @@ const exportedMethods = {
             _id: id,
             idUser: userInformation._id,
             message: message,
-
             userName: userInformation.firstname,
-
-           // userName: userInformation.name,
-
             shopId: shopId,
             date: date
         }
@@ -109,7 +104,6 @@ const exportedMethods = {
         })
         return;
     },
-    ////////////////////////////////////////
 
     async getAllComment(id) {
         var allComment;
@@ -133,11 +127,7 @@ const exportedMethods = {
         var userComment = {
             _id: id,
             idUser: userInformation._id,
-
             userName: userInformation.firstname,
-
-           // userName: userInformation.name,
-
             comment: comment,
             shopId: shopId,
             date: date
@@ -161,16 +151,13 @@ const exportedMethods = {
             _id: convertId
         })
         var rat = store.overallRating;
-
         var xx;
-
         store.rating.forEach(x => {
             var y = (x.idUser).toString()
             if (y == userId) {
                 xx = rat
                 return
             }
-
             return
         })
         return xx;
@@ -186,11 +173,7 @@ const exportedMethods = {
         var userReview = {
             _id: id,
             idUser: userInformation._id,
-
             userName: userInformation.firstname,
-
-            //userName: userInformation.name,
-
             review: review,
             shopId: shopId,
         }
