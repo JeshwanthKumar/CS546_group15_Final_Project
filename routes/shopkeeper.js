@@ -1,10 +1,11 @@
-const {ObjectId} = require('bson');
+
 const express = require('express');
-//const { removeShop } = require('../data/shopkeeper');
-//const { ConnectionClosedEvent } = require('mongodb');
 const router = express.Router();
+const {ObjectId} = require('bson');
 const data = require('../data/shopkeeper');
-// 
+
+
+
 router.get("/", async(req,res)=>{
     if(req.session.username){
         res.redirect(`/shopId/${req.session._id}`);
@@ -32,7 +33,7 @@ router.post("/signup", async(req,res)=>{
         try{
             console.log(req.body.username);
             console.log(req.body.password);
-            const newShopkeeper = await data.createShopkeeper(req.body.ShopName, req.body.username, req.body.ownerFirstname, req.body.ownerLastname, req.body.Address, req.body.email, req.body.pincode, req.body.phoneNumber, req.body.password);
+            const newShopkeeper = await data.createShopkeeper(req.body.ShopName, req.body.username, req.body.ownerFirstname, req.body.ownerLastname, req.body.Address, req.body.email, req.body.pincode, req.body.phoneNumber, req.body.password, req.body.overallRating, req.body.item, req.body.message, req.body.comment, req.body.rating);
             if(newShopkeeper.userInsterted){
                 res.redirect("/");
                 return;
@@ -205,5 +206,6 @@ router.delete("/delete/:id", async(req,res)=>{
         //do nothing
     }
 });
+
 
 module.exports = router;

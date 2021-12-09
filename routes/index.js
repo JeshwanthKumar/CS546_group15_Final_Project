@@ -1,22 +1,27 @@
-const mainRoutes = require('./users');
-const routes = require('./shopkeeper');
-const constructorMethod = (app) => {
-  app.use('/', routes);  
-  app.use('/users',mainRoutes)
-    /*app.get("/", (req,res) => {
-        let title = "People Finder"
-        res.render("posts/searching", { title } )
 
-    })*/
+const product = require('./products');
+const shop = require('./shopkeeper');
+const users = require('./users');
+
+const constructorMethod = (app) => {
+
+  app.use('/shopId', product);
+  app.use('/shop', shop);
+  app.use('/users', users);
+ app.use('/', shop); 
+  app.use("*", (req, res) => {
+   res.redirect('/');
+    
+  });
+
+}
+  
 
   app.use('*', (req, res) => {
     res.redirect('/');
   });
 };
-    // app.use('*', (req,res)=>{
-    //     res.render('');
-    //     return;
-    // });
-    // res.send("Invalid");
+
+
 
 module.exports = constructorMethod;
