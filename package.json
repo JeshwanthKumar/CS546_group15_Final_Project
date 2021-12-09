@@ -1,13 +1,13 @@
 {
   "name": "search page",
   "version": "1.0.0",
-  "description": "group 15",
+  "description": "need seed for shops in products",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
-  "author": "deng, parth",
+  "author": "d",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.24.0",
