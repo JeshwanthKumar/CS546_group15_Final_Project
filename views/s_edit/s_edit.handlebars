@@ -4,10 +4,7 @@
             Edit Profile
         </h1>
     </header>
-    {{!-- <form action = "/edit/shop/{{userId._id}}" method ="POST" > --}}
-
-        {{!-- <form method="post" id = "edit-form" action = "/edit/shop/{{userId._id}}?_method=PUT">
-        <input type="hidden" name="_method" value="PUT"> --}}
+    <form action = "/edit/shop/{{userId._id}}" method ="POST" >
 
 
     <label class = "user-text" for = "shopName">
@@ -51,7 +48,7 @@
         <input name = "phoneNumber" id = "phoneNumber" type = "number" value = "{{userId.phoneNumber}}">
         <br>
         <br>
-        {{!-- <input name = "_method" hidden value = "PUT">  --}}
+        <input name = "_method" hidden value = "PUT"> 
         <input class = "submit-button" type = "submit" value = "Done">
     </form>
     {{#if error}}
