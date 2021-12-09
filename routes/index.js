@@ -1,12 +1,12 @@
 const product = require('./products');
 const shop = require('./shopkeeper');
-const user = require('./user');
+const users = require('./users');
 
 const constructorMethod = (app) => {
 
   app.use('/shopId', product);
   app.use('/shop', shop);
-  app.use('/users', user);
+  app.use('/users', users);
 
   app.use("*", (req, res) => {
    res.redirect('/');
