@@ -1,5 +1,5 @@
 const product = require('./products');
-const shop = require('./shop');
+const shop = require('./shopkeeper');
 const user = require('./user');
 
 const constructorMethod = (app) => {
