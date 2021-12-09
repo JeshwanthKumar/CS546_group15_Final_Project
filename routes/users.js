@@ -57,7 +57,7 @@ router.get('/:idUser/shop/:shopId', async (req, res) => {
         const userid = req.params.idUser;
         const shopId = req.params.shopId;
         const userInfo = await user.getUser(userid);
-        const shopDetail = await shopData.get(shopId);
+        const shopDetail = await shopData.getAllDataOfShop(shopId);
         const getShopbyId = await productData.getAllProduct(shopId);
         var shopComment = shopDetail.comment;
         var overallRatings = shopDetail.overallRating;
@@ -121,7 +121,7 @@ router.post('/:idUser/shop/:shopId', async (req, res) => {
 
     try {
         const userInfo = await user.getUser(userid);
-        const shopInfo = await shopData.get(shopId);
+        const shopInfo = await shopData.getAllDataOfShop(shopId);
         const getShopbyId = await productData.getAllProduct(shopId);
         var shopComment = shopInfo.comment;
         var noComment;
@@ -143,7 +143,7 @@ router.post('/:idUser/shop/:shopId', async (req, res) => {
             if (checkuser != undefined) {
                 const getShopbyId = await productData.getAllProduct(shopId);
 
-                const shopInfonew = await shopData.get(shopId);
+                const shopInfonew = await shopData.getAllDataOfShop(shopId);
                 var noRating;
                 var averageRating;
                 if (shopInfonew.overallRating != 0) {
@@ -185,7 +185,7 @@ router.post('/:idUser/shop/:shopId', async (req, res) => {
             var average = await shopData.review(userInfo, shopId, review)
             const getShopbyId = await productData.getAllProduct(shopId);
 
-            const shopInfonew = await shopData.get(shopId);
+            const shopInfonew = await shopData.getAllDataOfShop(shopId);
 
             var noRating;
             var averageRating;
@@ -231,7 +231,7 @@ router.post('/:idUser/shop/:shopId', async (req, res) => {
             await shopData.message(userInfo, shopId, message)
             const getShopbyId = await productData.getAllProduct(shopId);
 
-            const shopInfonew = await shopData.get(shopId);
+            const shopInfonew = await shopData.getAllDataOfShop(shopId);
             var shopComment = shopInfonew.comment;
             var noRating;
             var averageRating;
@@ -273,7 +273,7 @@ router.post('/:idUser/shop/:shopId', async (req, res) => {
             await shopData.comment(userInfo, shopId, comment)
             const getShopbyId = await productData.getAllProduct(shopId);
 
-            const shopInfonew = await shopData.get(shopId);
+            const shopInfonew = await shopData.getAllDataOfShop(shopId);
             var shopComment = shopInfonew.comment;
             var noRating;
             var averageRating;
@@ -328,7 +328,7 @@ router.delete('/:iduser/shop/:idshop/:messId', async (req, res) => {
     try {
 
         const shopDetailId = await user.removeMessage(messageId);
-        res.redirect(`/user/${iduser}/shop/${idshop}`)
+        res.redirect(`/users/${iduser}/shop/${idshop}`)
 
     } catch (e) {
         res.status(500).json({

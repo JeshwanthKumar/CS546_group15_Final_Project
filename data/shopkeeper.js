@@ -38,8 +38,8 @@ const exportedMethods = {
         return x;
 
     },
-
-    async get(id) {
+//getAllDataOfShop
+    async getAllDataOfShop(id) {
         var x = id.toString()
         var convertId = mongoose.Types.ObjectId(id);
         const findShop = await shop();

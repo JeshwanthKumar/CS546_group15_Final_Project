@@ -7,7 +7,7 @@ const userData = data.user;
 
 router.get('/:id', async function (req, res) {
     const idd = req.params.id;
-    const shopDetail = await shopData.get(idd);
+    const shopDetail = await shopData.getAllDataOfShop(idd);
     var shopName = shopDetail.name
     var shopId = shopDetail._id;
     var shopMessage = shopDetail.message;
@@ -67,7 +67,7 @@ router.get('/:id', async function (req, res) {
 
 router.get('/addItem/:id', async function (req, res) {
     const shopid = req.params.id;
-    const shopDetail = await shopData.get(shopid);
+    const shopDetail = await shopData.getAllDataOfShop(shopid);
     var shopName = shopDetail.name
     const dataa = {
         shopId: shopid,
@@ -266,7 +266,7 @@ router.post('/:id', async function (req, res) {
         );
         if (typeof newItem == "string") {
             console.log(newItem)
-            const shopDetail = await shopData.get(idProduct);
+            const shopDetail = await shopData.getAllDataOfShop(idProduct);
             var shopMessage = shopDetail.message;
             var shopComment = shopDetail.comment;
             var noItem;

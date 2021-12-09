@@ -1,9 +1,9 @@
 
 <section>
-    <a href="/user/profiledetail">User Profile</a>
+    <a href="/users/profiledetail">User Profile</a>
 </section>
 
-<a class="get-home" href="/user">To Home Page</a>
+<a class="get-home" href="/users">To Home Page</a>
 
 
 <main id="ab">
@@ -72,7 +72,7 @@
 </h3>
 {{/if}}
 
-<form method="post" id="rating" action="/user/{{userData._id}}/shop/{{shopDetail._id}}">
+<form method="post" id="rating" action="/users/{{userData._id}}/shop/{{shopDetail._id}}">
 
     <label for="cars">Rate for Shop</label>
 
@@ -108,7 +108,7 @@
         <td>{{this.shopNmae}}</td>
         <td>{{this.message}}</td>
         <td>
-            <form method="post" action="/user/{{this.idUser}}/shop/{{this.isShop}}/{{this._id}}?_method=DELETE" <input
+            <form method="post" action="/users/{{this.idUser}}/shop/{{this.isShop}}/{{this._id}}?_method=DELETE" <input
                 type="hidden" name="_method" value="DELETE">
                 <input type="submit" name="delete" value='Delete' />
             </form>
@@ -125,7 +125,7 @@
 
     <br>
 
-    <form method="post" id="userToShopMessaage" action="/user/{{userData._id}}/shop/{{shopDetail._id}}">
+    <form method="post" id="userToShopMessaage" action="/users/{{userData._id}}/shop/{{shopDetail._id}}">
 
         <label for="">Message</label>
         <input required oninvalid="this.setCustomValidity('Please Enter Message for ShopKeeper.')"
@@ -143,7 +143,7 @@
     <p>{{mess}}</p>
     {{/if}}
 
-    <form method="post" id="addItem-form" action="/user/{{userData._id}}/shop/{{shopDetail._id}}">
+    <form method="post" id="addItem-form" action="/users/{{userData._id}}/shop/{{shopDetail._id}}">
         <label for="">Comment</label>
         <input required oninvalid="this.setCustomValidity('Please Write review of your experience.')"
             oninput="this.setCustomValidity('')" type="comment" name="comment" />

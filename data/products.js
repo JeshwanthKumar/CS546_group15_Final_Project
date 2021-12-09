@@ -234,7 +234,7 @@ const exportedMethods = {
                 item: newItem
             }
         })
-        const shopDetail = await shop.get(shopId);
+        const shopDetail = await shop.getAllDataOfShop(shopId);
         var shopItem = shopDetail.item;
         return shopItem;
     },
