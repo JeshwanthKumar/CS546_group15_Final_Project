@@ -9,8 +9,10 @@ const settings =  {
   let _connection = undefined;
 let _db = undefined;
 
+
 module.exports = {
     getDb : async () => {
+
   if (!_connection) {
     _connection = await MongoClient.connect(mongoConfig.serverUrl, {
       useNewUrlParser: true
@@ -19,8 +21,10 @@ module.exports = {
   }
 
   return _db;
+
 },
 removeConnection: async () => {
     _connection.close();
   }
 }
+

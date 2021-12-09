@@ -1,0 +1,18 @@
+<a class="get-home" href="/users">To Home Page</a>
+<main id="ab">
+    <h3>{{title}}</h3>
+    <h1>{{userdata.name}} </h1>
+    {{#if noData}}
+    <h1 style="color: blueviolet;" for="overAllRating">{{noData}}</h1>
+    {{/if}}
+    <ul>
+        {{#each allShop}}
+        <li>
+            <a class="person-item" href="/users/{{../userId}}/shop/{{this._id}}">{{this.name}} </a>
+        </li>
+        <br>
+        {{/each}}
+    </ul>
+    {{!-- <h1>{{userdata.replayMessages}} </h1> --}}
+</main>
+
