@@ -328,7 +328,7 @@ router.delete('/:iduser/shop/:idshop/:messId', async (req, res) => {
     try {
 
         const shopDetailId = await user.removeMessage(messageId);
-        res.redirect(`/user/${iduser}/shop/${idshop}`)
+        res.redirect(`/users/${iduser}/shop/${idshop}`)
 
     } catch (e) {
         res.status(500).json({

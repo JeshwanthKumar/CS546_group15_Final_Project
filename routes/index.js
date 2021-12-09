@@ -6,7 +6,7 @@ const constructorMethod = (app) => {
 
   app.use('/shopId', product);
   app.use('/shop', shop);
-  app.use('/user', user);
+  app.use('/users', user);
 
   app.use("*", (req, res) => {
    res.redirect('/');
