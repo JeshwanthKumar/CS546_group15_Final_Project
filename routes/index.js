@@ -13,14 +13,14 @@ const constructorMethod = (app) => {
    res.redirect('/');
     
   });
-
-}
-  
-
   app.use('*', (req, res) => {
     res.redirect('/');
   });
-};
+}
+  
+
+
+
 
 
 

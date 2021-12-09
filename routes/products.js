@@ -8,7 +8,7 @@ const userData = data.user;
 router.get('/:id', async function (req, res) {
     const idd = req.params.id;
     const shopDetail = await shopData.getAllDataOfShop(idd);
-    var shopName = shopDetail.name
+    var shopName = shopDetail.ShopName;
     var shopId = shopDetail._id;
     var shopMessage = shopDetail.message;
     var shopComment = shopDetail.comment;
@@ -80,6 +80,7 @@ router.get('/editItem/:id', async function (req, res) {
     var itemId = req.params.id;
     var restDetail = await productData.getShopIdForEditItem(itemId);
     var itemDetail = await productData.getProductDetail(restDetail._id, itemId)
+    console.log(itemDetail)
     var data = {
         shopId: restDetail._id,
         itemDetail: itemDetail
@@ -88,6 +89,8 @@ router.get('/editItem/:id', async function (req, res) {
 });
 
 router.put('/:id', async function (req, res) {
+    console.log("11112222-----------------------------------------------")
+
     const iddProduct = req.params.id;
     const {
         productname,
@@ -98,6 +101,7 @@ router.put('/:id', async function (req, res) {
         dateofmanufacture,
         dateofexpiry
     } = req.body;
+    console.log("1111-----------------------------------------------")
 
     try {
         var restDetail = await productData.getShopIdForEditItem(iddProduct);
@@ -107,6 +111,7 @@ router.put('/:id', async function (req, res) {
             error: e.message
         });
     }
+    console.log("1-----------------------------------------------")
     var priceNum = parseInt(price)
     var qtyRem = parseInt(quantityremaining)
 
@@ -265,7 +270,7 @@ router.post('/:id', async function (req, res) {
             dateofexpiry
         );
         if (typeof newItem == "string") {
-            console.log(newItem)
+           // console.log(newItem)
             const shopDetail = await shopData.getAllDataOfShop(idProduct);
             var shopMessage = shopDetail.message;
             var shopComment = shopDetail.comment;
