@@ -146,6 +146,13 @@ app.use((req,res,next)=>{
 
 routes(app);
 
-app.listen(3000, () => {
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
+// app.listen(port);
+ 
+
+app.listen(port, () => {
     console.log("Your server started at http://localhost:3000");
 })
