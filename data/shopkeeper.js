@@ -5,6 +5,7 @@ const reviews = mongoCollections.reviews;
 const replayMessage = mongoCollections.replayMessages;
 var mongoose = require('mongoose');
 const user = require('./user')
+const validation = require('../validation/validation')
 const comments = mongoCollections.comment;
 var userdata = mongoCollections.user;
 
@@ -27,7 +28,9 @@ const exportedMethods = {
         var noshopWithItem;
         const movieCollection = await shop();
         const allShop = await movieCollection.find({}).toArray();
+        console.log(allShop)
         allShop.forEach(i => {
+            //for each problem
             i.item.forEach((element) => {
                 if (element.length != 0) {
                     shopListWithItem.push(i)
@@ -237,6 +240,14 @@ const exportedMethods = {
 // module.exports = {
  async createShopkeeper(ShopName, username, ownerFirstname, ownerLastname, Address, email, pincode, phoneNumber, password){
     const shopkeeperCollections = await shopkeeper();
+    validation.shopNamevalidation(ShopName);
+    validation.userNamevalidation(username);
+    validation.firstnamevalidation(ownerFirstname);
+    validation.lastnamevalidation(ownerLastname);
+    validation.emailvalidation(email);
+    validation.pincodevalidation(pincode);
+    validation.phonenumbervalidation(phoneNumber);
+    validation.passwordValidation(password);
         const hashed_pass = await bcrypt.hash(password, saltRounds);
         let lower = username.toLowerCase();
         let newShopkeeper = {
@@ -322,6 +333,14 @@ const exportedMethods = {
 
     async updateShopkeeper(id, ShopName, username, ownerFirstname, ownerLastname, Address, email, pincode, phoneNumber){
         const UpdateInfo = await this.get(id);
+        validation.shopNamevalidation(ShopName);
+        validation.userNamevalidation(username);
+        validation.firstnamevalidation(ownerFirstname);
+        validation.lastnamevalidation(ownerLastname);
+        validation.emailvalidation(email);
+        validation.pincodevalidation(pincode);
+        validation.phonenumbervalidation(phoneNumber);
+        //validation.passwordValidation(password);
         let updatedLower = username.toLowerCase();
         let shopkeeper_update = {
             ShopName : ShopName,

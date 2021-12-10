@@ -398,6 +398,7 @@ router.post('/login', async (req, res) => {
         // res.render('pages/seeprofile')
 
     } catch (e) {
+        console.log(e);
         res.render('pages/login', {
             title: 'login page',
             message: e
