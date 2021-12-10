@@ -1,4 +1,5 @@
 
+
 const product = require('./products');
 const shop = require('./shopkeeper');
 const users = require('./users');
@@ -13,15 +14,11 @@ const constructorMethod = (app) => {
    res.redirect('/');
     
   });
-
-}
-  
-
   app.use('*', (req, res) => {
     res.redirect('/');
   });
-};
-
+}
+  
 
 
 module.exports = constructorMethod;

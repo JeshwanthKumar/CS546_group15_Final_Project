@@ -1,11 +1,22 @@
-const shopkeeper = require('./shopkeeper');
+const shopkeepers = require('./shopkeeper');
 const products = require('./products');
-const user = require('./user');
+const users = require('./user');
 
 
 module.exports = {
-  shop: shopkeeper,
+  shop: shopkeepers,
   products: products,
-  user: user,
+  user: users,
 
 };
+// const shopkeeper = require('./shopkeeper');
+// const products = require('./products');
+// const user = require('./user');
+
+
+// module.exports = {
+//   shop: shopkeeper,
+//   products: products,
+//   user: user,
+
+// };

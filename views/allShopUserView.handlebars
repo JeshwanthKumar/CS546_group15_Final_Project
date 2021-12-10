@@ -1,4 +1,8 @@
-<a class="get-home" href="/users">To Home Page</a>
+<section>
+<a href="/users/profiledetail">User Profile</a>
+
+<a href="/users/logout">logout</a>
+</section>
 <main id="ab">
     <h3>{{title}}</h3>
     <h1>{{userdata.name}} </h1>
@@ -8,7 +12,7 @@
     <ul>
         {{#each allShop}}
         <li>
-            <a class="person-item" href="/users/{{../userId}}/shop/{{this._id}}">{{this.name}} </a>
+            <a class="person-item" href="/users/{{../userId}}/shop/{{this._id}}">{{this.ShopName}} </a>
         </li>
         <br>
         {{/each}}

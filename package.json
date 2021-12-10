@@ -2,13 +2,12 @@
   "name": "cs-546-final-project",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start" : "node app.js"
-},
-  "author": "kaushal solanki",
-
+    "start": "node app.js"
+  },
+  "author": "Group 15",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.24.0",
