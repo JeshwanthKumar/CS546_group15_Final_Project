@@ -15,6 +15,8 @@ app.use('/public', express.static(__dirname + '/public'));
 
 app.use(methodOverride('_method'));
 
+// GOOGLE login
+
 
 
 app.use(session({

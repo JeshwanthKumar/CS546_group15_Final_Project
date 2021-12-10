@@ -15,12 +15,23 @@
         <label for="password">Password:</label>
 
         <input id="password" name="password" type="password" required>
-        
+
         <button id="loginBtn" class="loginProfileButton" type="submit">Login</button>
         <a href="/users/signup">Don't have an account? Click here to  Signup</a>
     </form>
     <div id="errorDiv"  hidden><p>{{error}}</p>
 </div>
+
+    <div class="col-sm-4">
+      <div class="card">
+        <div class="card-body">
+          <a class="btn btn-block btn-google btn-social" href="/auth/google" role="button">
+            <i class="fab fa-google"></i>
+            Sign In with Google
+          </a>
+        </div>
+      </div>
+      
     <p class = "error"> {{ message }} </p>
     </section>
    
