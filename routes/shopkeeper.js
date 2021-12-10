@@ -4,10 +4,10 @@ const express = require('express');
 //const { ConnectionClosedEvent } = require('mongodb');
 const router = express.Router();
 const data = require('../data/shopkeeper');
-
+// 
 router.get("/", async(req,res)=>{
     if(req.session.username){
-        res.redirect("/private");
+        res.redirect(`/shopId/${req.session._id}`);
         return;
     }
     else{
@@ -18,7 +18,7 @@ router.get("/", async(req,res)=>{
 
 router.get("/signup", async(req,res)=>{
     if(req.session.username){
-        res.redirect("/private");
+        res.redirect(`/shopId/${req.session._id}`);
         return;
     }
     else{
@@ -60,7 +60,7 @@ router.post("/login", async(req,res)=>{
             if(existingUser){
                 req.session.username = req.body.username;
                 req.session.userId = existingUser.authenticatedUser._id.toString();
-                res.redirect("/private");
+                res.redirect(`/shopId/${req.session._id}`);
                 return;
             }
             else{
@@ -77,7 +77,7 @@ router.post("/login", async(req,res)=>{
     }
 });
 
-router.get("/private", async(req,res)=>{
+router.get(`/shopId/${req.session._id}`, async(req,res)=>{
     try{
     const User = await data.get(req.session.userId);
     console.log(User);
@@ -166,7 +166,7 @@ router.put("/edit/:id", async(req,res)=>{
                 );
                 console.log(newShopkeeper);
             if(newShopkeeper.updateInserted){
-                res.redirect("/private");
+                res.redirect(`/shopId/${req.session._id}`);
                 console.log("EDIT//");
                 return;
             }

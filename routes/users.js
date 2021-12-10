@@ -2,7 +2,7 @@ const express=require('express')
 const router = express.Router()
 var xss = require('xss');
 var validator = require("email-validator");
-const userdata=require('../data')
+const userdata=require('../data/user')
 const userdata2=userdata.user
 const ObjectId = require('mongodb').ObjectId;
 
