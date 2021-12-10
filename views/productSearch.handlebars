@@ -1,0 +1,43 @@
+<menu>
+  <ul id="nav">
+    <li id="nav-home"><a href="/" class="current">Home</a></li>
+    <li id="nav-shopkeeper"><a href="/shop/login">Shopkeeper</a></li>
+    <li id="nav-customer"><a href="/users/login">Customer</a></li>
+     <li id="nav-product"><a href="/shop/allProduct">Product</a></li>
+  </ul>
+</menu>
+
+<main>
+    {{!-- <div class="search-card-center">
+        <h1>Welcome!</h1>
+        <p>Discover the best product.</p>
+        <label for="search-bar">
+            <form id="search-form" method="POST" action="/productSearch/search">
+                <input id="search-bar" type="text" name="search" class = "searchFields" placeholder="Search for a product" />
+                <input type="submit" class = "btn" value="Search" />
+            </form>
+        </label>
+    </div> --}}
+    <div class = "product_Collection"> <!-- Note: When changing this section be sure to modify sort.js as well --> 
+    {{#each allProducts}}
+        <div class = "card" onclick="location.href='../productSearch/{{this._id}}';">
+            {{!-- <h2><a href="/productSearch/{{this._id}}">{{this.productname}}</a></h2> --}}
+            <p>ShopName: {{this.shopName}}</p>
+            <p>Productname: {{this.productname}}</p>
+            <p>{{this.price}}</p>  
+            <p>{{this.quantityremaining}}</p>
+            <p>{{this.dateofmanufacture}}</p>
+            <p>{{this.dateofexpiry}}</p>
+            {{#if this.rated}}  
+            <p class="avg">{{this.rating}}/5</p>
+            {{else}}
+            <p class="avg">No Reviews</p>
+            {{/if}}
+            <br/>
+        </div>
+    {{/each}}
+    </div>
+</main>
+
+
+
