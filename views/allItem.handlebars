@@ -32,7 +32,9 @@
             <th></th>
         </tr>
         <tr>
+
             <form method="post" id="additemformb1" action="/shopId/{{shopId}}">
+
 
                 <div class="" id="addNew b2">
                     <button type="submit" id="submit addNew" class="btn btn-default">Add</button>
@@ -40,36 +42,48 @@
                 <td>
                     {{!-- required oninvalid="this.setCustomValidity('Please Enter Product Name')"
                     oninput="this.setCustomValidity('')" id="productname" --}}
+
                     <input size="18" type="text" id="productname" name="productname" placeholder="Product Name" />
+
                 </td>
                 <td>
                     {{!-- required oninvalid="this.setCustomValidity('Please Enter Product Details')"
                     oninput="this.setCustomValidity('')" --}}
+
                     <input id="productdetails" type="text" id="productdetails" name="productdetails" placeholder="ProductDetails"
+
                         value="John55" />
                 </td>
                 <td>
                     {{!-- required oninvalid="this.setCustomValidity('Please Enter Product Highlights')"
                     oninput="this.setCustomValidity('')" --}}
+
                     <input id="producthighlights" type="text" id="producthighlights" name="producthighlights" placeholder="Product Highlights"
+
                         value="John" />
                 </td>
                 <td>
                     {{!-- required oninvalid="this.setCustomValidity('Please Enter Valid Price')"
                     oninput="this.setCustomValidity('')" --}}
+
                     <input size="10" type="text" id="pricetotalAmt" step="0.5" name="price" placeholder="Price ( $ )"
+
                         value="5" />
                 </td>
                 <td>
                     {{!-- required oninvalid="this.setCustomValidity('Please Enter Quantity Remaining')"
                     oninput="this.setCustomValidity('')" --}}
+
                     <input type="text" id="quantityremaining" id="quantityremaining"name="quantityremaining"
+
                         placeholder="Quantity Remaining (0-5)" value="5" />
                 </td>
                 <td>
                     {{!-- required oninvalid="this.setCustomValidity('Please Enter Valid Date')"
                     oninput="this.setCustomValidity('')" --}}
+
                     <input id="dateofmanufacture" type="date" id="dateofmanufacture"name="dateofmanufacture"
+
                         placeholder="Date of Manufacture" />
                 </td>
                 <td>
@@ -85,10 +99,11 @@
                     </div> --}}
                 </td>
             </form>
-            
-        </tr>
+
     
     <div id="errorDiv"  hidden><p>{{error}}</p></div>
+
+        </tr>
   
         {{#if allItem}}
         {{#each allItem}}
@@ -184,7 +199,9 @@
             <form method="post" id="shopToUserMessaage" action="/shopId/{{this.idUser}}/{{this.shopId}}">
 
                 <label for="">Replay Message</label>
+
                 <input type="message" name="replayMessage" id="shopmessage" />
+
                 {{!-- required oninvalid="this.setCustomValidity('Please Enter Message for ShopKeeper.')"
                     oninput="this.setCustomValidity('')"  --}}
                 <button type="submit" id="submit addNew" class="btn btn-default">Send Replay</button>

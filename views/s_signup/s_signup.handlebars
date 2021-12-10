@@ -1,0 +1,123 @@
+{{!-- <article class = "Sign-up">
+    <header>
+        <h1 class = "Signup-heading">
+            Sign-up
+        </h1>
+    </header>
+    <form action = "/signup" method ="POST" id = "signup-form">
+    <label class = "user-text" for = "shopName">
+            Shop Name:
+        </label>
+        <input name = "ShopName" id = "shopName" type = "text">
+        <br>
+        <label class = "user-text" for = "username">
+            User Name :
+        </label>
+        <input name = "username" id = "username" type = "text">
+        <br>
+        <label class = "user-text" for = "ownerFirstname">
+            First Name:
+        </label>
+        <input name = "ownerFirstname" id = "ownerFirstname" type = "text">
+        <br>
+        <label class = "password-text" for = "ownerLastname">
+            Last Name :
+        </label> --}}
+        {{!-- <input name = "ownerLastname" id = "ownerLastname" type = "text">
+        <br>
+        <label class = "password-text" for = "Address">
+            Address :
+        </label>
+        <input name = "Address" id = "Address" type = "text">
+        <br>
+        <label class = "password-text" for = "email">
+            Email :
+        </label>
+        <input name = "email" id = "email" type = "email">
+        <br>
+        <label class = "password-text" for = "pincode">
+            Pincode :
+        </label>
+        <input name = "pincode" id = "pincode" type = "number">
+        <br>
+        <label class = "password-text" for = "phoneNumber">
+            Phone number :
+        </label>
+        <input name = "phoneNumber" id = "phoneNumber" type = "number">
+        <br>
+        <label class = "password-text" for = "password">
+            Password : 
+        </label>
+        <input name = "password" id = "spassword" type = "password">
+        <br>
+        <input class = "signup-button" type = "submit" value = "Sign up">
+    </form>
+    {{#if error}}
+    <p class = "error">{{error}}</p>
+    {{/if}}
+    <p>Already have an accout? <a href="/login">Click here</a></p>
+<p id = "success-signup" hidden>Account created successfully</p>
+<p id = "suser-error" hidden>Either the username or password is incorrect</p>
+</article>  --}}
+
+{{!-- new --}}
+
+<div class="container mt-5">
+  <h1>Login</h1>
+
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="card">
+        <div class="card-body">
+
+          <!-- Makes POST request to /login route -->
+          <form action="/signup" method="POST" id = "signup-form">
+            <div class="form-group">
+              <label for="ShopName">ShopName</label>
+    <input type="ShopName" class="form-control" placeholder="Enter ShopName" name="ShopName" id="ShopName">
+            </div>
+            <div class="form-group">
+              <label for="username">username</label>
+   <input type="username" class="form-control" placeholder="Enter username" name="username" id="username">
+            </div>
+            <div class="form-group">
+              <label for="ownerFirstname">ownerFirstname</label>
+   <input type="ownerFirstname" class="form-control" placeholder="Enter firstname" name="ownerFirstname" id="ownerFirstname" >
+             </div>
+            <div class="form-group">
+              <label for="ownerLastname">ownerLastname</label>
+   <input type="ownerLastname" class="form-control" placeholder="Enter Lastname" name="ownerLastname" id="ownerLastname">
+            </div>
+            <div class="form-group">
+              <label for="Address">Address</label>
+  <input type="Address" class="form-control" placeholder="Enter Address" name="Address" id="Address">
+            </div>
+             <div class="form-group">
+              <label for="email">email</label>
+  <input type="email" class="form-control" placeholder="Enter email" name="email" id="email" >
+         </div>
+          <div class="form-group">
+              <label for="pincode">pincode</label>
+  <input type="pincode" class="form-control" placeholder="Enter pincode" name="pincode" id="pincode" >
+         </div>
+         <div class="form-group">
+              <label for="phoneNumber">phoneNumber</label>
+  <input type="phoneNumber" class="form-control" placeholder="Enter phoneNumber" name="phoneNumber" id="phoneNumber" >
+         </div>
+         <div class="form-group">
+              <label for="password">password</label>
+  <input type="password" class="form-control" placeholder="Enter password" name="password" id="spassword" >
+         </div>
+            <button type="submit" class="btn btn-dark">Login</button>
+          </form>
+ <a href="/login">have an account? Click here to  Signin</a>
+ <div id="errorDiv"  hidden><p>{{error}}</p>
+        </div>
+      </div>
+    </div>
+
+ 
+
+  </div>
+
+</div>
