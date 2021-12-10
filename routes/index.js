@@ -1,4 +1,5 @@
 
+
 const product = require('./products');
 const shop = require('./shopkeeper');
 const users = require('./users');
@@ -18,10 +19,6 @@ const constructorMethod = (app) => {
   });
 }
   
-
-
-
-
 
 
 module.exports = constructorMethod;

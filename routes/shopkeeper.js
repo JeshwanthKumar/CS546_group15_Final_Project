@@ -1,3 +1,4 @@
+
 const express = require('express');
 const router = express.Router();
 const {
@@ -6,7 +7,9 @@ const {
 const data = require('../data');
 var shop = data.shop
 
-
+router.get("/", async(req,res)=>{
+    res.render("pages/home");
+});
 
 router.get("/login", async (req, res) => {
     // console.log(req.session.user.authenticatedUser._id)
@@ -267,3 +270,4 @@ router.delete("/delete/:id", async (req, res) => {
 
 
 module.exports = router;
+
