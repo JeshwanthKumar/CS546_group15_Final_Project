@@ -1,22 +1,36 @@
-<section>
-<a href="/users/profiledetail">User Profile</a>
 
-<a href="/users/logout">logout</a>
-</section>
-<main id="ab">
-    <h3>{{title}}</h3>
-    <h1>{{userdata.name}} </h1>
-    {{#if noData}}
-    <h1 style="color: blueviolet;" for="overAllRating">{{noData}}</h1>
-    {{/if}}
-    <ul>
-        {{#each allShop}}
-        <li>
-            <a class="person-item" href="/users/{{../userId}}/shop/{{this._id}}">{{this.ShopName}} </a>
-        </li>
-        <br>
-        {{/each}}
-    </ul>
-    {{!-- <h1>{{userdata.replayMessages}} </h1> --}}
+
 </main>
+  <head>
+ 
+  </head>
+  <body class="u-body"><header class="u-align-left u-clearfix u-header u-section-row-container" id="sec-4e9d"><div class="u-section-rows">
+        <div class="u-grey-70 u-section-row u-section-row-1" id="sec-46aa">
+          <div class="u-align-left u-clearfix u-sheet u-sheet-1"></div>
 
+          
+x   <section class="u-clearfix u-grey-10 u-section-1" id="sec-42f4">
+
+      <div class="u-clearfix u-sheet u-sheet-1">
+         
+        <div class="u-list u-list-1">
+          <div class="u-repeater u-repeater-1">
+             {{#each allShop}}
+            <div class="u-container-style u-list-item u-repeater-item u-video-cover u-white">
+              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
+                <div class="u-border-4 u-border-palette-3-base u-expanded-width u-line u-line-horizontal u-line-1"></div>
+                <p class="u-text u-text-1">{{this.ShopName}}</p>
+                {{!-- <img alt="" class="u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-image u-image-default u-image-1" data-image-width="1920" data-image-height="1284" src="images/grocery-g3cce4b8fe_1920.jpg"> --}}
+                <a href="/users/{{../userId}}/shop/{{this._id}}" class="u-btn u-button-style u-palette-3-base u-btn-1">Click here to shop</a>
+              </div>
+            </div>
+  {{/each}}
+            </div>
+          </div>
+        </div>
+       
+      </div>
+       
+    </section>
+
+  
