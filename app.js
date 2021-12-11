@@ -23,16 +23,16 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
-//   // app.use(async(req,res,next)=>{
-//   //   user_status= "(Non-Authenticated User)"
+  // app.use(async(req,res,next)=>{
+  //   user_status= "(Non-Authenticated User)"
   
-//   //   if(req.session.user){
-//   //     user_status="(Authenticated User)"
-//   //   }
+  //   if(req.session.user){
+  //     user_status="(Authenticated User)"
+  //   }
     
-//   //   console.log(`[${new Date().toUTCString()}] : ${req.method} ${req.originalUrl} ${user_status}`);
-//   //   next()
-//   // })
+  //   console.log(`[${new Date().toUTCString()}] : ${req.method} ${req.originalUrl} ${user_status}`);
+  //   next()
+  // })
   app.get('/users/login', (req, res, next) => {
  
     if (req.session.user) {
