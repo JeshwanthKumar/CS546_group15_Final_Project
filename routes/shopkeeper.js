@@ -109,7 +109,7 @@ router.post("/login", async (req, res) => {
                 xss(req.body.username),
                  xss(req.body.password));
           //  console.log("check------------------------------------------------")
-             req.session.user = existingUser;
+             req.session.shop = existingUser;
             // console.log(existingUser)
             if (existingUser) {
                 req.session.username = req.body.username;
@@ -182,8 +182,8 @@ router.get("/edit/:id", async (req, res) => {
 
     var shopDetail = await shop.getAllDataOfShop(idd);
    // console.log(shopDetail)
-    req.session.user = shopDetail;
-    console.log(req.session.user)
+    req.session.shop = shopDetail;
+    console.log(req.session.shop)
     // console.log(details)
     res.render("s_edit/s_edit", {
         userId: shopDetail
@@ -199,7 +199,7 @@ router.put("/edit/shop/:id", async (req, res) => {
     // }
     
     var shopDetail = await shop.getAllDataOfShop(idd);
-    req.session.user = shopDetail
+    req.session.usershop = shopDetail
     if (!shopkeeper_info) {
         res.status(400).render("s_edit/s_edit", {
             userId: shopDetail,

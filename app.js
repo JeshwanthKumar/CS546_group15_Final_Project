@@ -40,9 +40,10 @@ app.use(session({
     if (req.session.user) {
       //req.method = 'GET';
      // res.redirect(`/users/${id2}/allshop`)
-     console.log(req.session.user)
+     //console.log(req.session.user)
       return  res.redirect(`/users/${req.session.user.id}/allshop`)
     } else {
+     
       //here I',m just manually setting the req.method to post since it's usually coming from a form
      next()
     }
@@ -53,14 +54,14 @@ app.use(session({
     }
     next();
   })
-app.use('/private', (req,res,next)=>{
-    if(!req.session.username){
-       return res.redirect('/');
-    }
-    else{
-        next();
-    }
-});
+// app.use('/private', (req,res,next)=>{
+//     if(!req.session.username){
+//        return res.redirect('/');
+//     }
+//     else{
+//         next();
+//     }
+// });
 app.use('/users/profile', (req,res,next)=>{
   if(!req.session.user){
      return res.redirect('/users/login');

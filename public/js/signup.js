@@ -16,6 +16,7 @@ $(profilebtn).on('click', function() {
 
 $('#usersignup-form').submit(function(event) {
     $('#errorDiv').hide();
+    $('#errorDiv').empty();
     try{
         email=$("#useremail").val().trim()
         firstname=$("#userfirstname").val().trim()

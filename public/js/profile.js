@@ -1,6 +1,8 @@
 
 $('#update_user_profile').submit(function(event) {
     $('#errorDiv').hide();
+    $('#errorDiv').empty();
+
     try{
         
         firstname=$("#userfirstname").val().trim()

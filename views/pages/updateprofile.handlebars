@@ -1,6 +1,6 @@
 
 <form action="/users/updateprofile/{{id}}" id="update_user_profile" method="post">
-<div id="errorDiv"  hidden> <p>{{error}}</p>
+
         
     </div>
 <label for="firstname"><b>firstname</b></label>
@@ -17,6 +17,7 @@
     <br>
     <label for="zipcode"><b>zipcode</b></label>
     <input type="text" placeholder="Enter zipcode" name="zipcode" id="userzipcode" pattern="[0-9]{5}" value="{{zipcode}}" >
-
+  <div id="errorDiv"  > <p>{{message}}</p>
     <button type="submit" name="editbtn" id="editbtn">update</button>
+  
 </form>
