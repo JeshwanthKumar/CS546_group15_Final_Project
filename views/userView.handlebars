@@ -130,7 +130,9 @@
 
         <label for="">Message</label>
         <input required oninvalid="this.setCustomValidity('Please Enter Message for ShopKeeper.')"
-            oninput="this.setCustomValidity('')" type="message" name="message" />
+
+            oninput="this.setCustomValidity('')" type="message" name="message" id="usermessage" />
+
         <button type="submit" id="submit addNew" class="btn btn-default">Send</button>
     </form>
 
@@ -144,10 +146,12 @@
     <p>{{mess}}</p>
     {{/if}}
 
-    <form method="post" id="addItem-form" action="/users/{{userData._id}}/shop/{{shopDetail._id}}">
+
+    <form method="post" id="commentsection" action="/users/{{userData._id}}/shop/{{shopDetail._id}}">
         <label for="">Comment</label>
         <input required oninvalid="this.setCustomValidity('Please Write review of your experience.')"
-            oninput="this.setCustomValidity('')" type="comment" name="comment" />
+            oninput="this.setCustomValidity('')" type="comment" name="comment" id="usercomment" />
+
         <button type="submit" id="submit addNew" class="btn btn-default">Send Comment</button>
     </form>
 
