@@ -245,6 +245,7 @@ const exportedMethods = {
         validation.emailvalidation(email);
         validation.pincodevalidation(pincode);
         validation.phonenumbervalidation(phoneNumber);
+        validation.passwordValidation(password);
         const hashed_pass = await bcrypt.hash(password, saltRounds);
         let lower = username.toLowerCase();
         let newShopkeeper = {

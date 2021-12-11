@@ -1,56 +1,80 @@
-{{!-- <article class = "Sign-up">
+<article class = "Sign-up">
+  <div class="container mt-5">
     <header>
         <h1 class = "Signup-heading">
             Sign-up
         </h1>
     </header>
-    <form action = "/signup" method ="POST" id = "signup-form">
+    <div class="row">
+    <div class="col-sm-8">
+    <div class="card">
+    <div class="card-body"> 
+      <form action = "/signup" method ="POST" id = "signup-form">
+    <div class="form-group">
     <label class = "user-text" for = "shopName">
             Shop Name:
         </label>
-        <input name = "ShopName" id = "shopName" type = "text">
+        <input name = "ShopName"  class="form-control" id = "shopName" type = "text">
         <br>
+        </div>
+        <div class="form-group">
         <label class = "user-text" for = "username">
             User Name :
         </label>
-        <input name = "username" id = "username" type = "text">
+        <input name = "username"  class="form-control" id = "username" type = "text">
         <br>
+        </div>
+        <div class="form-group">
         <label class = "user-text" for = "ownerFirstname">
             First Name:
         </label>
-        <input name = "ownerFirstname" id = "ownerFirstname" type = "text">
+        <input name = "ownerFirstname"  class="form-control" id = "ownerFirstname" type = "text">
         <br>
+        </div>
+        <div class="form-group">
         <label class = "password-text" for = "ownerLastname">
             Last Name :
-        </label> --}}
-        {{!-- <input name = "ownerLastname" id = "ownerLastname" type = "text">
+        </label>
+        <input name = "ownerLastname"  class="form-control" id = "ownerLastname" type = "text">
         <br>
+        </div>
+        <div class="form-group">
         <label class = "password-text" for = "Address">
             Address :
         </label>
-        <input name = "Address" id = "Address" type = "text">
+        <input name = "Address"  class="form-control" id = "Address" type = "text">
         <br>
+        </div>
+        <div class="form-group">
         <label class = "password-text" for = "email">
             Email :
         </label>
-        <input name = "email" id = "email" type = "email">
+        <input name = "email"  class="form-control"id = "email" type = "email">
         <br>
+        </div>
+        <div class="form-group">
         <label class = "password-text" for = "pincode">
             Pincode :
         </label>
-        <input name = "pincode" id = "pincode" type = "number">
+        <input name = "pincode"  class="form-control" id = "pincode" type = "number">
         <br>
+        </div>
+        <div class="form-group">
         <label class = "password-text" for = "phoneNumber">
             Phone number :
         </label>
-        <input name = "phoneNumber" id = "phoneNumber" type = "number">
+        <input name = "phoneNumber" class="form-control" id = "phoneNumber" type = "number">
         <br>
+        </div>
+        <div class="form-group">
         <label class = "password-text" for = "password">
             Password : 
         </label>
-        <input name = "password" id = "spassword" type = "password">
+        <input name = "password"  class="form-control" id = "spassword" type = "password">
         <br>
-        <input class = "signup-button" type = "submit" value = "Sign up">
+        </div>
+        {{!-- <input class = "signup-button" type = "submit" value = "Sign up"> --}}
+        <button type="submit" class="btn btn-dark">Sign up</button>
     </form>
     {{#if error}}
     <p class = "error">{{error}}</p>
@@ -58,11 +82,27 @@
     <p>Already have an accout? <a href="/login">Click here</a></p>
 <p id = "success-signup" hidden>Account created successfully</p>
 <p id = "suser-error" hidden>Either the username or password is incorrect</p>
-</article>  --}}
+<p id = "Shopname" hidden>Please provide your shop name</p>
+<p id = "s_username" hidden>Please provide your user name</p>
+<p id = "s_ownerFirstname" hidden>Please provide your first name</p>
+<p id = "s_ownerLastname" hidden>Please provide your last name</p>
+<p id = "s_Address" hidden>Please provide your Address</p>
+<p id = "s_email" hidden>Please provide your email</p>
+<p id = "s_pincode" hidden>Please provide your pincode</p>
+<p id = "s_phoneNumber" hidden>Please provide your phone number</p>
+<p id = "s_password" hidden>Please provide your password</p>
+
+      </div>
+      </div>
+      </div>
+      </div>
+  </div>
+  </article> 
+    
 
 {{!-- new --}}
 
-<div class="container mt-5">
+{{!-- <div class="container mt-5">
   <h1>Login</h1>
 
   <div class="row">
@@ -130,4 +170,4 @@
 
   </div>
 
-</div>
+</div> --}}
