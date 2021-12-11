@@ -1,5 +1,7 @@
 $('#loginForm').submit(function(event) {
     $('#errorDiv').hide();
+    $('#errorDiv').empty();
+
     try{
         email=$("#email").val().trim()
         password=$("#password").val().trim()
@@ -36,6 +38,7 @@ $('#loginForm').submit(function(event) {
         
         $('#errorDiv').append(`<p>Error: ${e}</p>`);
         $('#errorDiv').show();
+   
     }
     
 

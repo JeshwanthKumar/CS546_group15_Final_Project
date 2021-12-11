@@ -1,54 +1,54 @@
-$('#commentsection').submit(function(event) {
+$('#commentsection').submit(function (event) {
     $('#errorDiv').hide();
     $('#errorDiv').empty()
-    try{
-        comment=$("#usercomment").val().trim().toString()
-        if(comment=""|(!typeof comment==='string')){
+    try {
+        comment = $("#usercomment").val().trim().toString()
+        if (comment = "" | (!typeof comment === 'string')) {
             throw " enter a valid comment"
         }
 
 
-    }catch(e){
+    } catch (e) {
         event.preventDefault();
-        
+
         $('#errorDiv').append(`<p>Error: ${e}</p>`);
         $('#errorDiv').show();
     }
 
 
 })
-$('#userToShopMessaage').submit(function(event) {
+$('#userToShopMessaage').submit(function (event) {
     $('#errorDiv1').hide();
     $('#errorDiv1').empty()
-    try{
-        comment=$("#usermessage").val().trim().toString()
-        if(comment=""|(!typeof comment==='string')){
+    try {
+        comment = $("#usermessage").val().trim().toString()
+        if (comment = "" | (!typeof comment === 'string')) {
             throw " enter a valid message"
         }
 
 
-    }catch(e){
+    } catch (e) {
         event.preventDefault();
-        
+
         $('#errorDiv1').append(`<p>Error: ${e}</p>`);
         $('#errorDiv1').show();
     }
 
 
 })
-$('#shopToUserMessaage').submit(function(event) {
+$('#shopToUserMessaage').submit(function (event) {
     $('#errorDiv1').hide();
     $('#errorDiv1').empty()
-    try{
-        comment=$("#shopmessage").val().trim().toString()
-        if(comment=""|(!typeof comment==='string')){
+    try {
+        comment = $("#shopmessage").val().trim().toString()
+        if (comment = "" | (!typeof comment === 'string')) {
             throw " enter a valid message"
         }
 
 
-    }catch(e){
+    } catch (e) {
         event.preventDefault();
-        
+
         $('#errorDiv1').append(`<p>Error: ${e}</p>`);
         $('#errorDiv1').show();
     }
