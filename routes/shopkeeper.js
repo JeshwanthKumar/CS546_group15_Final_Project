@@ -7,6 +7,7 @@ const {
 const data = require('../data');
 var shop = data.shop
 var product = data.products
+const routesvalidation = require('../validation/routesvalidation');
 
 router.get("/", async(req,res)=>{
     
@@ -51,6 +52,13 @@ router.get("/signup", async (req, res) => {
 });
 
 router.post("/signup", async (req, res) => {
+    routesvalidation.routeshopNamevalidation(req.body.ShopName);
+    routesvalidation.routeuserNamevalidation(req.body.username);
+    routesvalidation.routefirstnamevalidation(req.body.ownerFirstname);
+    routesvalidation.routelastnamevalidation(req.body.ownerLastname);
+    routesvalidation.routeemailvalidation(req.body.email);
+    routesvalidation.routepincodevalidation(req.body.pincode);
+    routesvalidation.routephonenumbervalidation(req.body.phoneNumber);
     try {
         try {
             // console.log(req.body.username);
@@ -171,6 +179,7 @@ router.put("/edit/shop/:id", async (req, res) => {
     // if(!(ObjectId.isValid(req.params.id))){
     //     res.status(400).render("s_edit/s_edit", {"error" : "There is no session created for this id"});
     // }
+    
     var shopDetail = await shop.getAllDataOfShop(idd);
     req.session.user = shopDetail
     if (!shopkeeper_info) {
@@ -221,6 +230,13 @@ router.put("/edit/shop/:id", async (req, res) => {
             "error": "Must provide phone number"
         });
     }
+    routesvalidation.routeshopNamevalidation(req.body.ShopName);
+    routesvalidation.routeuserNamevalidation(req.body.username);
+    routesvalidation.routefirstnamevalidation(req.body.ownerFirstname);
+    routesvalidation.routelastnamevalidation(req.body.ownerLastname);
+    routesvalidation.routeemailvalidation(req.body.email);
+    routesvalidation.routepincodevalidation(req.body.pincode);
+    routesvalidation.routephonenumbervalidation(req.body.phoneNumber);
 
     try {
         await shop.get(req.params.id)

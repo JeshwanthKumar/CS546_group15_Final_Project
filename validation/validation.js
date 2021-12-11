@@ -7,9 +7,6 @@ const shopNamevalidation = (ShopName) =>{
     throw 'Shop name must be provided';
     if(ShopName.trim().length ===0)
     throw 'The shop name contains only white spaces';
-    var regex =new RegExp(/[^A-Za-z0-9]/g);
-     if(regex.test(ShopName))
-     throw 'The Shop name must contain only alpha numeric characters';
 }
 
 const userNamevalidation = (username) =>{
