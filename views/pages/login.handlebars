@@ -1,0 +1,36 @@
+<menu>
+  <ul id="nav">
+    <li id="nav-home"><a href="/" class="current">Home</a></li>
+    <li id="nav-shopkeeper"><a href="/shop/login">Shopkeeper</a></li>
+    <li id="nav-customer"><a href="/users/login">Customer</a></li>
+    <li id="nav-product"><a href="/shop/allProduct">Product</a></li>
+  </ul>
+</menu>
+
+
+<div class="container mt-5">
+  <h1>Login</h1>
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="card">
+        <div class="card-body">
+          <form action="/users/login" method="POST" id="loginForm">
+            <div class="form-group">
+              <label for="email">Email</label>
+             	<input class="input100" type="email" id= "email" class="form-control" name="email" placeholder="email">
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+		<input class="input100" type="password" id="password" class="form-control" name="password" placeholder="password">
+            </div>
+            <button type="submit" class="btn btn-dark">Login</button>
+          </form>
+ <a href="/users/signup">Don't have an account? Click here to  Signup</a>
+<div id="errorDiv" class="errorDiv" hidden>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
