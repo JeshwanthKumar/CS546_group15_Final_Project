@@ -17,9 +17,10 @@ router.get("/", async(req,res)=>{
 
 router.get("/allProduct", async(req, res) => {
     var allProduct = await product.getAll();
-    
+    var user = req.session.user;
   var data = {
-       allProducts:  allProduct
+       allProducts:  allProduct,
+       userId: user
     }
     res.render("productList", data);
 })

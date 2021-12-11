@@ -533,7 +533,7 @@ router.get('/updateprofile', async (req, res) => {
         let a = "profile"
         const user = req.session.user
 
-        res.render('pages/updateprofile', user);
+        res.render('pages/updateprofile', {user: user});
 
     } catch (e) {
         res.status(404).json({
@@ -573,8 +573,10 @@ router.post('/updateprofile/:id', async (req, res) => {
         req.method = 'GET'
         res.redirect('/users/profiledetail');
     } catch (e) {
-        res.status(404).json({
-            message: e
+        res.render('pages/updateprofile', {
+            title: 'updateprofile',
+            message: e,
+            user: req.session.user
         })
     }
 })
