@@ -89,8 +89,11 @@
                     <div class="col-lg-8">
                         <h2>Rate Us</h2>
                         <p class="lead">Please rate us</p>
-                        <form method="post" id="rating" action="/users/{{userData._id}}/shop/{{shopDetail._id}}"></form>
-                            <select style="width: 10%; background-color:#FDDA0D" name="review" id="cars">
+
+                            <form method="post" id="rating" action="/users/{{userData._id}}/shop/{{shopDetail._id}}">
+
+    <select style="width: 10%; background-color:rgb(108, 194, 161)" name="review" id="cars">
+
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -125,13 +128,46 @@
                     <div class="col-lg-8">
                         <h2>Message Us</h2>
                         <p class="lead">Please type in your message below</p>
-                           <form method="post" id="userToShopMessaage" action="/users/{{userData._id}}/shop/{{shopDetail._id}}">
+                        <form method="post" id="userToShopMessaage" action="/users/{{userData._id}}/shop/{{shopDetail._id}}">
+
+        <label for="">Message</label>
         <input required oninvalid="this.setCustomValidity('Please Enter Message for ShopKeeper.')"
-
-            oninput="this.setCustomValidity('')" type="message" name="message" id="usermessage" />
-
-        <button type="submit">Send</button>
+            oninput="this.setCustomValidity('')" type="message" name="message" />
+        <button type="submit" id="submit addNew" class="btn btn-default">Send</button>
     </form>
+                           <br>
+{{#if userData.replayMessages}}
+<p class="lead">Reply from {{this.shopName}} </p>
+<table id="message" width="50%" border="5">
+
+    <tr>
+        <th>Date</th>
+        <th>Shop Name</th>
+        <th>Message</th>
+        <th></th>
+    </tr>
+    {{#each userData.replayMessages}}
+    <tr>
+        <td>{{this.date}}</td>
+        <td> {{this.shopName}} </td>
+        <td>{{this.message}}</td>
+        <td>
+            <form method="post" action="/users/{{this.idUser}}/shop/{{this.isShop}}/{{this._id}}?_method=DELETE" <input
+                type="hidden" name="_method" value="DELETE">
+                <input type="submit" name="delete" value='Delete' />
+            </form>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+{{/if}}
+
+<tr>
+    {{#if message}}
+    <p id="message">{{message}}</p>
+    {{/if}}
+
+    <br>
 
    {{#if messageError}}
     <p id="message">{{messageError}}</p>
