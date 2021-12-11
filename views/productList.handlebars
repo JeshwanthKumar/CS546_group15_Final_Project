@@ -7,26 +7,22 @@
   </ul>
 </menu>
 
-{{!-- <ul>
-        {{#each allProducts}}
-        <li>
-            <h1><a class="all-item" href="#">{{this.productname}} </a></h1>
-        </li>
-        <br>
-        {{/each}}
-    </ul> --}}
 
-<div class="product_Collection">
-  <!-- Note: When changing this section be sure to modify sort.js as well -->
-  {{#each allProducts}}
+   <section class="u-clearfix u-grey-10 u-section-1" id="sec-42f4">
 
-    <div class="cards">
-      <article class="card">
-        <header>
-          <h2>ShopName: {{this.shopName}}</h2>
+      <div class="u-clearfix u-sheet u-sheet-1">
+         
+        <div class="u-list u-list-1">
+          <div class="u-repeater u-repeater-1">
+             {{#each allProducts}}
+            <div class="u-container-style u-list-item u-repeater-item u-video-cover u-white">
+              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
+                   <header>
+          <h2>{{this.shopName}}</h2>
         </header>
-
-        <div class="content">
+                <div class="u-border-4 u-border-palette-3-base u-expanded-width u-line u-line-horizontal u-line-1"></div>
+                <div class="content">
+                    
           <p>Productname: {{this.productname}}</p>
           <p>price {{this.price}}</p>
           <p>quantityremaining {{this.quantityremaining}}</p>
@@ -34,10 +30,15 @@
           <p>dateofexpiry {{this.dateofexpiry}}</p>
           <p>{{this.address}} {{this.pincode}}</p>
         </div>
-
-      </article>
-
-    </div>
-    
+                {{!-- <img alt="" class="u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-image u-image-default u-image-1" data-image-width="1920" data-image-height="1284" src="images/grocery-g3cce4b8fe_1920.jpg"> --}}
+              </div>
+            </div>
   {{/each}}
-</div>
+            </div>
+          </div>
+        </div>
+       
+      </div>
+       
+    </section>
+

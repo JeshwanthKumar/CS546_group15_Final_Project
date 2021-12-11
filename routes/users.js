@@ -83,7 +83,7 @@ router.get('/:idUser/shop/:shopId', async (req, res) => {
         }
 
 
-        var shopName = shopDetail.name;
+        var shopName = shopDetail.ShopName;
         var shopAdd = shopDetail.address;
         var shopIdd = shopDetail._id;
         var shopPin = shopDetail.pincode;
@@ -182,12 +182,16 @@ router.post('/:idUser/shop/:shopId', async (req, res) => {
                         mess: msgs,
                         comm: coms
                     };
-                    res.render('userView', dataa);
-                    return;
+                    // res.render('userView', dataa);
+                    // return;
+                    var idu=req.session.user.id
+                    const shopid1=shopInfo._id.toString()
+                    a=`/users/${idu}/shop/${shopid1}`
+                    res.redirect(`/users/${idu}/shop/${shopid1}`)
                 }
                 return;
             }
-            var average = await shopData.review(userInfo, shopId, review)
+            var average = await shopData.review(userInfo, shopId, xss(review))
             const getShopbyId = await productData.getAllProduct(shopId);
 
             const shopInfonew = await shopData.getAllDataOfShop(shopId);
@@ -226,14 +230,18 @@ router.post('/:idUser/shop/:shopId', async (req, res) => {
                     mess: msgs,
                     comm: coms
                 };
-                res.render('userView', dataa);
-                return;
+                // res.render('userView', dataa);
+                // return;
+                var idu=req.session.user.id
+                const shopid1=shopInfo._id.toString()
+                a=`/users/${idu}/shop/${shopid1}`
+                res.redirect(`/users/${idu}/shop/${shopid1}`)
             }
         }
 
         if (message) {
 
-            await shopData.message(userInfo, shopId, message)
+            await shopData.message(userInfo, shopId, xss(message))
             const getShopbyId = await productData.getAllProduct(shopId);
 
             const shopInfonew = await shopData.getAllDataOfShop(shopId);
@@ -270,12 +278,16 @@ router.post('/:idUser/shop/:shopId', async (req, res) => {
                     mess: msgs,
                     comm: coms
                 };
-                res.render('userView', dataa);
-                return;
+                // res.render('userView', dataa);
+                // return;
+                var idu=req.session.user.id
+                const shopid1=shopInfo._id.toString()
+                a=`/users/${idu}/shop/${shopid1}`
+                res.redirect(`/users/${idu}/shop/${shopid1}`)
             }
         }
         if (comment) {
-            await shopData.comment(userInfo, shopId, comment)
+            await shopData.comment(userInfo, shopId, xss(comment))
             const getShopbyId = await productData.getAllProduct(shopId);
 
             const shopInfonew = await shopData.getAllDataOfShop(shopId);
@@ -312,8 +324,12 @@ router.post('/:idUser/shop/:shopId', async (req, res) => {
                     mess: msgs,
                     comm: coms
                 };
-                res.render('userView', dataa);
-                return;
+                // res.render('userView', dataa);
+                // return;
+                var idu=req.session.user.id
+               const shopid1=shopInfo._id.toString()
+               a=`/users/${idu}/shop/${shopid1}`
+               res.redirect(`/users/${idu}/shop/${shopid1}`)
             }
         }
 
