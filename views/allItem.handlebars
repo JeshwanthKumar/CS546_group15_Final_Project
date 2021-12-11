@@ -101,7 +101,7 @@
             </form>
 
     
-    <div id="errorDiv"  ><p>{{messagetoCreateProduct}}</p></div>
+  
 
         </tr>
   
@@ -137,14 +137,14 @@
 
         {{/if}}
     </table>
-
+  <div id="errorDiv"  ><p>{{messagetoCreateProduct}}</p></div>
 
 
 
          
-    {{#if messagetoCreateProduct}}
+    {{!-- {{#if messagetoCreateProduct}}
     <p id="">{{messagetoCreateProduct}}</p>
-    {{/if}}
+    {{/if}} --}}
     {{#if messageProduct}}
     <p id="message">{{messageProduct}}</p>
     {{/if}}

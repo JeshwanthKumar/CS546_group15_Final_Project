@@ -128,7 +128,7 @@ router.put('/:id', async function (req, res) {
                 shopId: restDetail._id,
                 itemDetail: itemDetail
             }
-            res.status(400)
+            res.status(403)
             res.render('edititem', data)
             return;
         }
