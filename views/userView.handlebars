@@ -1,28 +1,49 @@
+<main>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+            <div class="container px-4">
+                <!-- <a class="navbar-brand" href="#page-top">S-Mart</a> -->
+                <a href="#page-top"><img class="logo-img" src="/public/Aishwarya/Shoppage/images/S-Mart-logos.jpeg" width="90" height="90" ALT="align box" ALIGN=CENTER ></a>
+               
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#Products">Products</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#RateUs">Rate Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#MessageUs">Message Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#ViewReviews">View Reviews</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/users/{{userData._id}}/allshop">Shop List</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#ContactUs">Contact Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/users/profiledetail">Profile</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/users/logout">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
-<section>
-<a href="/users/profiledetail">User Profile</a>
-<a href="/users/{{userData._id}}/allshop">home page</a>
-<a href="/users/logout">logout</a>
-</section>
+            {{!-- <p style= "font-weight: 900">Welcome {{userData.firstname}} in {{shopName}}</p>  --}}
 
 
+ 
 
-<main id="ab">
+
+        <!-- About section-->
+        <section id="Products">
+               <a style="font-weight: 900; background-color:#FDDA0D;"
+        href="https://www.google.com/maps/place/{{shopAddress}} {{pincode}}" target="_blank">Click to get Location of
+        Restaurant </a>
+            <div class="container px-4">
+                <div class="row gx-4 justify-content-center">
+                    <div class="col-lg-8">
+                        <h2>Products</h2>
+                        <p class="lead">Below is the list of products available</p>
+                        <main id="ab">
     {{#if noData}}
     <label for="overAllRating">{{noData}}</label>
     {{/if}}
     {{#if allItem}}
 
-    <p>Welcome {{userData.firstname}} in {{shopName}}</p>
-
-    <a style="font-weight: 900; background-color: yellow;"
-        href="https://www.google.com/maps/place/{{Address}} {{pincode}}" target="_blank">Click to get Location of
-        Restaurant </a>
-
-
-
-    <h3>shopId: {{shopId}}</h3>
-    <h3>UserId: {{userData._id}}</h3>
     <table width="35%" border="2">
         <tr style='text-align:left; background-color:#CCC'>
             <th> Product Name</th>
@@ -57,27 +78,18 @@
     </table>
     {{/if}}
 </main>
-
-<br>
-{{#if averageRating}}
-<h3 style="background-color:rgb(206, 101, 201);" for="overAllRating">Average ratinig of {{shopDetail.name}} sohp:
-    {{averageRating}}
-</h3>
-{{/if}}
-{{#if noRating}}
-<h3 style="background-color:rgb(206, 101, 201);" for="noRating">{{noRating}}
-</h3>
-{{/if}}
-{{#if noSecond}}
-<h3 style="background-color:rgb(206, 101, 106);" for="noRating">{{noSecond}}
-</h3>
-{{/if}}
-
-<form method="post" id="rating" action="/users/{{userData._id}}/shop/{{shopDetail._id}}">
-
-    <label for="cars">Rate for Shop</label>
-
-    <select style="width: 10%; background-color:rgb(108, 194, 161)" name="review" id="cars">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Services section-->
+        <section class="bg-light" id="RateUs">
+            <div class="container px-4">
+                <div class="row gx-4 justify-content-center">
+                    <div class="col-lg-8">
+                        <h2>Rate Us</h2>
+                        <p class="lead">Please rate us</p>
+                            <select style="width: 10%; background-color:#FDDA0D" name="review" id="cars">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -88,54 +100,38 @@
     <input type="submit" value="Submit">
 </form>
 {{#if forRating}}
-<h3 style="background-color:rgb(117, 219, 171);" for="noRating">{{noRating}}
+<h3 style="background-color:#FDDA0D;" for="noRating">{{noRating}}
 </h3>
 {{/if}}
+<form method="post" id="commentsection" action="/users/{{userData._id}}/shop/{{shopDetail._id}}">
+        <p class="lead">Please write comments</p>
+        <input required oninvalid="this.setCustomValidity('Please Write review of your experience.')"
+            oninput="this.setCustomValidity('')" type="comment" name="comment" id="usercomment" />
+
+        <button type="submit">Send Comment</button>
+    </form>
 
 <br>
-{{#if userData.replayMessages}}
-<h2> Message for you.</h2>
-<table id="message" width="50%" border="5">
-
-    <tr>
-        <th>Date</th>
-        <th>Restaurant Name</th>
-        <th>Message</th>
-        <th></th>
-    </tr>
-    {{#each userData.replayMessages}}
-    <tr>
-        <td>{{this.date}}</td>
-        <td>{{this.shopNmae}}</td>
-        <td>{{this.message}}</td>
-        <td>
-            <form method="post" action="/users/{{this.idUser}}/shop/{{this.isShop}}/{{this._id}}?_method=DELETE" <input
-                type="hidden" name="_method" value="DELETE">
-                <input type="submit" name="delete" value='Delete' />
-            </form>
-        </td>
-    </tr>
-    {{/each}}
-</table>
-{{/if}}
-
-<tr>
-    {{#if message}}
-    <p id="message">{{message}}</p>
-    {{/if}}
-
-    <br>
-
-    <form method="post" id="userToShopMessaage" action="/users/{{userData._id}}/shop/{{shopDetail._id}}">
-
-        <label for="">Message</label>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact section-->
+        <section id="MessageUs">
+            <div class="container px-4">
+                <div class="row gx-4 justify-content-center">
+                    <div class="col-lg-8">
+                        <h2>Message Us</h2>
+                        <p class="lead">Please type in your message below</p>
+                           <form method="post" id="userToShopMessaage" action="/users/{{userData._id}}/shop/{{shopDetail._id}}">
         <input required oninvalid="this.setCustomValidity('Please Enter Message for ShopKeeper.')"
 
             oninput="this.setCustomValidity('')" type="message" name="message" id="usermessage" />
 
-        <button type="submit" id="submit addNew" class="btn btn-default">Send</button>
+        <button type="submit">Send</button>
     </form>
-<div id="errorDiv1"  ></div>
+
    {{#if messageError}}
     <p id="message">{{messageError}}</p>
     {{/if}}
@@ -146,15 +142,29 @@
     <p>{{mess}}</p>
     {{/if}}
 
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact section-->
+        <section id="ViewReviews">
+            <div class="container px-4">
+                <div class="row gx-4 justify-content-center">
+                    <div class="col-lg-8">
+                        <h2>View Reviews</h2>
+                        {{#if averageRating}}
+<h3 style="background-color:#FDDA0D;" for="overAllRating">Average rating of {{shopDetail.name}} shop:{{averageRating}}
+</h3>
+{{/if}}
+{{#if noRating}}
+<h3 style="background-color:#FDDA0D;" for="noRating">{{noRating}}
+</h3>
+{{/if}}
+{{#if noSecond}}
+<h3 style="background-color: #FDDA0D;" for="noRating">{{noSecond}}
+</h3>
+{{/if}}
 
-    <form method="post" id="commentsection" action="/users/{{userData._id}}/shop/{{shopDetail._id}}">
-        <label for="">Comment</label>
-        <input required oninvalid="this.setCustomValidity('Please Write review of your experience.')"
-            oninput="this.setCustomValidity('')" type="comment" name="comment" id="usercomment" />
-
-        <button type="submit" id="submit addNew" class="btn btn-default">Send Comment</button>
-    </form>
-<div id="errorDiv"  ></div>
     {{#if comm}}
     <p>{{comm}}</p>
     {{/if}}
@@ -165,7 +175,7 @@
 {{/if}}
 
 {{#if commentForShop}}
-<h2> Review from Customer</h2>
+<h2> Review from Customers</h2>
 <table id="comment" width="60%" border="5">
     <tr>
         <th>User Name</th>
@@ -188,3 +198,14 @@
 
 </table>
 {{/if}}
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container px-4"><p class="m-0 text-center text-white">​Throwing away food is like stealing from the table of those who are poor and hungry. - Pope Francis</p></div>
+        </footer>
+        
+    </body>
+</html>
