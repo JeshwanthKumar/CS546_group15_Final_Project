@@ -83,7 +83,7 @@ router.get('/:idUser/shop/:shopId', async (req, res) => {
         }
 
 
-        var shopName = shopDetail.name;
+        var shopName = shopDetail.ShopName;
         var shopAdd = shopDetail.address;
         var shopIdd = shopDetail._id;
         var shopPin = shopDetail.pincode;
@@ -182,8 +182,12 @@ router.post('/:idUser/shop/:shopId', async (req, res) => {
                         mess: msgs,
                         comm: coms
                     };
-                    res.render('userView', dataa);
-                    return;
+                    // res.render('userView', dataa);
+                    // return;
+                    var idu=req.session.user.id
+                    const shopid1=shopInfo._id.toString()
+                    a=`/users/${idu}/shop/${shopid1}`
+                    res.redirect(`/users/${idu}/shop/${shopid1}`)
                 }
                 return;
             }
@@ -226,8 +230,12 @@ router.post('/:idUser/shop/:shopId', async (req, res) => {
                     mess: msgs,
                     comm: coms
                 };
-                res.render('userView', dataa);
-                return;
+                // res.render('userView', dataa);
+                // return;
+                var idu=req.session.user.id
+                const shopid1=shopInfo._id.toString()
+                a=`/users/${idu}/shop/${shopid1}`
+                res.redirect(`/users/${idu}/shop/${shopid1}`)
             }
         }
 
@@ -270,8 +278,12 @@ router.post('/:idUser/shop/:shopId', async (req, res) => {
                     mess: msgs,
                     comm: coms
                 };
-                res.render('userView', dataa);
-                return;
+                // res.render('userView', dataa);
+                // return;
+                var idu=req.session.user.id
+                const shopid1=shopInfo._id.toString()
+                a=`/users/${idu}/shop/${shopid1}`
+                res.redirect(`/users/${idu}/shop/${shopid1}`)
             }
         }
         if (comment) {
@@ -312,8 +324,12 @@ router.post('/:idUser/shop/:shopId', async (req, res) => {
                     mess: msgs,
                     comm: coms
                 };
-                res.render('userView', dataa);
-                return;
+                // res.render('userView', dataa);
+                // return;
+                var idu=req.session.user.id
+               const shopid1=shopInfo._id.toString()
+               a=`/users/${idu}/shop/${shopid1}`
+               res.redirect(`/users/${idu}/shop/${shopid1}`)
             }
         }
 
