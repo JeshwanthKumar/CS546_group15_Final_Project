@@ -11,20 +11,26 @@ const productsForSearchCo = mongoCollections.productsForSearch;
 var mongoose = require('mongoose');
 const { ObjectId } = require('mongodb');
 
-router.get('/', function (request, response) {
-    const datta = {
-        title: "Product Search"
+router.get('/', async function (request, response) {
+    try {
+      let productList = await productForSearch.getAllProducts();
+      const datta = { products: productList};
+      response.render('productSearch', datta);
+    } catch (e) {
+      console.log(e);
+      response.status(500).send();
     }
-    response.render('productSearch', datta);
 })
 
-router.post("/search", async (req, res) => {
+router.post("/search.html", async (req, res) => {
     const body = req.body;
     try {
       let productList = await productForSearch.getProductsViaSearch(body.search);
+      console.log('==========get product list==========');
+      console.log(productList);
       let newProductList = [];
         for (product of productList) {
-          if (product.reviews.length > 0) {
+          if (product.reviews&&product.reviews.length > 0) {
               product.rated = true;
           } else {
               product.rated = false;
@@ -44,7 +50,7 @@ router.post("/search", async (req, res) => {
       if (productList.length > 0) {
         res.status(200).render("productSearch", { products: productList});
       } else {
-        res.status(200).render("productSearch", { });
+        res.status(200).render("productSearch", { products: []});
       }
     } catch (e) {
       console.log(e);

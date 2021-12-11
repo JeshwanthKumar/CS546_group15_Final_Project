@@ -4,71 +4,79 @@ const data = require('../data');
 const shopData = data.shop;
 const productData = data.products;
 const userData = data.user;
-var mongoose = require('mongoose');
-
-
-
+var xss = require('xss');
 router.get('/:id', async function (req, res) {
     const idd = req.params.id;
-    const shopDetail = await shopData.get(idd);
-    var shopName = shopDetail.name
-    var shopId = shopDetail._id;
-    var shopMessage = shopDetail.message;
-    var shopComment = shopDetail.comment;
-    var overRating = shopDetail.overallRating; 
-    var noItem;
-    var noMessage;
-    var noComment;
-    var messages;
-    var comments;
-    var noRating;
-    var averageRating;
 
-    const allProduct = await productData.getAllProduct(idd);
-    const allProductBeforeExpire = await productData.allProductBeforeExpire(idd);
-    var x = allProductBeforeExpire
+    try {
 
-    if (allProduct.overallRating == 0) {
-        noRating = "No Rating for your shop"
-    } else {
-        averageRating = overRating
-    }
 
-    if (allProduct.item.length == 0) {
-        noItem = "No product in Database"
-    }
-    if (allProduct.message.length != 0) {
-        messages = shopMessage
-    }
-    if (allProduct.message.length == 0) {
-        noMessage = "No message in Inbox"
-    }
-    if (allProduct.comment.length != 0) {
-        comments = shopComment
-    }
-    if (allProduct.comment.length == 0) {
-        noComment = "No comment in Your Shop"
-    }
-    const dataa = {
-        allItem: allProduct.item,
-        noRating: noRating,
-        averageRating: averageRating,
-        title: shopName,
-        shopId: shopId,
-        msgForShop: messages,
-        commentForShop: comments,
-        messageForMessage: noMessage,
-        messageProduct: noItem,
-        noComment: noComment
-    };
-    res.render('allItem', dataa);
-    return;
 
+        const shopDetail = await shopData.getAllDataOfShop(idd);
+        var shopName = shopDetail.ShopName;
+        var shopId = shopDetail._id;
+        var shopMessage = shopDetail.message;
+        var shopComment = shopDetail.comment;
+
+        var overRating = shopDetail.overallRating;
+
+        var noItem;
+        var noMessage;
+        var noComment;
+        var messages;
+        var comments;
+        var noRating;
+        var averageRating;
+
+        const allProduct = await productData.getAllProduct(idd);
+        const allProductBeforeExpire = await productData.allProductBeforeExpire(idd);
+        var x = allProductBeforeExpire
+
+        if (allProduct.overallRating == 0) {
+            noRating = "No Rating for your shop"
+        } else {
+            averageRating = overRating
+        }
+
+        if (allProduct.item.length == 0) {
+            noItem = "No product in Database"
+        }
+        if (allProduct.message.length != 0) {
+            messages = shopMessage
+        }
+        if (allProduct.message.length == 0) {
+            noMessage = "No message in Inbox"
+        }
+        if (allProduct.comment.length != 0) {
+            comments = shopComment
+        }
+        if (allProduct.comment.length == 0) {
+            noComment = "No comment in Your Shop"
+        }
+        const dataa = {
+            allItem: allProduct.item,
+            noRating: noRating,
+            averageRating: averageRating,
+            title: shopName,
+            shopId: shopId,
+            msgForShop: messages,
+            commentForShop: comments,
+            messageForMessage: noMessage,
+            messageProduct: noItem,
+            noComment: noComment
+        };
+        res.render('allItem', dataa);
+      
+    } catch (e) {
+        res.status(500).json({
+            error: e.message
+        });
+    }
 });
 
 router.get('/addItem/:id', async function (req, res) {
     const shopid = req.params.id;
-    const shopDetail = await shopData.get(shopid);
+    const shopDetail = await shopData.getAllDataOfShop(shopid);
     var shopName = shopDetail.name
     const dataa = {
         shopId: shopid,
@@ -81,6 +89,7 @@ router.get('/editItem/:id', async function (req, res) {
     var itemId = req.params.id;
     var restDetail = await productData.getShopIdForEditItem(itemId);
     var itemDetail = await productData.getProductDetail(restDetail._id, itemId)
+    console.log(itemDetail)
     var data = {
         shopId: restDetail._id,
         itemDetail: itemDetail
@@ -89,6 +98,7 @@ router.get('/editItem/:id', async function (req, res) {
 });
 
 router.put('/:id', async function (req, res) {
+
     const iddProduct = req.params.id;
     const {
         productname,
@@ -196,13 +206,13 @@ router.put('/:id', async function (req, res) {
     try {
         const updateStore = await productData.updateProduct(
             iddProduct,
-            productname,
-            productdetails,
-            producthighlights,
-            price,
-            quantityremaining,
-            dateofmanufacture,
-            dateofexpiry
+            xss(productname),
+            xss(productdetails),
+            xss(producthighlights),
+            xss(price),
+            xss(quantityremaining),
+            xss(dateofmanufacture),
+            xss(dateofexpiry)
         )
         var restDetail = await productData.getShopIdForEditItem(iddProduct);
         var itemDetail = await productData.getProductDetail(restDetail._id, iddProduct)
@@ -232,7 +242,7 @@ router.post('/:iduser/:storeId', async function (req, res) {
         replayMessage
     } = req.body;
     try {
-        await userData.replayMessage(iduser, storeId, replayMessage)
+        await userData.replayMessage(iduser, storeId, xss(replayMessage))
         res.redirect(`/shopId/${storeId}`)
     } catch (e) {
         res.status(500).json({
@@ -256,18 +266,18 @@ router.post('/:id', async function (req, res) {
     try {
 
         const newItem = await productData.createProduct(
-            idProduct,
-            productname,
-            productdetails,
-            producthighlights,
-            price,
-            quantityremaining,
-            dateofmanufacture,
-            dateofexpiry
+            xss(idProduct),
+            xss(productname),
+            xss(productdetails),
+            xss(producthighlights),
+            xss(price),
+            xss(quantityremaining),
+            xss(dateofmanufacture),
+            xss(dateofexpiry)
         );
         if (typeof newItem == "string") {
-            console.log(newItem)
-            const shopDetail = await shopData.get(idProduct);
+            // console.log(newItem)
+            const shopDetail = await shopData.getAllDataOfShop(idProduct);
             var shopMessage = shopDetail.message;
             var shopComment = shopDetail.comment;
             var noItem;
@@ -301,26 +311,30 @@ router.post('/:id', async function (req, res) {
                 averageRating = allProducts.overRating
             }
 
+            console.log("ab")
+
             var shopName = shopDetail.name
             var shopId = shopDetail._id;
-            if (allProducts.item.length != 0) {
-                const data = {
-                    allItem: allProducts.item,
-                    title: shopName,
-                    shopId: shopId,
-                    msgForShop: messages,
-                    commentForShop: comments,
-                    messageForMessage: noMessage,
-                    messageProduct: noItem,
-                    noComment: noComment,
-                    messagetoCreateProduct: newItem,
-                    noRating: noRating,
-                    averageRating: averageRating,
-                }
-                res.status(400)
-                res.render("allItem", data)
-                return;
+
+
+            const data = {
+                allItem: allProducts.item,
+                ShopName: shopName,
+                shopId: shopId,
+                msgForShop: messages,
+                commentForShop: comments,
+                messageForMessage: noMessage,
+                messageProduct: noItem,
+                noComment: noComment,
+                messagetoCreateProduct: newItem,
+                noRating: noRating,
+                averageRating: averageRating,
             }
+            console.log(data.messagetoCreateProduct)
+            res.status(400)
+            res.render("allItem", data)
+            return;
+
         }
         res.redirect(`/shopId/${idProduct}`)
     } catch (e) {
