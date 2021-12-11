@@ -7,9 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
-
   "author": "Group 15",
-
   "license": "ISC",
   "engines": {
     "node": "15.14.0"
@@ -28,7 +26,5 @@
     "node-simple-validator": "^2.0.0",
     "nodemon": "^2.0.15",
     "xss": "^1.0.10"
-
-    
   }
 }
