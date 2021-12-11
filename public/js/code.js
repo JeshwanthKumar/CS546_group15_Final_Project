@@ -1,5 +1,5 @@
-const { checkShopkeeper } = require("../../data/shopkeeper");
-
+// const { checkShopkeeper } = require("../../data/shopkeeper");
+    // const checkuser = require('../../data/shopkeeper')
     const signupform =document.getElementById("signup-form");
     const shopname = document.getElementById("Shopname");
     const s_user = document.getElementById("s_username");
@@ -267,7 +267,7 @@ const { checkShopkeeper } = require("../../data/shopkeeper");
             }
             //----phone number----//
             
-            let s_pass_text = document.getElementById("phoneNumber").value;
+            let s_pass_text = document.getElementById("password").value;
             if(s_pass_text.length === 0){
                 event.preventDefault();
                 s_password.hidden =false;
@@ -288,6 +288,7 @@ const { checkShopkeeper } = require("../../data/shopkeeper");
                 s_password.hidden = false;
                 return;
             }
+            //----password----//
         }
     }
 (function($){

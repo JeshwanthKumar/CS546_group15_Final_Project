@@ -19,5 +19,6 @@ module.exports = {
   reviews: getCollectionFn('reviews'),
   replayMessages: getCollectionFn('replayMessages'),
   shopkeeper: getCollectionFn('shopkeeper'),
+  google: getCollectionFn('google'),
 };
 

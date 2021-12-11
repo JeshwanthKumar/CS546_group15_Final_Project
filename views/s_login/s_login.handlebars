@@ -8,40 +8,46 @@
 </menu>
 
 
-
-<div class="container mt-5">
-  <h1>Login</h1>
-
-  <div class="row">
-    <div class="col-sm-8">
-      <div class="card">
+<article class = "Log-in">
+  <div class="container mt-5">
+    <header>
+        <h1 class = "Login-heading">
+            Login
+        </h1>
+    </header>
+     
+    <div class="row">
+      <div class="col-sm-8">
+        <div class = "card">
         <div class="card-body">
-
-          <!-- Makes POST request to /login route -->
-          <form action="/login" method="POST" id = "login-form">
-            <div class="form-group">
-              <label for="username">Username</label>
-             	<input class="input100" type="text" id= "username" class="form-control" name="username" placeholder="username" required>
-            </div>
-            <div class="form-group">
-              <label for="password">Password</label>
-		<input class="input100" type="password" id="password" class="form-control" name="password" placeholder="password" required>
-            </div>
-            <button type="submit" class="btn btn-dark">Login</button>
-          </form>
-          <div id="errorDiv"  hidden>
-      {{#if error}}
-      <p class = "login-error" id = "login-error" hidden>{{"error"}}</p>
-      {{/if}}
-        </div>
+          <form action = "/login" method ="POST" id = "login-form">
+    <br>
+    <div class="form-group">
+    <label class = "user-text" for = "username">
+        User Name :
+    </label>
+    <input class="input100" class="form-control" name = "username" id = "username" type = "text" placeholder="username" required>
+    <br>
+    </div>
+    <div class="form-group">
+    <label class = "password-text" for = "password">
+        Password : 
+    </label>
+    <input class="input100" class="form-control" name = "password" id = "password" type = "password" placeholder="password" required>
+    <br>
+    </div>
+    {{!-- <input class = "login-button"  class="btn btn-dark" type = "submit" value = "Login"> --}}
+    <button type = "submit"  class="btn btn-dark">Login</button>
+    </form>
+    {{#if error}}
+    <p class = "login-error">{{error}}</p>
+    {{/if}}
     <p>New User? <a href="/signup" >Click here</a> to signup</p> 
     <p id ="user-error" hidden>Either the username or password is incorrect</p>
     <p id = "pass-error" hidden>Either the username or password is incorrect</p>
-      </div>
-    </div>
-
- 
-
   </div>
-
-</div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </article>
