@@ -18,17 +18,20 @@
             <div class="u-container-style u-list-item u-repeater-item u-video-cover u-white">
               <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
                    <header>
-          <h2>{{this.shopName}}</h2>
+                      <a href="/users/{{../userId}}/shop/{{this._id}}" class="u-btn u-button-style u-palette-3-base u-btn-1 shopNameForProductList">{{this.shopName}}</a>
+          {{!-- <h4 class="">{{this.shopName}}</h4> --}}
         </header>
                 <div class="u-border-4 u-border-palette-3-base u-expanded-width u-line u-line-horizontal u-line-1"></div>
                 <div class="content">
                     
           <p>Productname: {{this.productname}}</p>
-          <p>price {{this.price}}</p>
-          <p>quantityremaining {{this.quantityremaining}}</p>
-          <p>dateofmanufacture {{this.dateofmanufacture}}</p>
-          <p>dateofexpiry {{this.dateofexpiry}}</p>
-          <p>{{this.address}} {{this.pincode}}</p>
+          <p>price: {{this.price}}</p>
+          <p>quantityremaining: {{this.quantityremaining}}</p>
+          <p>dateofmanufacture: {{this.dateofmanufacture}}</p>
+          <p>dateofexpiry: {{this.dateofexpiry}}</p>
+           {{!-- <a style="font-weight: 900; background-color: yellow;"
+        href="https://www.google.com/maps/place/{{Address}} {{pincode}}" target="_blank">Click to get Location ofRestaurant </a> --}}
+        <p><a href="https://www.google.com/maps/place/{{this.address}} {{this.pincode}}" target="_blank">{{this.address}} {{this.pincode}} </a> </p>
         </div>
                 {{!-- <img alt="" class="u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-image u-image-default u-image-1" data-image-width="1920" data-image-height="1284" src="images/grocery-g3cce4b8fe_1920.jpg"> --}}
               </div>

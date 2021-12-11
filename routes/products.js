@@ -276,7 +276,7 @@ router.post('/:id', async function (req, res) {
             xss(dateofexpiry)
         );
         if (typeof newItem == "string") {
-            // console.log(newItem)
+            console.log(newItem)
             const shopDetail = await shopData.getAllDataOfShop(idProduct);
             var shopMessage = shopDetail.message;
             var shopComment = shopDetail.comment;
