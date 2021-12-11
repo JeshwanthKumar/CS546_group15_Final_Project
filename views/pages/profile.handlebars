@@ -9,31 +9,52 @@
                         <li class="nav-item"><a class="nav-link" href="#ContactUs">Contact Us</a></li>
                         <li class="nav-item"><a class="nav-link" href="/users/profiledetail">Profile</a></li>
                         <li class="nav-item"><a class="nav-link" href="/users/logout">Logout</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/users/{{id}}/allshop">All Shop List</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
 
 <section>
+  <article class = "User Profile">
+  <div class="container mt-5">
+    <header>
+        <h1 class = "Signup-heading">
+            User Profile
+        </h1>
+    </header>
+     <div class="row">
+    <div class="col-sm-8">
+    <div class="card">
+    <div class="card-body"> 
+     <form action="/users/updateprofile" id="see_form" method="GET">
 
-<a href="/users/{{id}}/allshop">home page</a>
-<form action="/users/updateprofile" id="see_form" method="GET">
-
-<label for="firstname"><b>firstname</b></label>
+    <label for="firstname"><b>Firstname</b></label>
     <input type="text" placeholder="Enter firstname" name="firstname" id="userfirstname"  value="{{firstName}}"  readonly>
     <br>
-    <label for="lastname"><b>lastname</b></label>
+    <label for="lastname"><b>Lastname</b></label>
     <input type="text" placeholder="Enter lastname" name="lastname" id="userlastname" value="{{lastname}}"  readonly>
     <br>
-    <label for="address"><b>address</b></label>
+    <label for="address"><b>Address</b></label>
     <input type="text" placeholder="Enter address" name="address" id="useraddress" value="{{address}}"  readonly>
     <br>
-    <label for="city"><b>city</b></label>
+    <label for="city"><b>City</b></label>
     <input type="text" placeholder="Enter city" name="city" id="usercity" value="{{city}}" readonly>
     <br>
-    <label for="zipcode"><b>zipcode</b></label>
+    <label for="zipcode"><b>Zipcode</b></label>
     <input type="text" placeholder="Enter zipcode" name="zipcode" id="userzipcode" pattern="[0-9]{5}" value="{{zipcode}}" readonly>
 
-    <button type="submit" name="editbtn" id="editbtn">update</button>
-</form>
-</section>
+    <p><button type="submit" name="editbtn" id="editbtn">Click here to update</button></p>
+   </form>
+  </div>
+    </div>
+    </div>
+    </div>
+    </div>
+  </div>
+ </section>
+ 
+ 
+       <footer class="py-5 bg-dark">
+            <div class="container px-4"><p class="m-0 text-center text-white">​Throwing away food is like stealing from the table of those who are poor and hungry. - Pope Francis</p></div>
+        </footer>
