@@ -171,44 +171,53 @@ router.put("/edit/shop/:id", async (req, res) => {
     // if(!(ObjectId.isValid(req.params.id))){
     //     res.status(400).render("s_edit/s_edit", {"error" : "There is no session created for this id"});
     // }
+    var shopDetail = await shop.getAllDataOfShop(idd);
+    req.session.user = shopDetail
     if (!shopkeeper_info) {
         res.status(400).render("s_edit/s_edit", {
+            userId: shopDetail,
             "error": "Must provide every details in the edit form"
         });
         return;
     }
     if (!shopkeeper_info.ShopName) {
         res.status(400).render("s_edit/s_edit", {
+            userId: shopDetail,
             "error": "Must provide the Shop name"
         });
         return;
     }
     if (!shopkeeper_info.username) {
         res.status(400).render("s_edit/s_edit", {
+            userId: shopDetail,
             "error": "Must provide username"
         });
         return;
     }
     if (!shopkeeper_info.ownerFirstname) {
         res.status(400).render("s_edit/s_edit", {
+            userId: shopDetail,
             "error": "Must provide First name"
         });
         return;
     }
     if (!shopkeeper_info.ownerLastname) {
         res.status(400).render("s_edit/s_edit", {
+            userId: shopDetail,
             "error": "Must provide Last name"
         });
         return;
     }
     if (!shopkeeper_info.email) {
         res.status(400).render("s_edit/s_edit", {
+            userId: shopDetail,
             "error": "Must provide email"
         });
         return;
     }
     if (!shopkeeper_info.phoneNumber) {
         res.status(400).render("s_edit/s_edit", {
+            userId: shopDetail,
             "error": "Must provide phone number"
         });
     }
@@ -243,6 +252,7 @@ router.put("/edit/shop/:id", async (req, res) => {
         }
     } catch (e) {
         res.status(400).render("s_edit/s_edit", {
+            userId: shopDetail,
             "error": e
         });
         return;

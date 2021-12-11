@@ -5,6 +5,7 @@ const reviews = mongoCollections.reviews;
 const replayMessage = mongoCollections.replayMessages;
 var mongoose = require('mongoose');
 const user = require('./user')
+const validation = require('../validation/validation')
 const comments = mongoCollections.comment;
 var userdata = mongoCollections.user;
 
@@ -237,6 +238,13 @@ const exportedMethods = {
 // module.exports = {
  async createShopkeeper(ShopName, username, ownerFirstname, ownerLastname, Address, email, pincode, phoneNumber, password){
     const shopkeeperCollections = await shopkeeper();
+        validation.shopNamevalidation(ShopName);
+        validation.userNamevalidation(username);
+        validation.firstnamevalidation(ownerFirstname);
+        validation.lastnamevalidation(ownerLastname);
+        validation.emailvalidation(email);
+        validation.pincodevalidation(pincode);
+        validation.phonenumbervalidation(phoneNumber);
         const hashed_pass = await bcrypt.hash(password, saltRounds);
         let lower = username.toLowerCase();
         let newShopkeeper = {
@@ -322,6 +330,13 @@ const exportedMethods = {
 
     async updateShopkeeper(id, ShopName, username, ownerFirstname, ownerLastname, Address, email, pincode, phoneNumber){
         const UpdateInfo = await this.get(id);
+        validation.shopNamevalidation(ShopName);
+        validation.userNamevalidation(username);
+        validation.firstnamevalidation(ownerFirstname);
+        validation.lastnamevalidation(ownerLastname);
+        validation.emailvalidation(email);
+        validation.pincodevalidation(pincode);
+        validation.phonenumbervalidation(phoneNumber);
         let updatedLower = username.toLowerCase();
         let shopkeeper_update = {
             ShopName : ShopName,
