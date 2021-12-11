@@ -9,18 +9,31 @@ const settings =  {
   let _connection = undefined;
 let _db = undefined;
 
+
+
+module.exports = {
+    getDb : async () => {
+
+  if (!_connection) {
+    _connection = await MongoClient.connect(mongoConfig.serverUrl, {
+      useNewUrlParser: true
+    }, {useUnifiedTopology: true});
+
 module.exports = {
     getDb : async () => {
   if (!_connection) {
     _connection = await MongoClient.connect(mongoConfig.serverUrl, {
       useNewUrlParser: true
     });
+
     _db = await _connection.db(mongoConfig.database);
   }
 
   return _db;
+
 },
 removeConnection: async () => {
     _connection.close();
   }
 }
+
