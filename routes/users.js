@@ -395,6 +395,7 @@ router.post('/login', async (req, res) => {
         }
         emaillow = email.toLowerCase()
         logininfo = await userdata2.chkuser(emaillow, password)
+        
         //logininfo={_id: ObjectId, firstname: 'kam', lastname: 'kim', email: 'ad1@gmail.com', address: '709 summit', …}
         const id2 = ObjectId(logininfo._id);
         req.session.user = {
@@ -414,6 +415,7 @@ router.post('/login', async (req, res) => {
         // res.render('pages/seeprofile')
 
     } catch (e) {
+        res.status(500)
         res.render('pages/login', {
             title: 'login page',
             message: e

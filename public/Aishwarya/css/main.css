@@ -3,6 +3,11 @@
 #errorDiv{
   background-color: #7a991a;
 }
+/* p.shopNameForProductList{
+  font-weight: 400;
+  border: #ff0000;
+  font-size: large;
+} */
 
 @font-face {
   font-family: SourceSansPro-Regular;

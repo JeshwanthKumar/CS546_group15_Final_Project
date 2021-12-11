@@ -205,6 +205,7 @@ const exportedMethods = {
         if (y) {
             return y;
         }
+        console.log(y)
         var message;
         const shopCollection = await shops();
         const newItem = {
