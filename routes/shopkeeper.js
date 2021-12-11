@@ -7,6 +7,8 @@ const {
 const data = require('../data');
 var shop = data.shop
 var product = data.products
+var xss = require("xss");
+const routesvalidation = require('../validation/routesvalidation');
 
 router.get("/", async(req,res)=>{
     
@@ -51,12 +53,34 @@ router.get("/signup", async (req, res) => {
 });
 
 router.post("/signup", async (req, res) => {
+    routesvalidation.routeshopNamevalidation(xss(req.body.ShopName));
+    routesvalidation.routeuserNamevalidation(xss(req.body.username));
+    routesvalidation.routefirstnamevalidation(xss(req.body.ownerFirstname));
+    routesvalidation.routelastnamevalidation(xss(req.body.ownerLastname));
+    routesvalidation.routeemailvalidation(xss(req.body.email));
+    routesvalidation.routepincodevalidation(xss(req.body.pincode));
+    routesvalidation.routephonenumbervalidation(xss(req.body.phoneNumber));
+    routesvalidation.routepasswordValidation(xss(req.body.password));
     try {
         try {
             // console.log(req.body.username);
             // console.log(req.body.password);
             console.log("aa---------------------------------------------------")
-            const newShopkeeper = await shop.createShopkeeper(req.body.ShopName, req.body.username, req.body.ownerFirstname, req.body.ownerLastname, req.body.Address, req.body.email, req.body.pincode, req.body.phoneNumber, req.body.password, req.body.overallRating, req.body.item, req.body.message, req.body.comment, req.body.rating);
+            const newShopkeeper = await shop.createShopkeeper(
+                    xss(req.body.ShopName), 
+                    xss(req.body.username),
+                    xss(req.body.ownerFirstname),
+                    xss(req.body.ownerLastname),
+                    xss(req.body.Address),
+                    xss(req.body.email),
+                    xss(req.body.pincode),
+                    xss(req.body.phoneNumber),
+                    xss(req.body.password),
+                    xss(req.body.overallRating),
+                    xss(req.body.item),
+                    xss(req.body.message),
+                    xss(req.body.comment),
+                    xss(req.body.rating));
             console.log(newShopkeeper)
             if (newShopkeeper.userInsterted) {
                 res.redirect("/login");
@@ -81,7 +105,9 @@ router.post("/login", async (req, res) => {
         try {
             // console.log(req.body.username);
             // console.log(req.body.password);
-            const existingUser = await shop.checkShopkeeper(req.body.username, req.body.password);
+            const existingUser = await shop.checkShopkeeper(
+                xss(req.body.username),
+                 xss(req.body.password));
           //  console.log("check------------------------------------------------")
              req.session.user = existingUser;
             // console.log(existingUser)
@@ -171,6 +197,7 @@ router.put("/edit/shop/:id", async (req, res) => {
     // if(!(ObjectId.isValid(req.params.id))){
     //     res.status(400).render("s_edit/s_edit", {"error" : "There is no session created for this id"});
     // }
+    
     var shopDetail = await shop.getAllDataOfShop(idd);
     req.session.user = shopDetail
     if (!shopkeeper_info) {
@@ -221,6 +248,13 @@ router.put("/edit/shop/:id", async (req, res) => {
             "error": "Must provide phone number"
         });
     }
+    routesvalidation.routeshopNamevalidation(xss(req.body.ShopName));
+    routesvalidation.routeuserNamevalidation(xss(req.body.username));
+    routesvalidation.routefirstnamevalidation(xss(req.body.ownerFirstname));
+    routesvalidation.routelastnamevalidation(xss(req.body.ownerLastname));
+    routesvalidation.routeemailvalidation(xss(req.body.email));
+    routesvalidation.routepincodevalidation(xss(req.body.pincode));
+    routesvalidation.routephonenumbervalidation(xss(req.body.phoneNumber));
 
     try {
         await shop.get(req.params.id)
@@ -235,14 +269,14 @@ router.put("/edit/shop/:id", async (req, res) => {
         console.log(req.body.password);
         const newShopkeeper = await shop.updateShopkeeper(
             req.params.id,
-            shopkeeper_info.ShopName,
-            shopkeeper_info.username,
-            shopkeeper_info.ownerFirstname,
-            shopkeeper_info.ownerLastname,
-            shopkeeper_info.Address,
-            shopkeeper_info.email,
-            shopkeeper_info.pincode,
-            shopkeeper_info.phoneNumber
+            xss(shopkeeper_info.ShopName),
+            xss(shopkeeper_info.username),
+            xss(shopkeeper_info.ownerFirstname),
+            xss(shopkeeper_info.ownerLastname),
+            xss(shopkeeper_info.Address),
+            xss(shopkeeper_info.email),
+            xss(shopkeeper_info.pincode),
+            xss(shopkeeper_info.phoneNumber)
         );
         console.log(newShopkeeper);
         if (newShopkeeper.updateInserted) {

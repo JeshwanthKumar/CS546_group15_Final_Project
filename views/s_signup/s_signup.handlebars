@@ -19,43 +19,53 @@
           <form action="/signup" method="POST" id = "signup-form">
             <div class="form-group">
               <label for="ShopName">ShopName</label>
-    <input type="ShopName" class="form-control" placeholder="Enter ShopName" name="ShopName" id="ShopName">
+    <input type="ShopName" class="form-control" placeholder="Enter ShopName" name="ShopName" id="ShopName" required>
             </div>
             <div class="form-group">
               <label for="username">username</label>
-   <input type="username" class="form-control" placeholder="Enter username" name="username" id="username">
+   <input type="username" class="form-control" placeholder="Enter username" name="username" id="username" required>
             </div>
             <div class="form-group">
               <label for="ownerFirstname">ownerFirstname</label>
-   <input type="ownerFirstname" class="form-control" placeholder="Enter firstname" name="ownerFirstname" id="ownerFirstname" >
+   <input type="ownerFirstname" class="form-control" placeholder="Enter firstname" name="ownerFirstname" id="ownerFirstname" required >
              </div>
             <div class="form-group">
               <label for="ownerLastname">ownerLastname</label>
-   <input type="ownerLastname" class="form-control" placeholder="Enter Lastname" name="ownerLastname" id="ownerLastname">
+   <input type="ownerLastname" class="form-control" placeholder="Enter Lastname" name="ownerLastname" id="ownerLastname" required>
             </div>
             <div class="form-group">
               <label for="Address">Address</label>
-  <input type="Address" class="form-control" placeholder="Enter Address" name="Address" id="Address">
+  <input type="Address" class="form-control" placeholder="Enter Address" name="Address" id="Address" required>
             </div>
              <div class="form-group">
               <label for="email">email</label>
-  <input type="email" class="form-control" placeholder="Enter email" name="email" id="email" >
+  <input type="email" class="form-control" placeholder="Enter email" name="email" id="email" required>
          </div>
           <div class="form-group">
               <label for="pincode">pincode</label>
-  <input type="pincode" class="form-control" placeholder="Enter pincode" name="pincode" id="pincode" >
+  <input type="pincode" class="form-control" placeholder="Enter pincode" name="pincode" id="pincode" required>
          </div>
          <div class="form-group">
               <label for="phoneNumber">phoneNumber</label>
-  <input type="phoneNumber" class="form-control" placeholder="Enter phoneNumber" name="phoneNumber" id="phoneNumber" >
+  <input type="phoneNumber" class="form-control" placeholder="Enter phoneNumber" name="phoneNumber" id="phoneNumber" required>
          </div>
          <div class="form-group">
               <label for="password">password</label>
-  <input type="password" class="form-control" placeholder="Enter password" name="password" id="spassword" >
+  <input type="password" class="form-control" placeholder="Enter password" name="password" id="spassword" required>
          </div>
             <button type="submit" class="btn btn-dark">Login</button>
           </form>
  <a href="/login">have an account? Click here to  Signin</a>
+ <p id = "success-signup" hidden>Account created successfully</p>
+<p id = "Shopname" hidden>Please provide your shop name</p>
+<p id = "s_username" hidden>Please provide your user name</p>
+<p id = "s_ownerFirstname" hidden>Please provide your first name</p>
+<p id = "s_ownerLastname" hidden>Please provide your last name</p>
+<p id = "s_Address" hidden>Please provide your Address</p>
+<p id = "s_email" hidden>Please provide your email</p>
+<p id = "s_pincode" hidden>Please provide your pincode</p>
+<p id = "s_phoneNumber" hidden>Please provide your phone number</p>
+<p id = "s_password" hidden>Please provide your password</p>
  <div id="errorDiv"  hidden><p>{{error}}</p>
         </div>
       </div>
