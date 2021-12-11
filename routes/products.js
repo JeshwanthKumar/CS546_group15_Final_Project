@@ -4,7 +4,7 @@ const data = require('../data');
 const shopData = data.shop;
 const productData = data.products;
 const userData = data.user;
-
+var xss = require('xss');
 router.get('/:id', async function (req, res) {
     const idd = req.params.id;
 
@@ -206,13 +206,13 @@ router.put('/:id', async function (req, res) {
     try {
         const updateStore = await productData.updateProduct(
             iddProduct,
-            productname,
-            productdetails,
-            producthighlights,
-            price,
-            quantityremaining,
-            dateofmanufacture,
-            dateofexpiry
+            xss(productname),
+            xss(productdetails),
+            xss(producthighlights),
+            xss(price),
+            xss(quantityremaining),
+            xss(dateofmanufacture),
+            xss(dateofexpiry)
         )
         var restDetail = await productData.getShopIdForEditItem(iddProduct);
         var itemDetail = await productData.getProductDetail(restDetail._id, iddProduct)
@@ -242,7 +242,7 @@ router.post('/:iduser/:storeId', async function (req, res) {
         replayMessage
     } = req.body;
     try {
-        await userData.replayMessage(iduser, storeId, replayMessage)
+        await userData.replayMessage(iduser, storeId, xss(replayMessage))
         res.redirect(`/shopId/${storeId}`)
     } catch (e) {
         res.status(500).json({
@@ -266,14 +266,14 @@ router.post('/:id', async function (req, res) {
     try {
 
         const newItem = await productData.createProduct(
-            idProduct,
-            productname,
-            productdetails,
-            producthighlights,
-            price,
-            quantityremaining,
-            dateofmanufacture,
-            dateofexpiry
+            xss(idProduct),
+            xss(productname),
+            xss(productdetails),
+            xss(producthighlights),
+            xss(price),
+            xss(quantityremaining),
+            xss(dateofmanufacture),
+            xss(dateofexpiry)
         );
         if (typeof newItem == "string") {
             // console.log(newItem)

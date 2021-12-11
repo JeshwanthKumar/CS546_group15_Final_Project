@@ -49,22 +49,22 @@
           <form action="/login" method="POST" id = "login-form">
             <div class="form-group">
               <label for="username">Username</label>
-             	<input class="input100" type="text" id= "username" class="form-control" name="username" placeholder="username">
+             	<input class="input100" type="text" id= "username" class="form-control" name="username" placeholder="username" required>
             </div>
             <div class="form-group">
               <label for="password">Password</label>
-		<input class="input100" type="password" id="password" class="form-control" name="password" placeholder="password">
+		<input class="input100" type="password" id="password" class="form-control" name="password" placeholder="password" required>
             </div>
             <button type="submit" class="btn btn-dark">Login</button>
           </form>
-    <p>New User? <a href="/signup" >Click here</a> to signup</p> 
-    <p id ="user-error" hidden>Either the username or password is incorrect</p>
-    <p id = "pass-error" hidden>Either the username or password is incorrect</p>
-    <div id="errorDiv"  hidden>
+          <div id="errorDiv"  hidden>
       {{#if error}}
       <p class = "login-error" id = "login-error" hidden>{{"error"}}</p>
       {{/if}}
         </div>
+    <p>New User? <a href="/signup" >Click here</a> to signup</p> 
+    <p id ="user-error" hidden>Either the username or password is incorrect</p>
+    <p id = "pass-error" hidden>Either the username or password is incorrect</p>
       </div>
     </div>
 

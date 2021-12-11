@@ -191,7 +191,7 @@ router.post('/:idUser/shop/:shopId', async (req, res) => {
                 }
                 return;
             }
-            var average = await shopData.review(userInfo, shopId, review)
+            var average = await shopData.review(userInfo, shopId, xss(review))
             const getShopbyId = await productData.getAllProduct(shopId);
 
             const shopInfonew = await shopData.getAllDataOfShop(shopId);
@@ -241,7 +241,7 @@ router.post('/:idUser/shop/:shopId', async (req, res) => {
 
         if (message) {
 
-            await shopData.message(userInfo, shopId, message)
+            await shopData.message(userInfo, shopId, xss(message))
             const getShopbyId = await productData.getAllProduct(shopId);
 
             const shopInfonew = await shopData.getAllDataOfShop(shopId);
@@ -287,7 +287,7 @@ router.post('/:idUser/shop/:shopId', async (req, res) => {
             }
         }
         if (comment) {
-            await shopData.comment(userInfo, shopId, comment)
+            await shopData.comment(userInfo, shopId, xss(comment))
             const getShopbyId = await productData.getAllProduct(shopId);
 
             const shopInfonew = await shopData.getAllDataOfShop(shopId);
