@@ -1,6 +1,7 @@
 const MongoClient = require('mongodb').MongoClient;
 const settings =  {
     mongoConfig: {
+      // serverUrl: 'mongodb+srv://smart:007@qwerT@cluster0.cunqm.mongodb.net/',
       serverUrl: 'mongodb://localhost:27017/',
       database: 'Group_15'
     }

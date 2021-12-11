@@ -19,7 +19,8 @@ module.exports = {
   reviews: getCollectionFn('reviews'),
   replayMessages: getCollectionFn('replayMessages'),
   shopkeeper: getCollectionFn('shopkeeper'),
-  productsForSearch: getCollectionFn('productForSearch'),
+  google: getCollectionFn('google'),
+  productsForSearch: getCollectionFn('products'),
   reviewForProduct: getCollectionFn('reviewForProduct')
 };
 
