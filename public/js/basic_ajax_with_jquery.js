@@ -1,5 +1,5 @@
 (function($) {
-	// AJAX calls
+	// Let's start writing AJAX calls!
 
 	var mySearchForm = $('#search-form'),
 		searchInput = $('#search-bar');
