@@ -11,6 +11,9 @@
   "author": "Group 15",
 
   "license": "ISC",
+  "engines": {
+    "node": "15.14.0"
+  },
   "dependencies": {
     "axios": "^0.24.0",
     "bcrypt": "^5.0.1",
@@ -25,5 +28,7 @@
     "node-simple-validator": "^2.0.0",
     "nodemon": "^2.0.15",
     "xss": "^1.0.10"
+
+    
   }
 }

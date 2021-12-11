@@ -1,5 +1,8 @@
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
+#errorDiv{
+  background-color: #7a991a;
+}
 
 @font-face {
   font-family: SourceSansPro-Regular;

@@ -15,6 +15,8 @@ app.use('/public', express.static(__dirname + '/public'));
 
 app.use(methodOverride('_method'));
 
+// GOOGLE login
+
 
 
 app.use(session({
@@ -37,13 +39,15 @@ app.use(session({
  
     if (req.session.user) {
       //req.method = 'GET';
-      return res.redirect('/users/private');
+     // res.redirect(`/users/${id2}/allshop`)
+     console.log(req.session.user)
+      return  res.redirect(`/users/${req.session.user.id}/allshop`)
     } else {
       //here I',m just manually setting the req.method to post since it's usually coming from a form
      next()
     }
   });
-  app.use('/users/private', (req,res,next)=>{
+  app.use('/users/:id/shop/:id', (req,res,next)=>{
     if(!req.session.user){
        return res.redirect('/users/login');
     }
@@ -144,6 +148,13 @@ app.use((req,res,next)=>{
 
 routes(app);
 
-app.listen(3000, () => {
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
+// app.listen(port);
+ 
+
+app.listen(port, () => {
     console.log("Your server started at http://localhost:3000");
 })
