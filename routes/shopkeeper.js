@@ -84,7 +84,7 @@ router.post("/signup", async (req, res) => {
                     xss(req.body.rating));
             console.log(newShopkeeper)
             if (newShopkeeper.userInsterted) {
-                res.redirect("/login");
+                res.redirect("/shop/login");
                 return;
             }
         } catch (e) {
@@ -167,7 +167,7 @@ router.get("/logout", async (req, res) => {
 
 
     //if (!id) {
-        res.redirect('/login');
+        res.redirect('/shop/login');
         return;
    // }
   

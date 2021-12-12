@@ -11,7 +11,12 @@
     <div class="col-sm-8">
     <div class="card">
     <div class="card-body">
-    <form action = "/edit/shop/{{userId._id}}" method ="POST" id = "edit-form">
+    {{!-- <form action = "/shop/edit/{{userId._id}}" method ="POST" id = "edit-form"> --}}
+
+    
+    <form method ="POST" id = "edit-form" action = "/shop/edit/shop/{{userId._id}}?_method=PUT">
+
+        <input type="hidden" name="_method" value="PUT">
     <div class="form-group"></div>
     <label class = "user-text" for = "shopName">
             Shop Name:
@@ -68,7 +73,7 @@
         <br>
         <br>
         </div>
-        <input name = "_method" hidden value = "PUT"> 
+        {{!-- <input name = "_method" hidden value = "PUT">  --}}
         <button type="submit" class="btn btn-dark">Update</button>
     </form>
     {{#if error}}

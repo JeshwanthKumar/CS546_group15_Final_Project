@@ -123,21 +123,74 @@ app.get('/users/seeprofile', (req, res, next) => {
         return res.redirect('/users/login');
       }});
 
-app.use('/edit', (req,res,next)=>{
-    if(req.body._method === "PUT"){
-        console.log("EDIT");
-        req.method = "put";
-    }
-    next();
-    
-})
+      app.use('/shop/signup', (req,res,next)=>{
+        if(req.session.shop){
+          res.redirect('/shop/login')
+        }
+        else{
+          next();
+        }
+      });
+      app.use('/shop/login', (req,res,next)=>{
+        if(!req.session.shop){
+          next();
+          
+        }
+        else{
+          res.redirect(`/shopId/${req.session.shop.authenticatedUser._id}`);
+        }
+      });
+      app.use('/shop/logout',(req,res,next)=>{
+        if(!req.session.shop){
+           req.session.destroy()
+           res.redirect('/shop/login');
+          }
+        else{
+          return res.redirect('/shop/login');
+        }
+        next()
+      });
+      app.use('/edit/shop/:id', (req,res,next)=>{
+        if(!req.session.shop){
+          res.redirect('shop/login');
+          return;
+        }
+        next();
+      })
+      app.use('/edit/shop/:id', (req,res,next)=>{
+        if(!req.session.shop){
+          next();
+        }
+        else{
+          res.redirect("shop/login");
+          return;
+        }
+      });
+      // app.use('/allProduct', async(req,res,next)=>{
+      //   if(req.session.user){
+      //     res.render
+      //   }
+      // })
+      app.use(`/shop/shopId/:id`, (req,res,next)=>{
+        if(!req.session.shop){
+          res.redirect('/shop/login');
+        }
+        next();
+      })
 
-app.use((req,res,next)=>{
-    if(req.body._mehtod === "DELETE"){
-        req.method = "delete"
-    }
-    next();
-})
+
+// app.use('shop/addItem/:id', (req,res,next)=>{
+//   if(req.session.)
+// })
+
+// app.use((req,res,next)=>{
+//     if(req.body._mehtod === "DELETE"){
+//         req.method = "delete"
+//     }
+//     next();
+// })
+
+
 
 // app.use((req,res,next)=>{
 //     let str = "";
