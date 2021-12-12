@@ -51,7 +51,7 @@ router.post("/search.html", async (req, res) => {
       }
     } catch (e) {
       console.log(e);
-      res.status(500).send();
+      res.status(500).render('pages/error500', {message:e})
     }
   })
 
@@ -124,9 +124,9 @@ router.post("/signup", async (req, res) => {
             return;
         }
     } catch (e) {
-        res.status(500).json({
-            error: "Internal server error"
-        });
+        
+        res.status(500).render('pages/error500', {message:"Internal server error"})
+
         return;
     }
 });
@@ -160,9 +160,8 @@ router.post("/login", async (req, res) => {
             });
         }
     } catch (e) {
-        res.status(500).json({
-            error: "Internal server error"
-        });
+        res.status(500).render('pages/error500', {message:"Internal server error"})
+
     }
 });
 
@@ -290,9 +289,7 @@ router.put("/edit/shop/:id", async (req, res) => {
     try {
         await shop.get(req.params.id)
     } catch (e) {
-        res.status(500).json({
-            error: "Internal server error"
-        });
+        res.status(500).render('pages/error500', {message:"Internal server error"})
         return;
     }
     try {
