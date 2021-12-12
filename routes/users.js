@@ -363,7 +363,7 @@ router.delete('/:iduser/shop/:idshop/:messId', async (req, res) => {
 
 router.get('/login', async (req, res) => {
     try {
-        if (req.session.username) {
+        if (req.session.user) {
             res.redirect('/private')
         } else {
             let a = "login page"
