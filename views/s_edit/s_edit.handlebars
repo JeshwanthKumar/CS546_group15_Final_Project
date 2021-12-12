@@ -6,8 +6,8 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">      
-                      <li class="nav-item"><a class="nav-link" href="/">Home</a></li>        
-                        <li class="nav-item"><a class="nav-link" href="/shop/logout">Logout</a></li>
+                      {{!-- <li class="nav-item"><a class="nav-link" href="/">Home</a></li>        
+                        <li class="nav-item"><a class="nav-link" href="/shop/logout">Logout</a></li> --}}
                     </ul>
                 </div>
             </div>
@@ -40,48 +40,48 @@
         <label class = "user-text" for = "username">
             User Name : 
         </label>
-        <input name = "username" id = "username" type = "text" value = "{{userId.username}}">
+        <input name = "username" id = "ed_username" type = "text" value = "{{userId.username}}">
         <br>
         </div>
         <div class="form-group">
         <label class = "user-text" for = "ownerFirstname">
             First Name:
         </label>
-        <input name = "ownerFirstname" id = "ownerFirstname" type = "text" value = "{{userId.ownerFirstname}}">
+        <input name = "ownerFirstname" id = "ed_ownerFirstname" type = "text" value = "{{userId.ownerFirstname}}">
         <br>
         </div>
         <div class="form-group">
         <label class = "password-text" for = "ownerLastname">
             Last Name :
         </label>
-        <input name = "ownerLastname" id = "ownerLastname" type = "text" value = "{{userId.ownerLastname}}">
+        <input name = "ownerLastname" id = "ed_ownerLastname" type = "text" value = "{{userId.ownerLastname}}">
         <br>
         </div>
         <div class="form-group">
         <label class = "password-text" for = "Address">
             Address :
         </label>
-        <input name = "Address" id = "Address" type = "text" value = "{{userId.Address}}">
+        <input name = "Address" id = "ed_Address" type = "text" value = "{{userId.Address}}">
         <br>
         </div>
         <div class="form-group">
         <label class = "password-text" for = "email">
             Email :
         </label>
-        <input name = "email" id = "email" type = "email" value = "{{userId.email}}">
+        <input name = "email" id = "ed_email" type = "email" value = "{{userId.email}}">
         <br>
         </div>
         <div class="form-group">
         <label class = "password-text" for = "pincode">
             Pincode :
         </label>
-        <input name = "pincode" id = "pincode" type = "number" value = "{{userId.pincode}}">
+        <input name = "pincode" id = "ed_pincode" type = "number" value = "{{userId.pincode}}">
         <br>
         <div class="form-group">
         <label class = "password-text" for = "phoneNumber">
             Phone number :
         </label>
-        <input name = "phoneNumber" id = "phoneNumber" type = "number" value = "{{userId.phoneNumber}}">
+        <input name = "phoneNumber" id = "ed_phoneNumber" type = "number" value = "{{userId.phoneNumber}}">
         <br>
         <br>
         </div>
@@ -93,6 +93,20 @@
     {{/if}}
 <p id = "success-edit" hidden>Account upadted successfully</p>
 <p id = "suser-error" hidden>Either the username or password is incorrect</p>
+<p id = "e_username" hidden>Please provide your user name</p>
+<p id = "e_user_error" hidden>The username must be alpha numeric characters</p>
+<p id = "e_ownerFirstname" hidden>Please provide your first name</p>
+<p id = "e_first_error" hidden>The first name should contain only alphabets</p>
+<p id = "e_last_error" hidden>The last name should contain only alphabets</p>
+<p id = "e_ownerLastname" hidden>Please provide your last name</p>
+<p id = "e_Address" hidden>Please provide your Address</p>
+<p id = "e_email" hidden>Please provide your email</p>
+<p id = "e_email_error" hidden>Please provide a valid email id</p>
+<p id = "e_pincode" hidden>Please provide your pincode</p>
+<p id = "e_phoneNumber" hidden>Please provide your phone number</p>
+<p id = "e_phone_error" hidden>Please provide your phone number in the correct format</p>
+<p id = "e_password" hidden>Please provide your password</p>
+<p id = "e_space" hidden>The password contains atleast one space</p>
 </div>
 </div>
 </div>
