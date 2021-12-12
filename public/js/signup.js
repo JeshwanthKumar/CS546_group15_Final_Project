@@ -50,6 +50,10 @@ $('#usersignup-form').submit(function(event) {
         val(password,'password')
         val(zipcode,'zipcoe')
         val(email,'email')
+        var fregex = /^[A-Za-z]+$/
+        if(fregex.test(firstname) == false){
+            throw "The first name must only contain alphabets";
+        }
         var pat1=/(^\d{5}$)|(^\d{5}-\d{4}$)/
         if(pat1.test(zipcode)==false){
             throw "enter a valid zipcode"
