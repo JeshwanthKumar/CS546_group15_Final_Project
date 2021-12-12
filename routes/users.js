@@ -442,12 +442,12 @@ router.post('/signup', async (req, res) => {
     try {
         chk = false
         const us = req.body;
-        email = xss(us.email)
-        firstname = xss(us.firstname)
-        lastname = xss(us.lastname)
-        zipcode = xss(us.zipcode)
-        address = xss(us.address)
-        password = xss(us.password)
+        email = xss(us.email).trim()
+        firstname = xss(us.firstname).trim()
+        lastname = xss(us.lastname).trim()
+        zipcode = xss(us.zipcode).trim()
+        address = xss(us.address).trim()
+        password = xss(us.password).trim()
         city = xss(us.city)
         //const { firstname, lastname,email,address,city, zipcode,password } = us; 
         pass = password
@@ -547,10 +547,10 @@ router.post('/updateprofile/:id', async (req, res) => {
         const id = req.params.id;
         const us = req.body;
         id2 = xss(id)
-        firstname = xss(us.firstname)
-        lastname = xss(us.lastname)
-        zipcode = xss(us.zipcode)
-        address = xss(us.address)
+        firstname = xss(us.firstname).trim()
+        lastname = xss(us.lastname).trim()
+        zipcode = xss(us.zipcode).trim()
+        address = xss(us.address).trim()
         city = xss(us.city)
         if (!id2) throw "The id is not valid"
         if (!firstname) throw "enter first name"
