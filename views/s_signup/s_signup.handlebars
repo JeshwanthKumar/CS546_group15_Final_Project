@@ -84,10 +84,10 @@
         <br>
         </div>
         <div class="form-group">
-        <label class = "password-text" for = "password">
+        <label class = "password-text" for = "spassword">
             Password : 
         </label>
-        <input name = "password"  class="form-control" id = "spassword" type = "password">
+        <input name = "password"  class="form-control" id = "spassword" type = "password" placeholder="Password">
         <br>
         </div>
         {{!-- <input class = "signup-button" type = "submit" value = "Sign up"> --}}
@@ -96,7 +96,12 @@
     {{#if error}}
     <p class = "error">{{error}}</p>
     {{/if}}
-    <p>Already have an accout? <a href="/shop/login">Click here</a></p>
+
+<a href="/shop/login" aria-label="More on Using Meaningful Link Text">for Login</a>
+
+    
+
+
 <p id = "success-signup" hidden>Account created successfully</p>
 <p id = "suser-error" hidden>Either the username or password is incorrect</p>
 <p id = "Shopname" hidden>Please provide your shop name</p>

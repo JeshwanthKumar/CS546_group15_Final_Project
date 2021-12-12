@@ -157,6 +157,7 @@ router.get(`/shopId/:id`, async (req, res) => {
 
 router.get("/logout", async (req, res) => {
     console.log('inside logout')
+    console.log(req.session)
     req.session.destroy();
     // var id = (req.session.userId)
     // // console.log("--------------------------------")

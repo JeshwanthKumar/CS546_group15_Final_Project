@@ -60,7 +60,7 @@ function checkValidations(productname, productdetails, producthighlights, price,
         return message
     }
     if ((!productdetails) || typeof productdetails != 'string' || (!productdetails.match(/^[0-9A-z ]{5,}$/))) {
-        message = `productdetails "${productdetails}" is not valid.`
+        message = `productdetails "${productdetails}" is not valid or atleast 5 chatcture.`
         return message
     }
     if ((!producthighlights) || typeof producthighlights != 'string') {
