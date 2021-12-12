@@ -508,7 +508,7 @@
             e_pincode.hidden =false;
             return;
         }
-        if(e_pin_text.length< 4){
+        if(e_pin_text.length< 5){
             event.preventDefault();
             e_pincode.hidden = false;
             return;
