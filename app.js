@@ -37,6 +37,23 @@ app.use(session({
   //   console.log(`[${new Date().toUTCString()}] : ${req.method} ${req.originalUrl} ${user_status}`);
   //   next()
   // })
+  
+
+  app.get('/',(req,res,next)=>{
+      if(req.session.user){
+
+        return  res.redirect(`/users/${req.session.user.id}/allshop`)
+      }else if(req.session.shop){
+        res.redirect(`/shopId/${req.session.shop.authenticatedUser._id}`);
+
+      }else{
+        next()
+      }
+
+
+
+
+  })
   app.get('/users/login', (req, res, next) => {
  
     if (req.session.user) {
@@ -44,13 +61,20 @@ app.use(session({
      // res.redirect(`/users/${id2}/allshop`)
      //console.log(req.session.user)
       return  res.redirect(`/users/${req.session.user.id}/allshop`)
-    } else {
-     
+    } else if(req.session.shop) {
+      res.redirect(`/shopId/${req.session.shop.authenticatedUser._id}`)}
+     else{
       //here I',m just manually setting the req.method to post since it's usually coming from a form
      next()
     }
   });
   app.use('/users/:id/shop/:id', (req,res,next)=>{
+    if(!req.session.user){
+       return res.redirect('/users/login');
+    }
+    next();
+  })
+  app.use('/users//shop/:id', (req,res,next)=>{
     if(!req.session.user){
        return res.redirect('/users/login');
     }
@@ -72,20 +96,37 @@ app.use('/users/profile', (req,res,next)=>{
       next();
   }
 });
+app.use('/users/:id/allshop', (req,res,next)=>{
+  if(!req.session.user){
+     return res.redirect('/users/login');
+  }
+  else{
+      next();
+  }
+});
+
+
+
 app.get('/users/signup', (req, res, next) => {
  
   if (req.session.user) {
     //req.method = 'GET';
     return res.redirect(`/users/${req.session.user.id}/allshop`);
-  } else {
+  } else if(req.session.shop){
+    res.redirect(`/shopId/${req.session.shop.authenticatedUser._id}`)
+  } else{
     //here I',m just manually setting the req.method to post since it's usually coming from a form
    next()
   }
 });
 
+
 app.get('/users/logout',(req,res,next)=>{
   if(req.session.user){
-     req.session.destroy()}
+     req.session.destroy()
+    } else if(req.session.shop) {
+      res.redirect(`/shopId/${req.session.shop.authenticatedUser._id}`)
+    }
   else{
     return res.redirect('/users/login');
   }
@@ -123,26 +164,36 @@ app.get('/users/seeprofile', (req, res, next) => {
         return res.redirect('/users/login');
       }});
 
+
+
+
+      
+
       app.use('/shop/signup', (req,res,next)=>{
         if(req.session.shop){
-          res.redirect('/shop/login')
+          res.redirect(`/shopId/${req.session.shop.authenticatedUser._id}`)
+        }else if(req.session.user){
+           res.redirect(`/users/${req.session.user.id}/allshop`)
         }
         else{
           next();
         }
       });
       app.use('/shop/login', (req,res,next)=>{
-        if(!req.session.shop){
-          next();
+        if(req.session.shop){
+          res.redirect(`/shopId/${req.session.shop.authenticatedUser._id}`);
           
+        } else if(req.session.user){
+          res.redirect(`/users/${req.session.user.id}/allshop`)
         }
         else{
-          res.redirect(`/shopId/${req.session.shop.authenticatedUser._id}`);
+          next()
         }
       });
-      // app.use('/shop/logout',(req,res,next)=>{
-      //   if(!req.session.shop){
+      // app.get('/shop/logout',(req,res,next)=>{
+      //   if(req.session.shop){
       //      req.session.destroy()
+      //      //req.session.destroy()
       //      res.redirect('/shop/login');
       //     }
       //   else{
@@ -150,28 +201,48 @@ app.get('/users/seeprofile', (req, res, next) => {
       //   }
       //   next()
       // });
-      app.use('/edit/shop/:id', (req,res,next)=>{
+      app.get('/edit/shop/:id', (req,res,next)=>{
         if(!req.session.shop){
-          res.redirect('shop/login');
+          res.redirect('/shop/login');
           return;
         }
         next();
       })
-      app.use('/edit/shop/:id', (req,res,next)=>{
-        if(!req.session.shop){
-          next();
-        }
-        else{
-          res.redirect("shop/login");
-          return;
-        }
-      });
+      // app.use('/edit/shop/:id', (req,res,next)=>{
+      //   if(!req.session.shop){
+      //     next();
+      //   }
+      //   else{
+      //     res.redirect("shop/login");
+      //     return;
+      //   }
+      // });
       // app.use('/allProduct', async(req,res,next)=>{
       //   if(req.session.user){
       //     res.render
       //   }
       // })
+      app.get('/shop/edit/:id', (req,res,next)=>{
+        if(!req.session.shop){
+          res.redirect('/shop/login');
+          return;
+        }
+        next();
+      })
+      app.get('/shopId/:id', (req,res,next)=>{
+        if(!req.session.shop){
+          res.redirect('/shop/login');
+          return;
+        }
+        next();
+      })
       app.use(`/shop/shopId/:id`, (req,res,next)=>{
+        if(!req.session.shop){
+          res.redirect('/shop/login');
+        }else{
+        next();}
+      })
+      app.use(`/shopid/editItem/:id`, (req,res,next)=>{
         if(!req.session.shop){
           res.redirect('/shop/login');
         }

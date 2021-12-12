@@ -49,7 +49,7 @@
     <button type = "submit"  class="btn btn-dark">Login</button>
     </form>
     {{#if error}}
-    <p class = "login-error">{{error}}</p>
+    <p class = "login-error" id = "error">{{error}}</p>
     {{/if}}
     <p>New User? <a href="/shop/signup" >Click here</a> to signup</p> 
     <p id ="user-error" hidden>Either the username or password is incorrect</p>

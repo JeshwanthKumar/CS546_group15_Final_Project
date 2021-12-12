@@ -50,7 +50,7 @@ const firstnamevalidation = (ownerFirstname) =>{
     if(ownerFirstname.trim().length ===0)
     throw 'The first name contains only white spaces';
     var regex =new RegExp(/^[A-Z]+$/);
-     if(regex.test(ownerFirstname))
+     if(!(regex.test(ownerFirstname)))
      throw 'The first name must contain only alphabets';
 }
 
@@ -64,7 +64,7 @@ const lastnamevalidation = (ownerLastname) =>{
     if(ownerLastname.trim().length ===0)
     throw 'Thelast name contains only white spaces';
     var regex =new RegExp(/^[A-Z]+$/);
-    if(regex.test(ownerLastname))
+    if(!(regex.test(ownerLastname)))
     throw 'The last name must contain only alphabets ';
 }
 
@@ -77,9 +77,9 @@ const emailvalidation = (email) =>{
     throw 'email must be provided';
     if(email.trim().length ===0)
     throw 'The email contains only white spaces';
-    // var regex =new RegExp(/^[a-zA-Z0-9.!#$%&'*+\=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/);
-    // if(regex.test(email))
-    // throw 'The email must be in the correct format';
+    var regex =new RegExp(/^[a-zA-Z0-9.!#$%&'*+\=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/);
+    if(!(regex.test(email)))
+    throw 'The email must be in the correct format';
 }
 
 const pincodevalidation = (pincode) =>{
@@ -91,9 +91,9 @@ const pincodevalidation = (pincode) =>{
     throw 'pincode must be provided';
     if(pincode.trim().length ===0)
     throw 'The pincode contains only white spaces';
-    // var regex =new RegExp(/^[0-9]{5}(?:-[0-9]{4})?$/);
-    // if(regex.test(pincode))
-    // throw 'The pincode must be in the correct format';
+    var regex =new RegExp(/^[0-9]{5}(?:-[0-9]{4})?$/);
+    if(!(regex.test(pincode)))
+    throw 'The pincode must be in the correct format';
 }
 
 const phonenumbervalidation = (phoneNumber) =>{
@@ -103,9 +103,9 @@ const phonenumbervalidation = (phoneNumber) =>{
     throw 'phone number must be provided';
     if(phoneNumber.trim().length ===0)
     throw 'The phone number contains only white spaces';
-    // var regex =new RegExp(/^\(?([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$/);
-    // if(regex.test(phoneNumber))
-    // throw 'The phone number must be in the correct format';
+    var regex =new RegExp(/^\(?([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$/);
+    if(!(regex.test(phoneNumber)))
+    throw 'The phone number must be in the correct format';
 }
 
 
