@@ -208,13 +208,13 @@ router.put("/edit/shop/:id", async (req, res) => {
         });
         return;
     }
-    if (!shopkeeper_info.ShopName) {
-        res.status(400).render("s_edit/s_edit", {
-            userId: shopDetail,
-            "error": "Must provide the Shop name"
-        });
-        return;
-    }
+    // if (!shopkeeper_info.ShopName) {
+    //     res.status(400).render("s_edit/s_edit", {
+    //         userId: shopDetail,
+    //         "error": "Must provide the Shop name"
+    //     });
+    //     return;
+    // }
     if (!shopkeeper_info.username) {
         res.status(400).render("s_edit/s_edit", {
             userId: shopDetail,
@@ -249,7 +249,6 @@ router.put("/edit/shop/:id", async (req, res) => {
             "error": "Must provide phone number"
         });
     }
-    routesvalidation.routeshopNamevalidation(xss(req.body.ShopName));
     routesvalidation.routeuserNamevalidation(xss(req.body.username));
     routesvalidation.routefirstnamevalidation(xss(req.body.ownerFirstname));
     routesvalidation.routelastnamevalidation(xss(req.body.ownerLastname));
@@ -270,7 +269,6 @@ router.put("/edit/shop/:id", async (req, res) => {
         console.log(req.body.password);
         const newShopkeeper = await shop.updateShopkeeper(
             req.params.id,
-            xss(shopkeeper_info.ShopName),
             xss(shopkeeper_info.username),
             xss(shopkeeper_info.ownerFirstname),
             xss(shopkeeper_info.ownerLastname),
