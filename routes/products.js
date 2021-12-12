@@ -13,6 +13,8 @@ router.get('/:id', async function (req, res) {
 
 
         const shopDetail = await shopData.getAllDataOfShop(idd);
+
+        console.log(shopDetail)
         var shopName = shopDetail.ShopName;
         var shopId = shopDetail._id;
         var shopMessage = shopDetail.message;
