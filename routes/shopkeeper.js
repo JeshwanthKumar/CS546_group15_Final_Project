@@ -150,7 +150,7 @@ router.post("/login", async (req, res) => {
                 return;
             } else {
                 res.status(400).render("s_login/s_login", {
-                    "error": "Invalid username or password"
+                    "error": "Either username or password is incorrect"
                 });
             }
         } catch (e) {
