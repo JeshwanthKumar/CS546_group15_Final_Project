@@ -2,12 +2,12 @@ const mongoCollections = require('../config/mongoCollections');
 
 const user = mongoCollections.user;
 var mongoose = require('mongoose');
-const {
-    replayMessages
-} = require('../config/mongoCollections');
+// const {
+//     replayMessages
+// } = require('../config/mongoCollections');
 const shop = mongoCollections.shopkeeper;
 const messages = mongoCollections.message;
-const replayMessage = mongoCollections.replayMessages;
+const replayMessages = mongoCollections.replayMessages;
 
 var validator = require("email-validator");
 const bcrypt = require('bcrypt');
@@ -82,7 +82,7 @@ const exportedMethods = {
 
     },
 
-    async replayMessage(idusers, storeId, replayMessages) {
+    async replayMessage(idusers, storeId, replayMessage) {
         var id = mongoose.Types.ObjectId();
 
         var iduserCon = mongoose.Types.ObjectId(idusers);
@@ -93,7 +93,7 @@ const exportedMethods = {
             _id: storeIdCon
         });
         const userCollection = await user();
-        var messagereplayCollection = await replayMessage();
+        var messagereplayCollection = await replayMessages();
 
         const messageCollection = await messages();
         const sendMessage = await messageCollection.find({}).toArray();
@@ -108,16 +108,16 @@ const exportedMethods = {
             }
             return;
         })
-
+console.log(shopDetail.ShopName)
         var today = new Date();
         var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
 
         var userReplaymessage = {
             _id: id,
             idUser: iduserCon,
-            message: replayMessages,
+            message: replayMessage,
             userName: userInfo.firstname,   
-            shopNmae: shopDetail.name,
+            shopNmae: shopDetail.ShopName,
             isShop: storeIdCon,
             date: date
         }

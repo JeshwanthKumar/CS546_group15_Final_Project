@@ -242,7 +242,9 @@ router.post('/:iduser/:storeId', async function (req, res) {
         replayMessage
     } = req.body;
     try {
-        await userData.replayMessage(iduser, storeId, xss(replayMessage))
+        var repXss = xss(replayMessage)
+        console.log(replayMessage + "===")
+        await userData.replayMessage(iduser, storeId,repXss)
         res.redirect(`/shopId/${storeId}`)
     } catch (e) {
         res.status(500).json({
