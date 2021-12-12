@@ -74,6 +74,12 @@ app.use(session({
     }
     next();
   })
+  app.use('/users//shop/:id', (req,res,next)=>{
+    if(!req.session.user){
+       return res.redirect('/users/login');
+    }
+    next();
+  })
 // app.use('/private', (req,res,next)=>{
 //     if(!req.session.username){
 //        return res.redirect('/');
@@ -113,13 +119,7 @@ app.get('/users/signup', (req, res, next) => {
    next()
   }
 });
-app.get('/shop/allProduct', (req,res,next)=>{
-  if(req.session.user){
-    next();
-  }else{
-    res.redirect('/users/login');
-  }
-})
+
 
 app.get('/users/logout',(req,res,next)=>{
   if(req.session.user){
