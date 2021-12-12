@@ -28,6 +28,8 @@ const ObjectId = require('mongodb').ObjectId;
 
 
 router.get('/:id1/allshop', async (req, res) => {
+  
+
     try {
 
         const userid = req.params.id1;
@@ -51,9 +53,8 @@ router.get('/:id1/allshop', async (req, res) => {
         };
         res.render('allShopUserView', data);
     } catch (e) {
-        res.status(500).json({
-            error: e.message
-        });
+        
+        res.status(500).render('pages/error500', {message:e})
     }
 });
 
@@ -106,9 +107,7 @@ router.get('/:idUser/shop/:shopId', async (req, res) => {
         }
 
     } catch (e) {
-        res.status(500).json({
-            error: e.message
-        });
+        res.status(500).render('pages/error500', {message:e})
     }
 });
 
@@ -334,9 +333,7 @@ router.post('/:idUser/shop/:shopId', async (req, res) => {
         }
 
     } catch (e) {
-        res.status(500).json({
-            error: e.message
-        });
+        res.status(500).render('pages/error500', {message:e})
     }
 });
 
@@ -352,9 +349,7 @@ router.delete('/:iduser/shop/:idshop/:messId', async (req, res) => {
         res.redirect(`/users/${iduser}/shop/${idshop}`)
 
     } catch (e) {
-        res.status(500).json({
-            error: e.message
-        });
+        res.status(500).render('pages/error500', {message:e})
     }
 
 })
@@ -373,9 +368,7 @@ router.get('/login', async (req, res) => {
         }
 
     } catch (e) {
-        res.status(404).json({
-            message: e
-        })
+        res.status(404).render('pages/error404', {message:e})
     }
 
 })
@@ -432,9 +425,7 @@ router.get('/signup', async (req, res) => {
         })
 
     } catch (e) {
-        res.status(404).json({
-            message: e
-        })
+        res.status(404).render('pages/error404', {message:e})
     }
 
 })
@@ -508,9 +499,7 @@ router.get('/seeprofile', async (req, res) => {
         res.render('pages/seeprofile')
 
     } catch (e) {
-        res.status(404).json({
-            message: e
-        })
+        res.status(404).render('pages/error404', {message:e})
     }
 })
 
@@ -523,9 +512,7 @@ router.get('/profiledetail', async (req, res) => {
         res.render('pages/profile', user);
 
     } catch (e) {
-        res.status(404).json({
-            message: e
-        })
+        res.status(404).render('pages/error404', {message:e})
     }
 })
 router.get('/updateprofile', async (req, res) => {
@@ -536,9 +523,7 @@ router.get('/updateprofile', async (req, res) => {
         res.render('pages/updateprofile', {user: user});
 
     } catch (e) {
-        res.status(404).json({
-            message: e
-        })
+        res.status(404).render('pages/error404', {message:e})
     }
 })
 
