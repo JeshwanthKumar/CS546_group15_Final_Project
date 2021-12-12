@@ -214,20 +214,14 @@
         <td>
             <form method="post" action="/shopId/delete/{{this._id}}?_method=DELETE">
                 <input type="hidden" name="_method" value="DELETE">
-
                 <input type="submit" name="delete" value='Delete' />
             </form>
         </td>
         <td>
 
             <form method="post" id="shopToUserMessaage" action="/shopId/{{this.idUser}}/{{this.shopId}}">
-
                 <label for="">Reply Message</label>
-
-                <input type="message" name="replyMessage" id="shopmessage" />
-
-                {{!-- required oninvalid="this.setCustomValidity('Please Enter Message for ShopKeeper.')"
-                    oninput="this.setCustomValidity('')"  --}}
+                <input type="message" name="replayMessage" id="shopmessage" />
                 <button type="submit" id="submit addNew">Send Reply</button>
             </form>
             <div id="errorDiv1"  ></div>
