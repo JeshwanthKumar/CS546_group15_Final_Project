@@ -134,22 +134,18 @@ app.get('/users/seeprofile', (req, res, next) => {
       app.use('/shop/login', (req,res,next)=>{
         if(!req.session.shop){
           next();
-          
         }
         else{
-          res.redirect(`/shopId/${req.session.shop.authenticatedUser._id}`);
+          res.redirect(`/shopId/${req.session.shop.authenticatedUser.id}`);
         }
       });
-      // app.use('/shop/logout',(req,res,next)=>{
-      //   if(!req.session.shop){
-      //      req.session.destroy()
-      //      res.redirect('/shop/login');
-      //     }
-      //   else{
-      //     return res.redirect('/shop/login');
-      //   }
-      //   next()
-      // });
+      app.use('/shop/logout',(req,res,next)=>{
+           req.session.destroy()
+           res.redirect('/shop/login');
+           next();
+          // return res.redirect('/shop/login');
+        
+      });
       app.use('/edit/shop/:id', (req,res,next)=>{
         if(!req.session.shop){
           res.redirect('shop/login');

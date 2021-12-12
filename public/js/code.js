@@ -13,12 +13,12 @@
     const loginform = document.getElementById("login-form");
     const user_error = document.getElementById("user-error");
     const pass_error = document.getElementById("pass-error");
-    const login_error = document.getElementById("login-error");
+    // const login_error = document.getElementById("login-error");
     if(loginform){
         loginform.onsubmit = (event) =>{
             user_error.hidden = true;
             pass_error.hidden = true;
-            login_error.hidden = true;
+            // login_error.hidden = true;
             let user_text = document.getElementById("username").value;
             if(user_text.length === 0){
                 event.preventDefault();
