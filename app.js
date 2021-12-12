@@ -132,12 +132,12 @@ app.get('/users/seeprofile', (req, res, next) => {
         }
       });
       app.use('/shop/login', (req,res,next)=>{
-        if(!req.session.shop){
-          next();
-          
+        if(req.session.shop){
+          console.log(req.session.shop + "--------------------------------------------------")
+          res.redirect(`/shopId/${req.session.shop.authenticatedUser._id}`);
         }
         else{
-          res.redirect(`/shopId/${req.session.shop.authenticatedUser._id}`);
+          next();
         }
       });
       app.use('/shop/logout',(req,res,next)=>{
