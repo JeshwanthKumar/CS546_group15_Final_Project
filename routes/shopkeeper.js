@@ -7,7 +7,6 @@ const {
 const data = require('../data');
 var shop = data.shop
 var product = data.products
-var productDatas = data.products
 var xss = require("xss");
 const routesvalidation = require('../validation/routesvalidation');
 
@@ -16,9 +15,8 @@ router.get("/", async(req,res)=>{
     res.render("pages/home");
 });
 
-
 router.get("/allProduct", async(req, res) => {
-    var allProduct = await productDatas.getAll();
+    var allProduct = await product.getAll();
     var user = req.session.user;
   var data = {
        allProducts:  allProduct,
@@ -26,34 +24,6 @@ router.get("/allProduct", async(req, res) => {
     }
     res.render("productList", data);
 })
-
-router.post("/search.html", async (req, res) => {
-    const body = req.body;
-    try {
-      let productList = await productDatas.getProductsViaSearch(body.search);
-      var user = req.session.user;
-      let newProductList = [];
-        for (product of productList) {
-          if (product.reviews&&product.reviews.length > 0) {
-              product.rated = true;
-          } else {
-              product.rated = false;
-          }
-          newProductList.push(product);
-        }
-      
-      if (productList.length > 0) {
-        res.status(200).render("productList", { allProducts: productList,
-            userId: user});
-      } else {
-        res.status(200).render("productList", { allProducts: [],
-            userId: user});
-      }
-    } catch (e) {
-      console.log(e);
-      res.status(500).send();
-    }
-  })
 
 router.get("/login", async (req, res) => {
     // console.log(req.session.user.authenticatedUser._id)

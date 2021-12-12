@@ -82,7 +82,7 @@ router.get('/:idUser/shop/:shopId', async (req, res) => {
             or = overallRatings;
         }
 
-console.log(userInfo.replayMessage)
+
         var shopName = shopDetail.ShopName;
         var shopAdd = shopDetail.address;
         var shopIdd = shopDetail._id;

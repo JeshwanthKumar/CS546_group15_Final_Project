@@ -2,9 +2,9 @@ const mongoCollections = require('../config/mongoCollections');
 
 const user = mongoCollections.user;
 var mongoose = require('mongoose');
-// const {
-//     replayMessages
-// } = require('../config/mongoCollections');
+const {
+    replayMessages
+} = require('../config/mongoCollections');
 const shop = mongoCollections.shopkeeper;
 const messages = mongoCollections.message;
 const replayMessage = mongoCollections.replayMessages;
@@ -117,7 +117,7 @@ const exportedMethods = {
             idUser: iduserCon,
             message: replayMessages,
             userName: userInfo.firstname,   
-            shopNmae: shopDetail.ShopName,
+            shopNmae: shopDetail.name,
             isShop: storeIdCon,
             date: date
         }
