@@ -1,25 +1,134 @@
+<main>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+            {{!-- <div class="container px-4"> --}}
+                <!-- <a class="navbar-brand" href="#page-top">S-Mart</a> -->
+                <a href="#page-top"><img class="logo-img" src="/public/Aishwarya/Shoppage/images/S-Mart-logos.jpeg" width="90" height="90" ALT="align box" ALIGN=CENTER ></a>
+               
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#AddProducts">Add Products</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#ViewProducts">View Products</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#Messagefromcustomer">Message from customers</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#ViewRatings">View Ratings</a></li>
+
+                        <li class="nav-item"><a class="nav-link" href="#ContactUs">Contact Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/shop/edit/{{shopId}}">Edit your Profile</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/shop/logout">Logout</a></li>
+                    </ul>
+                </div>
+            {{!-- </div> --}}
+        </nav>
+
+
 <form action = "/delete" method = "POST" id = "private-form">
 
-<h2><a href ="/shop/edit/{{shopId}}">Edit your profile</a></h2>
-<input name = "_method" hidden value = "DELETE">
+{{!-- <input name = "_method" hidden value = "DELETE">
  <input id = "remove-button" class = "submit-button" type = "submit" value = "Remove Account" hidden>
  <button class = "submit-button" id ="remove-button" type = "submit" value = "Remove Account" hidden></a></button>
- <p id = "remove-success" hidden>Account removed successfully</p>
-<p><a href="/shop/logout">Logout</a></p>
+ <p id = "remove-success" hidden>Account removed successfully</p> --}}
 </form>
+<h1>{{title}}</h1>
+
+  <section id="AddProducts">
+                 <div class="container px-4">
+                  <div class="container mt-5">
+
+                  <div class="row">
+                  <div class="col-sm-9"> 
+                    <div class="col-lg-8">
+                        <h3>Add Products</h3>
+<tr>
+
+   
+
+</tr>
+
+<td>
+    <div class="form-group"></div>
+<form method="post" id="additemformb1" action="/shopId/{{shopId}}">
+<div class="form-group">
+
+<label for="productname"><b>Product Name</b></label>
+    <input size="18" type="text" id="productname" name="productname" placeholder="Product Name" >
+</div> 
+</td>
+   
+<td>
+    <div class="form-group">
+<label for="productdetails"><b>Product Details</b></label>
+    <input id="productdetails" type="text" id="productdetails" name="productdetails" placeholder="ProductDetails">
+</div>
+</td>
+<td>
+
+     <div class="form-group">
+<label for="producthighlights"><b>Product highlights</b></label>
+    <input id="producthighlights" type="text" id="producthighlights" name="producthighlights" placeholder="Product Highlights">
+</div>
+</td>
 
 
-
-<main id="ab">
-    <h1>{{title}}</h1>
-    <h2 id="shopId">{{shopId}}</h2>
-
-
-    <table width="30%" border="2">
-
-        <tr style='text-align:left; background-color:#CCC'>
+<td>
+     <div class="form-group">
+<label for="pricetotalAmt"><b>Product total Amount</b></label>
+    <input size="10" type="text" id="pricetotalAmt" step="0.5" name="price" placeholder="Price ( $ )"  value="">
+</div>
+</td>
 
 
+<td>
+     <div class="form-group">
+<label for="quantityremaining"><b>Quantity Remaining</b></label>
+    <input id="quantityremaining" type="text" id="quantityremaining" name="quantityremaining" placeholder="quantityremaining"  value="" >
+  </td>
+ <br>
+<td>
+    </div>
+ <div class="form-group">  
+<label for="dateofmanufacture"><b>Date of manufacturing</b></label>
+    <input id="dateofmanufacture" type="date" id="dateofmanufacture" name="dateofmanufacture" placeholder="dateofmanufacture"  value="" >
+  </td>
+ <br>
+ <td>
+     </div> 
+ <div class="form-group">
+<label for="dateofexpiry"><b>Date of </b></label>
+    <input id="dateofexpiry" type="date" id="dateofexpiry" name="dateofexpiry" placeholder="dateofexpiry"  value="" >
+  </td>
+ <br>
+</div> 
+
+<div class="form-group">
+            <td>
+                <div class="" id="addNew b2">
+                    <button type="submit" id="submit addNew">Add Product</button>
+                </div>
+            </td>
+</div>
+</form>
+               </tr>
+       
+  <div id="errorDiv"  ><p>{{messagetoCreateProduct}}</p></div>
+  </div>
+  </div>
+  </div>
+   </div>
+    </div>
+  </section>
+
+  {{!-- view prods --}}
+<section id="ViewProducts">
+                 <div class="container px-4">
+                
+                    <div class="col-lg-9">
+                        <h3>View Products</h3>
+                        <p class="lead">Below are the list of products available</p>
+    <table width="120%" border="2">
+
+        <tr>
             <th> Product Name </th>
             <th> Product Details </th>
             <th> Product Highlights </th>
@@ -27,84 +136,8 @@
             <th> Quantity Remaining </th>
             <th> Date of Manufacture </th>
             <th> Date of Expiry </th>
-            <th> Edit </th>
-            <th> Delete </th>
             <th></th>
         </tr>
-        <tr>
-
-            <form method="post" id="additemformb1" action="/shopId/{{shopId}}">
-
-
-                <div class="" id="addNew b2">
-                    <button type="submit" id="submit addNew" class="btn btn-default">Add</button>
-                </div>
-                <td>
-                    {{!-- required oninvalid="this.setCustomValidity('Please Enter Product Name')"
-                    oninput="this.setCustomValidity('')" id="productname" --}}
-
-                    <input size="18" type="text" id="productname" name="productname" placeholder="Product Name" />
-
-                </td>
-                <td>
-                    {{!-- required oninvalid="this.setCustomValidity('Please Enter Product Details')"
-                    oninput="this.setCustomValidity('')" --}}
-
-                    <input id="productdetails" type="text" id="productdetails" name="productdetails" placeholder="ProductDetails"
-
-                        value="John55" />
-                </td>
-                <td>
-                    {{!-- required oninvalid="this.setCustomValidity('Please Enter Product Highlights')"
-                    oninput="this.setCustomValidity('')" --}}
-
-                    <input id="producthighlights" type="text" id="producthighlights" name="producthighlights" placeholder="Product Highlights"
-
-                        value="John" />
-                </td>
-                <td>
-                    {{!-- required oninvalid="this.setCustomValidity('Please Enter Valid Price')"
-                    oninput="this.setCustomValidity('')" --}}
-
-                    <input size="10" type="text" id="pricetotalAmt" step="0.5" name="price" placeholder="Price ( $ )"
-
-                        value="5" />
-                </td>
-                <td>
-                    {{!-- required oninvalid="this.setCustomValidity('Please Enter Quantity Remaining')"
-                    oninput="this.setCustomValidity('')" --}}
-
-                    <input type="text" id="quantityremaining" id="quantityremaining"name="quantityremaining"
-
-                        placeholder="Quantity Remaining (0-5)" value="5" />
-                </td>
-                <td>
-                    {{!-- required oninvalid="this.setCustomValidity('Please Enter Valid Date')"
-                    oninput="this.setCustomValidity('')" --}}
-
-                    <input id="dateofmanufacture" type="date" id="dateofmanufacture"name="dateofmanufacture"
-
-                        placeholder="Date of Manufacture" />
-                </td>
-                <td>
-
-                    {{!-- required
-                    oninvalid="this.setCustomValidity('Please Enter Valid Date of Expiry')"
-                    oninput="this.setCustomValidity('')" --}}
-                    <input id="dateofexpiry" type="date" name="dateofexpiry" placeholder="Date of Expiry" />
-                </td>
-                <td>
-                    {{!-- <div class="form-group" id="addNeww">
-                        <button type="submit" id="submit addNew" class="btn btn-default">Add</button>
-                    </div> --}}
-                </td>
-            </form>
-
-    
-  
-
-        </tr>
-  
         {{#if allItem}}
         {{#each allItem}}
         <tr>
@@ -120,7 +153,7 @@
             <td><label type="text" name="name" id="name"
                     value="{{this.dateofmanufacture}}">{{this.dateofmanufacture}}</label></td>
             <td><label type="text" name="name" id="name" value="{{this.dateofexpiry}}">{{this.dateofexpiry}}</label>
-            </td>
+            </td> 
             <td>
                 <form method="get" action="/shopId/editItem/{{this._id}}">
                     <input type="submit" name="Edit" value='Edit' />
@@ -132,32 +165,28 @@
                     <input type="submit" name="delete" value='Delete' />
                 </form>
             </td>
+         
         </tr>
         {{/each}}
 
         {{/if}}
     </table>
-  <div id="errorDiv"  ><p>{{messagetoCreateProduct}}</p></div>
+    </div>
+    </div>
+</section>
 
 
 
-         
-    {{!-- {{#if messagetoCreateProduct}}
-    <p id="">{{messagetoCreateProduct}}</p>
-    {{/if}} --}}
+<section id="Messagefromcustomer">
+                     <div class="container px-4"></div>
+                     <h3>Message from customers</h3>
+                        <p class="lead">Below are messages from customer</p>
+ 
     {{#if messageProduct}}
     <p id="message">{{messageProduct}}</p>
     {{/if}}
-</main>
 
-{{#if averageRating}}
-<h3 style="background-color:rgb(206, 101, 201);" for="overAllRating">Average ratinig of your shop: {{averageRating}}
-</h3>
-{{/if}}
-{{#if noRating}}
-<h3 style="background-color:rgb(206, 101, 201);" for="noRating">{{noRating}}
-</h3>
-{{/if}}
+
 
 {{#if messageForMessage}}
 
@@ -165,13 +194,9 @@
 
 {{/if}}
 
-{{#if noComment}}
-<p id="message">{{noComment}}</p>
-{{/if}}
-
 {{#if msgForShop}}
-<h2> Message from Customer</h2>
-<table id="message" width="50%" border="5">
+
+<table id="message" width="90%" border="2">
 
     <tr>
         <th>Date</th>
@@ -198,13 +223,13 @@
 
             <form method="post" id="shopToUserMessaage" action="/shopId/{{this.idUser}}/{{this.shopId}}">
 
-                <label for="">Replay Message</label>
+                <label for="">Reply Message</label>
 
-                <input type="message" name="replayMessage" id="shopmessage" />
+                <input type="message" name="replyMessage" id="shopmessage" />
 
                 {{!-- required oninvalid="this.setCustomValidity('Please Enter Message for ShopKeeper.')"
                     oninput="this.setCustomValidity('')"  --}}
-                <button type="submit" id="submit addNew" class="btn btn-default">Send Replay</button>
+                <button type="submit" id="submit addNew">Send Reply</button>
             </form>
             <div id="errorDiv1"  ></div>
             <p class = "error"> </p>
@@ -213,27 +238,58 @@
 
     {{/each}}
 
+     </table>
+{{/if}}
+</div>
+</section>
+<section id="ViewRatings">
+                 <div class="container px-4">
+                
+                    
+                        <h3>View Ratings</h3>
+                        <p class="lead">Ratings for your Shop</p>
+                    
+                        {{#if averageRating}}
+                        <h3 style="background-color:#FDDA0D;" for="overAllRating">Average rating of your shop: {{averageRating}}
+                        </h3>
+                        {{/if}}
+                        {{#if noRating}}
+                        <h3 style="background-color:#FDDA0D;" for="noRating">{{noRating}}
+                        </h3>
+                        {{/if}}
+   
+                       {{#if commentForShop}}
+                       <h2> Comment from Customer</h2>
+                       <table id="comment" width="50%" border="5">
+                           <tr>
+                               <th>User Name</th>
+                               <th>Comment</th>
+                               <th>Date</th>
+                           </tr>
+                           {{#each commentForShop}}
+                           <tr>
+                               <td>{{this.userName}}</td>
+
+                               <td>{{this.comment}}</td>
+                               <td>
+                                   {{this.date}}
+                               </td>
+                           </tr>
+                           {{/each}}
 </table>
 {{/if}}
 
-
-{{#if commentForShop}}
-<h2> Comment from Customer</h2>
-<table id="comment" width="50%" border="5">
-    <tr>
-        <th>User Name</th>
-        <th>Comment</th>
-        <th>Date</th>
-    </tr>
-    {{#each commentForShop}}
-    <tr>
-        <td>{{this.userName}}</td>
-
-        <td>{{this.comment}}</td>
-        <td>
-            {{this.date}}
-        </td>
-    </tr>
-    {{/each}}
-</table>
+{{#if noComment}}
+<p id="message">{{noComment}}</p>
 {{/if}}
+
+                     </div>   
+                        
+</section>
+</body>
+</main>
+
+<!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container px-4"><p class="m-0 text-center text-white">​Throwing away food is like stealing from the table of those who are poor and hungry. - Pope Francis</p></div>
+        </footer>
