@@ -329,9 +329,8 @@ const exportedMethods = {
         return {deleted : true};
     },
 
-    async updateShopkeeper(id, ShopName, username, ownerFirstname, ownerLastname, Address, email, pincode, phoneNumber){
+    async updateShopkeeper(id, username, ownerFirstname, ownerLastname, Address, email, pincode, phoneNumber){
         const UpdateInfo = await this.get(id);
-        validation.shopNamevalidation(ShopName);
         validation.userNamevalidation(username);
         validation.firstnamevalidation(ownerFirstname);
         validation.lastnamevalidation(ownerLastname);
@@ -340,7 +339,6 @@ const exportedMethods = {
         validation.phonenumbervalidation(phoneNumber);
         let updatedLower = username.toLowerCase();
         let shopkeeper_update = {
-            ShopName : ShopName,
             username : updatedLower,
             ownerFirstname : ownerFirstname,
             ownerLastname : ownerLastname,
