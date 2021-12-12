@@ -86,6 +86,36 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+label {
+  display: inline-block;
+  width: 150px;
+  text-align: center;
+}
+
+#intromain {
+  background-image: url("/public/Aishwarya/images/bg-01.jpg");
+  opacity: 0.2;
+}
+#introduction {
+  display: inline-block;
+  text-align: center;
+}
+#container {
+  text-align: center;
+}
+#Messagefromcustomer {
+  text-align: center;
+}
+#AddProducts {
+  text-align: center;
+}
+#ViewProducts {
+  text-align: center;
+}
+#ViewRatings {
+  text-align: center;
+}
+
 hr {
   margin: 1rem 0;
   color: inherit;
