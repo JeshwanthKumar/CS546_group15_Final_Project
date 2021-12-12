@@ -141,13 +141,18 @@ app.get('/users/seeprofile', (req, res, next) => {
         }
       });
       // app.use('/shop/logout',(req,res,next)=>{
+      //   if(!req.session.shop){
       //      req.session.destroy()
       //      res.redirect('/shop/login');
-      //   next();
+      //     }
+      //   else{
+      //     return res.redirect('/shop/login');
+      //   }
+      //   next()
       // });
       app.use('/edit/shop/:id', (req,res,next)=>{
         if(!req.session.shop){
-          res.redirect('/shop/login');
+          res.redirect('shop/login');
           return;
         }
         next();
@@ -157,7 +162,7 @@ app.get('/users/seeprofile', (req, res, next) => {
           next();
         }
         else{
-          res.redirect("/shop/login");
+          res.redirect("shop/login");
           return;
         }
       });

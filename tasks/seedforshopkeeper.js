@@ -10,6 +10,7 @@ async function main(){
     catch(e){
         console.log(e);
     }
+    
     try{
         const shop2 = await shop.createShopkeeper("Dominos", "aravind", "Jeshwanth", "Kumar",  "20 Graham st Jersey city New jersey", "jkumar3@stevens.edu", "07307", "5517861730", "test@123");
         console.log(shop2);
