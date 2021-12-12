@@ -336,7 +336,15 @@ const exportedMethods = {
 
     },
 
-
+    async getProductsViaSearch(search) {
+        if (!search) throw "Error (getProductsViaSearch): Must provide search.";
+        if (typeof(search) !== "string") throw "Error (getProductsViaSearch): Search must be a string.";
+        const productCollection = await products();
+        const query = new RegExp(search, "i");
+        console.log(query)
+        const productList = await productCollection.find({ $or: [ {productname: {$regex: query}}, {productdetails: {$regex: query}} ] }).toArray();
+        return productList;
+    },
 }
 
 module.exports = exportedMethods;
