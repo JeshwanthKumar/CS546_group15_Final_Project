@@ -1,83 +1,118 @@
-<a class="get-home" href="/shopId/{{shopId}}">To Home Page</a>
 
-<main class="ab">
-    {{!-- <form method="post" id="updateitemform" action="/shopId/x/{{itemDetail._id}}"> --}}
-   
 
-    <form method="post" id="updateitemform" action="/shopId/{{itemDetail._id}}?_method=PUT">
+
+<header>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+            <div class="container px-4">
+                <!-- <a class="navbar-brand" href="#page-top">S-Mart</a> -->
+                <a href="#page-top"><img class="logo-img" src="/public/Aishwarya/Shoppage/images/S-Mart-logos.jpeg" width="90" height="90" ALT="align box" ALIGN=CENTER ></a>
+               
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">      
+                      <li class="nav-item"><a class="nav-link" href="/shopId/{{shopId}}">Home</a></li>        
+                        <li class="nav-item"><a class="nav-link" href="/shop/logout">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+</nav>
+</header>
+<article class = "Sign-up">
+    <div class="container mt-5">
+  
+        <h1 class = "Signup-heading">
+            Edit Item
+        </h1>
+  
+    <div class="row">
+    <div class="col-sm-8">
+    <div class="card">
+    <div class="card-body">
+
+            <form method="post" id="updateitemform" action="/shopId/{{itemDetail._id}}?_method=PUT">
 
         <input type="hidden" name="_method" value="PUT">
 
-            <label> shop id: {{shopId}} </label><br>
-            <label>itemId : {{itemDetail._id}}</label>
-            <br>
-            <br>
-            <table border="3">
-                <tr>
-                    <th> <label>Product Name</label></th>
-                    <th> <label>Product Details</label></th>
-                    <th> <label>Product Highlights</label></th>
-                    <th> <label>Price</label></th>
-                    <th> <label>Quantity Remaining</label></th>
-                    <th> <label>Date of Manufacture</label></th>
-                    <th> <label>Date of Expiry</label></th>
-                </tr>
-                <tr>
-                    <td> <input required oninvalid="this.setCustomValidity('Please Enter Product Name')"
-                            oninput="this.setCustomValidity('')" type="text" name="productname"
 
-                            placeholder="Product Name" value="{{itemDetail.productname}}" id="prodn"/>
+    <div class="form-group"></div>
+    
+        <br>
+        </div>
 
-                    </td>
-                    <td>
-                        <input required oninvalid="this.setCustomValidity('Please Enter Product Details')"
-                            oninput="this.setCustomValidity('')" type="text" name="productdetails"
+        <div class="form-group">
+        <label class = "user-text" for = "prodn">
+            Product Name : 
+        </label>
+      <label for="prodn"></label>  <input name="productname" id = "prodn" type = "text" value = "{{itemDetail.productname}}">
+        <br>
+     </div>
 
-                            placeholder="ProductDetails" value="{{itemDetail.productdetails}}" id="prodd"/>
-                    </td>
-                    <td>
-                        <input type="text" name="producthighlights" placeholder="Product Highlights"
-                            value="{{itemDetail.producthighlights}}" id="prodh"/>
-                    </td>
-                    <td>
-                        <input required oninvalid="this.setCustomValidity('Please Enter Valid Price')"
-                            oninput="this.setCustomValidity('')" type="text" name="price" placeholder="Price ( $ )"
+ <div class="form-group">
+        <label class = "user-text" for = "prodd">
+            Product Details : 
+        </label>
+      <label for="prodd">  <input name="productdetails" id = "prodd"  type = "text" value = "{{itemDetail.productdetails}}">
+      </label>  <br>
+     </div>
 
-                            value="{{itemDetail.price}}" id="prodp"/>
+   <div class="form-group">
+        <label class = "user-text" for = "prodh">
+            Product Highlights : 
+        </label>
+     <label for="prodh">  <input name="producthighlights"  id="prodh" type = "text" value = "{{itemDetail.producthighlights}}">
+       </label>  <br>
+     </div>
 
-                    </td>
-                    <td>
-                        <input required oninvalid="this.setCustomValidity('Please Enter Quantity Remaining')"
-                            oninput="this.setCustomValidity('')" type="number" name="quantityremaining"
+ <div class="form-group">
+        <label class = "user-text" for = "prodp">
+            Price : 
+        </label>
+      <label for="prodp">  <input name="price" id = "prodp"  type="text" value = "{{itemDetail.price}}">
+      </label>  <br>
+     </div>
+  
+     <div class="form-group">
+        <label class = "user-text" for = "prodq">
+            Quantity Remaining : 
+        </label>
+     <label for="prodq">  <input name = "quantityremaining" id = "prodq" type = "number" value = "{{itemDetail.quantityremaining}}">
+       </label>  <br>
+     </div>
 
-                            placeholder="Quantity Remaining" value="{{itemDetail.quantityremaining}}"id="prodq" />
+     <div class="form-group">
+        <label class = "user-text" for = "prodm">
+            Date of Manufacture : 
+        </label>
+    <label for="prodm">  <input name = "dateofmanufacture" id = "prodm" type = "date" value = "{{itemDetail.dateofmanufacture}}">
+    </label>      <br>
+     </div>
 
-                    </td>
-                    <td>
-                        <input required oninvalid="this.setCustomValidity('Please Enter Valid Date')"
-                            oninput="this.setCustomValidity('')" type="date" name="dateofmanufacture"
+     <div class="form-group">
+        <label class = "user-text" for = "prode">
+            Date of Expiry : 
+        </label>
+      <label for="prode">  <input name = "dateofexpiry" id = "prode" type = "date" value = "{{itemDetail.dateofexpiry}}">
+      </label>  <br>
+     </div>
 
-                            placeholder="Date of Manufacture" value="{{itemDetail.dateofmanufacture}}"id="prodm" />
-
-                    </td>
-                    <td>
-                        <input required oninvalid="this.setCustomValidity('Please Enter Valid Date of Expiry')"
-                            oninput="this.setCustomValidity('')" type="date" name="dateofexpiry"
-
-                            placeholder="Date of Expiry" value="{{itemDetail.dateofexpiry}}" id="prode" />
-
-                    </td>
-                    <td> <input type="submit" name="Edit" value='Edit' />
-                    </td>
-                </tr>
-            </table>
-
-            <div id="errorDiv"  hidden><p>{{error}}</p>
+     <label for="">
+<input type="submit" name="Edit" value='Edit' /></div></label>
+                <div id="errorDiv"  hidden><p>{{error}}</p>
 
             {{#if message}}
             <p id="message">{{message}}</p>
             {{/if}}
-
-        </form>
-
-</main>
+        <div>
+        
+    </form>
+ 
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+  <footer class="py-5 bg-dark">
+            <div class="container px-4"><p class="m-0 text-center text-white">​Throwing away food is like stealing from the table of those who are poor and hungry. - Pope Francis</p></div>
+        </footer>
