@@ -239,3 +239,60 @@ body {
     height: 100px;
     line-height: 100px;
   }
+  
+  .search-card-center {
+    background-color: #fafafa;
+    box-sizing: border-box;
+    display: block;
+    text-align: center;
+    width: 55%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 15px;
+    padding: 1%;
+    margin: auto;
+    margin-top: 50px
+}
+
+#search-bar {
+  text-align: center;
+  width: 400px;
+  margin: 0 auto;
+}
+
+#search-form {
+  text-align: center;
+}
+
+.searchFields{
+  text-align: center;
+  margin-bottom: 27px;
+  width: 75%;
+  color:#001514;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  background: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  box-sizing: border-box;
+  border: 1px solid #cf4300;
+}
+
+.btn{
+  color: #0076cb;
+  font-size: large;
+  background-color: #fafafa;
+  border: 2px solid #0076cb;
+  border-radius: 5em;
+  padding: 8px;
+  margin: 15px;
+  text-align: center;
+}
+
+.btn:hover {
+  color: #fafafa;
+  background-color: #0076cb;
+}
