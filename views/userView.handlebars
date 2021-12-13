@@ -130,7 +130,7 @@
                         <form method="post" id="userToShopMessaage" action="/users/{{userData._id}}/shop/{{shopDetail._id}}">
 
         <label for="">Message</label>
-        <input required oninvalid="this.setCustomValidity('Please Enter Message for ShopKeeper.')"
+        <input required id="usermessage"oninvalid="this.setCustomValidity('Please Enter Message for ShopKeeper.')"
             oninput="this.setCustomValidity('')" type="message" name="message" />
         <button type="submit" id="submit addNew" class="btn btn-default">Send</button>
     </form>
