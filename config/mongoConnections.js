@@ -37,7 +37,7 @@ const settings = {
     //   database: 'Group_15'
     // }
     serverUrl: 'mongodb://localhost:27017/',
-    database: 'G15'
+    database: 'GROUP15'
  }
 };
 const mongoConfig = settings.mongoConfig;
