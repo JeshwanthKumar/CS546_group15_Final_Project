@@ -89,7 +89,7 @@ router.get('/:idUser/shop/:shopId', async (req, res) => {
 
 
         var shopName = shopDetail.ShopName;
-        var shopAdd = shopDetail.address;
+        var shopAdd = shopDetail.Address;
         var shopIdd = shopDetail._id;
         var shopPin = shopDetail.pincode;
         if (getShopbyId) {
@@ -511,7 +511,7 @@ router.get('/profiledetail', async (req, res) => {
     try {
         //let a = "profile"
         const user = req.session.user
-        console.log(user)
+        // console.log(user)
 
         res.render('pages/profile', user);
 
@@ -570,25 +570,12 @@ router.post('/updateprofile/:id', async (req, res) => {
     }
 })
 
-router.get("/private", async (req, res) => {
-    try {
-        const user = req.session.user
-        //console.log(User);
-        if (req.session.user) {
-
-            res.render('pages/seeprofile', user)
-            return;
-        }
-    } catch (e) {
-        console.log(e);
-    }
-});
 router.get("/logout", async (req, res) => {
     try {
         let a = "login page"
         res.redirect('/users/login')
     } catch (e) {
-        console.log(e);
+        res.status(404).render('pages/error404', {message:"page not found"})
     }
 });
 

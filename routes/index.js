@@ -7,9 +7,6 @@ const constructorMethod = (app) => {
   app.use('/shopId', product);
   app.use('/shop', shop);
   app.use('/users', users);
-  app.use('/shop/allProduct', async(req,res)=>{
-    res.render("/productList");
-  })
   app.use('/',(req, res) => {
     res.render("pages/home");
   });
