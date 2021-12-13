@@ -313,7 +313,7 @@ router.put("/edit/shop/:id", async (req, res) => {
         console.log(newShopkeeper);
         if (newShopkeeper.updateInserted) {
             res.redirect(`/shopId/${idd}`);
-            console.log("EDIT//");
+            // console.log("EDIT//");
             return;
         }
     } catch (e) {

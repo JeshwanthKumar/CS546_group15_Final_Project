@@ -11,50 +11,50 @@ async function main(){
       console.log(e);
     }
     try {
-        const user1 = await restaurants.create("parthkumar", "hirpara", "b@gmail.com", "13 washington st", "new jersey", "07307", "aaaaaa");
-        console.log(user1);
+        const user2 = await restaurants.create("parthkumar", "hirpara", "b@gmail.com", "13 washington st", "new jersey", "07307", "aaaaaa");
+        console.log(user2);
       } catch (e) {
         console.log(e);
       }
       try {
-        const user1 = await restaurants.create("parthkumar", "hirpara", "a@gmail.com", "13 washington st"," new jersey"," 07307", "aaaaaa");
-        console.log(user1);
+        const user3 = await restaurants.create("parthkumar", "hirpara", "a@gmail.com", "13 washington st"," new jersey"," 07307", "aaaaaa");
+        console.log(user3);
       } catch (e) {
         console.log(e);
       }
       try {
-        const user1 = await restaurants.create("parthkumar", "hirpara", "a@gmail.com", "13 washington st", "new jersey", "07307", "aaaaaa");
-        console.log(user1);
+        const user4 = await restaurants.create("parthkumar", "hirpara", "a@gmail.com", "13 washington st", "new jersey", "07307", "aaaaaa");
+        console.log(user4);
       } catch (e) {
         console.log(e);
       }
       try {
-        const user1 = await restaurants.create("parthkumar", "hirpara", "a@gmail.com", "13 washington st", "new jersey", "07307", "aaaaaa");
-        console.log(user1);
+        const user5 = await restaurants.create("parthkumar", "hirpara", "a@gmail.com", "13 washington st", "new jersey", "07307", "aaaaaa");
+        console.log(user5);
       } catch (e) {
         console.log(e);
       }
       try {
-        const user1 = await restaurants.create("parthkumar", "hirpara", "a@gmail.com", "13 washington st", "new jersey", "07307", "aaaaaa");
-        console.log(user1);
+        const user6 = await restaurants.create("parthkumar", "hirpara", "a@gmail.com", "13 washington st", "new jersey", "07307", "aaaaaa");
+        console.log(user6);
       } catch (e) {
         console.log(e);
       }
       try {
-        const user1 = await restaurants.create("parthkumar", "hirpara", "a@gmail.com", "13 washington st", "new jersey"," 07307", "aaaaaa");
-        console.log(user1);
+        const user7 = await restaurants.create("parthkumar", "hirpara", "a@gmail.com", "13 washington st", "new jersey"," 07307", "aaaaaa");
+        console.log(user7);
       } catch (e) {
         console.log(e);
       }
       try {
-        const user1 = await restaurants.create("parthkumar", "hirpara", "a@gmail.com", "13 washington st"," new jersey", "07307", "aaaaaa");
-        console.log(user1);
+        const user8 = await restaurants.create("parthkumar", "hirpara", "a@gmail.com", "13 washington st"," new jersey", "07307", "aaaaaa");
+        console.log(user8);
       } catch (e) {
         console.log(e);
       }
       try {
-        const user1 = await restaurants.create("parthkumar", "hirpara", "a@gmail.com", "13 washington st", "new jersey", "07307", "aaaaaa");
-        console.log(user1);
+        const user9 = await restaurants.create("parthkumar", "hirpara", "a@gmail.com", "13 washington st", "new jersey", "07307", "aaaaaa");
+        console.log(user9);
       } catch (e) {
         console.log(e);
       }
