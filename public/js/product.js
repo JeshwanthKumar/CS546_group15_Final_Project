@@ -76,7 +76,7 @@ $('#additemformb1').submit(function(event) {
     }
 
     if ((!quantityremaining) || typeof qtyRem != 'number' || (!quantityremaining.match(/^[0-9]$/))) {
-        message = 'Enter valid number of Qty. is remine'
+        message = 'Enter valid number of Quantity'
         throw message
     }
 
