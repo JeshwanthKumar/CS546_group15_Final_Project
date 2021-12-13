@@ -25,11 +25,16 @@ const exportedMethods = {
 
     async getUser(id) {
         var x = id.toString()
+        if (!id.match(/^[0-9A-Fa-f]{24}$/)) {
+            return '404'
+          }
         var convertId = mongoose.Types.ObjectId(id);
+        
         const findShopItem = await user();
         const findShop = await findShopItem.findOne({
             _id: convertId
         });
+
         return findShop;
     },
 

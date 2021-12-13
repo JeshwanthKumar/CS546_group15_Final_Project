@@ -20,7 +20,7 @@ const ObjectId = require('mongodb').ObjectId;
 //         };
 //         res.render('allUser', data);
 //     } catch (e) {
-//         res.status(500).json({
+//         res.status(404).json({
 //             error: e
 //         });
 //     }
@@ -36,6 +36,10 @@ router.get('/:id1/allshop', async (req, res) => {
         const restaurantList = await shopData.getShopWithItem();
 
         const userInfo = await user.getUser(userid);
+        if(userInfo=='404'){
+            res.status(404).render('pages/error404', {message:"page not found"})
+            return
+        }
         var userId = userInfo._id
         var noRest;
         var restaurantListData;
@@ -54,7 +58,7 @@ router.get('/:id1/allshop', async (req, res) => {
         res.render('allShopUserView', data);
     } catch (e) {
         
-        res.status(500).render('pages/error500', {message:e})
+        res.status(404).render('pages/error404', {message:"page not found"})
     }
 });
 
@@ -107,7 +111,7 @@ router.get('/:idUser/shop/:shopId', async (req, res) => {
         }
 
     } catch (e) {
-        res.status(500).render('pages/error500', {message:e})
+        res.status(404).render('pages/error404', {message:"page not found"})
     }
 });
 
@@ -333,7 +337,7 @@ router.post('/:idUser/shop/:shopId', async (req, res) => {
         }
 
     } catch (e) {
-        res.status(500).render('pages/error500', {message:e})
+        res.status(404).render('pages/error404', {message:"page not found"})
     }
 });
 
@@ -349,7 +353,7 @@ router.delete('/:iduser/shop/:idshop/:messId', async (req, res) => {
         res.redirect(`/users/${iduser}/shop/${idshop}`)
 
     } catch (e) {
-        res.status(500).render('pages/error500', {message:e})
+        res.status(404).render('pages/error404', {message:"page not found"})
     }
 
 })
@@ -368,7 +372,7 @@ router.get('/login', async (req, res) => {
         }
 
     } catch (e) {
-        res.status(404).render('pages/error404', {message:e})
+        res.status(404).render('pages/error404', {message:"page not found"})
     }
 
 })
@@ -408,7 +412,7 @@ router.post('/login', async (req, res) => {
         // res.render('pages/seeprofile')
 
     } catch (e) {
-        res.status(500)
+        res.status(404)
         res.render('pages/login', {
             title: 'login page',
             message: e
@@ -425,7 +429,7 @@ router.get('/signup', async (req, res) => {
         })
 
     } catch (e) {
-        res.status(404).render('pages/error404', {message:e})
+        res.status(404).render('pages/error404', {message:"page not found"})
     }
 
 })
@@ -499,7 +503,7 @@ router.get('/seeprofile', async (req, res) => {
         res.render('pages/seeprofile')
 
     } catch (e) {
-        res.status(404).render('pages/error404', {message:e})
+        res.status(404).render('pages/error404', {message:"page not found"})
     }
 })
 
@@ -512,7 +516,7 @@ router.get('/profiledetail', async (req, res) => {
         res.render('pages/profile', user);
 
     } catch (e) {
-        res.status(404).render('pages/error404', {message:e})
+        res.status(404).render('pages/error404', {message:"page not found"})
     }
 })
 router.get('/updateprofile', async (req, res) => {
@@ -523,7 +527,7 @@ router.get('/updateprofile', async (req, res) => {
         res.render('pages/updateprofile', {user: user});
 
     } catch (e) {
-        res.status(404).render('pages/error404', {message:e})
+        res.status(404).render('pages/error404', {message:"page not found"})
     }
 })
 
