@@ -87,7 +87,7 @@ const exportedMethods = {
         if (typeof(search) !== "string") throw "Error (getProductsViaSearch): Search must be a string.";
         const productCollection = await products();
         const query = new RegExp(search, "i");
-        console.log(query)
+        // console.log(query)
         const productList = await productCollection.find({ $or: [ {productname: {$regex: query}}, {productdetails: {$regex: query}} ] }).toArray();
         return productList;
     },
@@ -261,7 +261,7 @@ const exportedMethods = {
         if (y) {
             return y;
         }
-        console.log(y)
+        // console.log(y)
         var message;
         const shopCollection = await shops();
         const newItem = {
