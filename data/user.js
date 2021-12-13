@@ -12,7 +12,7 @@ const replayMessages = mongoCollections.replayMessages;
 var validator = require("email-validator");
 const bcrypt = require('bcrypt');
 const ObjectId = require('mongodb').ObjectId
-const saltRounds = 10;
+const saltRounds = 5;
 
 
 const exportedMethods = {

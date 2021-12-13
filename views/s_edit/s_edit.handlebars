@@ -81,7 +81,7 @@
         <label class = "password-text" for = "phoneNumber">
             Phone number :
         </label>
-        <input name = "phoneNumber" id = "ed_phoneNumber" type = "number" value = "{{userId.phoneNumber}}">
+        <input name = "phoneNumber" id = "ed_phoneNumber" pattern="[0-9]{12}" type = "number" value = "{{userId.phoneNumber}}">
         <br>
         <br>
         </div>
@@ -105,7 +105,7 @@
 <p id = "e_pincode" hidden>Please provide your pincode</p>
 <p id = "e_phoneNumber" hidden>Please provide your phone number</p>
 <p id = "e_phone_error" hidden>Please provide your phone number in the correct format</p>
-<p id = "e_password" hidden>Please provide your password</p>
+<p id = "e_password" hidden>Please enter six digit password</p>
 <p id = "e_space" hidden>The password contains atleast one space</p>
 </div>
 </div>
