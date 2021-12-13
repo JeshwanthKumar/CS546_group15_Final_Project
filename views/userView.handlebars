@@ -62,10 +62,17 @@
                 <div class="u-border-4 u-border-palette-3-base u-expanded-width u-line u-line-horizontal u-line-1"></div>
                 <p class=" u-text-1">Product details:  {{this.productdetails}}</p>
                 <p class=" u-text-1">Producthighlights:  {{this.producthighlights}}</p>
+<<<<<<< HEAD
                 <p class=" u-text-1">Price:  {{this.price}}</p>
                <p class=" u-text-1">Quantity remaining:  {{this.quantityremaining}}</p>
                <p class=" u-text-1">Date of manufacturing:  {{this.dateofmanufacture}}</p>
                <p class=" u-text-1">Date  of  expiry:    {{this.dateofexpiry}}</p>
+=======
+<p class=" u-text-1">Price:  {{this.price}}</p>
+<p class=" u-text-1">Quantityremaining:  {{this.quantityremaining}}</p>
+<p class=" u-text-1">Date of manufacture:  {{this.dateofmanufacture}}</p>
+<p class=" u-text-1">Date  of expiry:    {{this.dateofexpiry}}</p>
+>>>>>>> 17c4d0be3fbb86321139bfc27e8cf655b08257f0
               </div>
             </div>
             {{/each}}
@@ -92,10 +99,17 @@
                          <label for="message"> <a class="lead" style="font-family:Georgia; color: Brown; font-size: 20px;">Please type in your message below</a></label>
                         <form method="post" id="userToShopMessaage" action="/users/{{userData._id}}/shop/{{shopDetail._id}}">
 
+<<<<<<< HEAD
         <label for="message" style="font-family:Georgia; color: Brown; font-size: 20px;">Message</label>
      <label for="message">  <input oninvalid="this.setCustomValidity('Please Enter Message for ShopKeeper.')"
             oninput="this.setCustomValidity('')" type="text" name="message" id= "message"/></label> 
         <button type="submit" id="submitaddNew" style="font-family:Georgia; color: Brown; font-size: 20px;">Send</button>
+=======
+        <label for="">Message</label>
+        <input required id="usermessage"oninvalid="this.setCustomValidity('Please Enter Message for ShopKeeper.')"
+            oninput="this.setCustomValidity('')" type="message" name="message" />
+        <button type="submit" id="submit addNew" class="btn btn-default">Send</button>
+>>>>>>> 17c4d0be3fbb86321139bfc27e8cf655b08257f0
     </form>
                            <br>
 {{#if userData.replayMessages}}
