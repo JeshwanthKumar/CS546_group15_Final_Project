@@ -20,7 +20,7 @@ const ObjectId = require('mongodb').ObjectId;
 //         };
 //         res.render('allUser', data);
 //     } catch (e) {
-//         res.status(500).json({
+//         res.status(404).json({
 //             error: e
 //         });
 //     }
@@ -28,12 +28,18 @@ const ObjectId = require('mongodb').ObjectId;
 
 
 router.get('/:id1/allshop', async (req, res) => {
+  
+
     try {
 
         const userid = req.params.id1;
         const restaurantList = await shopData.getShopWithItem();
 
         const userInfo = await user.getUser(userid);
+        if(userInfo=='404'|userInfo==null|!userInfo){
+            res.status(404).render('pages/error404', {message:"page not found"})
+            return
+        }
         var userId = userInfo._id
         var noRest;
         var restaurantListData;
@@ -51,9 +57,8 @@ router.get('/:id1/allshop', async (req, res) => {
         };
         res.render('allShopUserView', data);
     } catch (e) {
-        res.status(500).json({
-            error: e.message
-        });
+        
+        res.status(404).render('pages/error404', {message:"page not found"})
     }
 });
 
@@ -84,7 +89,7 @@ router.get('/:idUser/shop/:shopId', async (req, res) => {
 
 
         var shopName = shopDetail.ShopName;
-        var shopAdd = shopDetail.address;
+        var shopAdd = shopDetail.Address;
         var shopIdd = shopDetail._id;
         var shopPin = shopDetail.pincode;
         if (getShopbyId) {
@@ -106,9 +111,7 @@ router.get('/:idUser/shop/:shopId', async (req, res) => {
         }
 
     } catch (e) {
-        res.status(500).json({
-            error: e.message
-        });
+        res.status(404).render('pages/error404', {message:"page not found"})
     }
 });
 
@@ -334,9 +337,7 @@ router.post('/:idUser/shop/:shopId', async (req, res) => {
         }
 
     } catch (e) {
-        res.status(500).json({
-            error: e.message
-        });
+        res.status(404).render('pages/error404', {message:"page not found"})
     }
 });
 
@@ -352,9 +353,7 @@ router.delete('/:iduser/shop/:idshop/:messId', async (req, res) => {
         res.redirect(`/users/${iduser}/shop/${idshop}`)
 
     } catch (e) {
-        res.status(500).json({
-            error: e.message
-        });
+        res.status(404).render('pages/error404', {message:"page not found"})
     }
 
 })
@@ -363,7 +362,7 @@ router.delete('/:iduser/shop/:idshop/:messId', async (req, res) => {
 
 router.get('/login', async (req, res) => {
     try {
-        if (req.session.username) {
+        if (req.session.user) {
             res.redirect('/private')
         } else {
             let a = "login page"
@@ -373,9 +372,7 @@ router.get('/login', async (req, res) => {
         }
 
     } catch (e) {
-        res.status(404).json({
-            message: e
-        })
+        res.status(404).render('pages/error404', {message:"page not found"})
     }
 
 })
@@ -395,6 +392,7 @@ router.post('/login', async (req, res) => {
         }
         emaillow = email.toLowerCase()
         logininfo = await userdata2.chkuser(emaillow, password)
+        
         //logininfo={_id: ObjectId, firstname: 'kam', lastname: 'kim', email: 'ad1@gmail.com', address: '709 summit', …}
         const id2 = ObjectId(logininfo._id);
         req.session.user = {
@@ -414,6 +412,7 @@ router.post('/login', async (req, res) => {
         // res.render('pages/seeprofile')
 
     } catch (e) {
+        res.status(404)
         res.render('pages/login', {
             title: 'login page',
             message: e
@@ -430,9 +429,7 @@ router.get('/signup', async (req, res) => {
         })
 
     } catch (e) {
-        res.status(404).json({
-            message: e
-        })
+        res.status(404).render('pages/error404', {message:"page not found"})
     }
 
 })
@@ -506,9 +503,7 @@ router.get('/seeprofile', async (req, res) => {
         res.render('pages/seeprofile')
 
     } catch (e) {
-        res.status(404).json({
-            message: e
-        })
+        res.status(404).render('pages/error404', {message:"page not found"})
     }
 })
 
@@ -516,14 +511,12 @@ router.get('/profiledetail', async (req, res) => {
     try {
         //let a = "profile"
         const user = req.session.user
-        console.log(user)
+        // console.log(user)
 
         res.render('pages/profile', user);
 
     } catch (e) {
-        res.status(404).json({
-            message: e
-        })
+        res.status(404).render('pages/error404', {message:"page not found"})
     }
 })
 router.get('/updateprofile', async (req, res) => {
@@ -531,12 +524,10 @@ router.get('/updateprofile', async (req, res) => {
         let a = "profile"
         const user = req.session.user
 
-        res.render('pages/updateprofile', user);
+        res.render('pages/updateprofile', {user: user});
 
     } catch (e) {
-        res.status(404).json({
-            message: e
-        })
+        res.status(404).render('pages/error404', {message:"page not found"})
     }
 })
 
@@ -571,31 +562,20 @@ router.post('/updateprofile/:id', async (req, res) => {
         req.method = 'GET'
         res.redirect('/users/profiledetail');
     } catch (e) {
-        res.status(404).json({
-            message: e
+        res.render('pages/updateprofile', {
+            title: 'updateprofile',
+            message: e,
+            user: req.session.user
         })
     }
 })
 
-router.get("/private", async (req, res) => {
-    try {
-        const user = req.session.user
-        //console.log(User);
-        if (req.session.user) {
-
-            res.render('pages/seeprofile', user)
-            return;
-        }
-    } catch (e) {
-        console.log(e);
-    }
-});
 router.get("/logout", async (req, res) => {
     try {
         let a = "login page"
         res.redirect('/users/login')
     } catch (e) {
-        console.log(e);
+        res.status(404).render('pages/error404', {message:"page not found"})
     }
 });
 

@@ -7,6 +7,7 @@ const {
 const data = require('../data');
 var shop = data.shop
 var product = data.products
+var productDatas = data.products
 var xss = require("xss");
 const routesvalidation = require('../validation/routesvalidation');
 
@@ -15,14 +16,44 @@ router.get("/", async(req,res)=>{
     res.render("pages/home");
 });
 
+
 router.get("/allProduct", async(req, res) => {
-    var allProduct = await product.getAll();
-    
+    var allProduct = await productDatas.getAll();
+    var user = req.session.user;
   var data = {
-       allProducts:  allProduct
+       allProducts:  allProduct,
+       userId: user
     }
     res.render("productList", data);
 })
+
+router.post("/search.html", async (req, res) => {
+    const body = req.body;
+    try {
+      let productList = await productDatas.getProductsViaSearch(body.search);
+      var user = req.session.user;
+      let newProductList = [];
+        for (product of productList) {
+          if (product.reviews&&product.reviews.length > 0) {
+              product.rated = true;
+          } else {
+              product.rated = false;
+          }
+          newProductList.push(product);
+        }
+      
+      if (productList.length > 0) {
+        res.status(200).render("productList", { allProducts: productList,
+            userId: user});
+      } else {
+        res.status(200).render("productList", { allProducts: [],
+            userId: user});
+      }
+    } catch (e) {
+      console.log(e);
+      res.status(500).render('pages/error500', {message:e})
+    }
+  })
 
 router.get("/login", async (req, res) => {
     // console.log(req.session.user.authenticatedUser._id)
@@ -83,7 +114,7 @@ router.post("/signup", async (req, res) => {
                     xss(req.body.rating));
             console.log(newShopkeeper)
             if (newShopkeeper.userInsterted) {
-                res.redirect("/login");
+                res.redirect("/shop/login");
                 return;
             }
         } catch (e) {
@@ -93,9 +124,9 @@ router.post("/signup", async (req, res) => {
             return;
         }
     } catch (e) {
-        res.status(500).json({
-            error: "Internal server error"
-        });
+        
+        res.status(500).render('pages/error500', {message:"Internal server error"})
+
         return;
     }
 });
@@ -109,17 +140,18 @@ router.post("/login", async (req, res) => {
                 xss(req.body.username),
                  xss(req.body.password));
           //  console.log("check------------------------------------------------")
-             req.session.user = existingUser;
+             req.session.shop = existingUser;
             // console.log(existingUser)
             if (existingUser) {
                 req.session.username = req.body.username;
                 var shopId = existingUser.authenticatedUser._id.toString();
                 req.session.userId = existingUser.authenticatedUser._id.toString();
-                res.redirect(`/shopId/${shopId}`);
+                // res.redirect(`/shopId/${shopId}`);
+                res.status(200).json({message : "Successfully logged in", shopId : shopId});
                 return;
             } else {
                 res.status(400).render("s_login/s_login", {
-                    "error": "Invalid username or password"
+                    "error": "Either username or password is incorrect"
                 });
             }
         } catch (e) {
@@ -129,9 +161,8 @@ router.post("/login", async (req, res) => {
             });
         }
     } catch (e) {
-        res.status(500).json({
-            error: "Internal server error"
-        });
+        res.status(500).render('pages/error500', {message:"Internal server error"})
+
     }
 });
 
@@ -156,6 +187,7 @@ router.get(`/shopId/:id`, async (req, res) => {
 
 router.get("/logout", async (req, res) => {
     console.log('inside logout')
+    console.log(req.session)
     req.session.destroy();
     // var id = (req.session.userId)
     // // console.log("--------------------------------")
@@ -166,7 +198,7 @@ router.get("/logout", async (req, res) => {
 
 
     //if (!id) {
-        res.redirect('/login');
+        res.redirect('/shop/login');
         return;
    // }
   
@@ -182,8 +214,12 @@ router.get("/edit/:id", async (req, res) => {
 
     var shopDetail = await shop.getAllDataOfShop(idd);
    // console.log(shopDetail)
-    req.session.user = shopDetail;
-    console.log(req.session.user)
+   if(shopDetail=='404' |!shopDetail|shopDetail==null){
+    res.status(404).render('pages/error404', {message:"page not found"})
+    return;
+   }
+    req.session.shop = shopDetail;
+    console.log(req.session.shop)
     // console.log(details)
     res.render("s_edit/s_edit", {
         userId: shopDetail
@@ -199,7 +235,7 @@ router.put("/edit/shop/:id", async (req, res) => {
     // }
     
     var shopDetail = await shop.getAllDataOfShop(idd);
-    req.session.user = shopDetail
+    req.session.usershop = shopDetail
     if (!shopkeeper_info) {
         res.status(400).render("s_edit/s_edit", {
             userId: shopDetail,
@@ -207,13 +243,13 @@ router.put("/edit/shop/:id", async (req, res) => {
         });
         return;
     }
-    if (!shopkeeper_info.ShopName) {
-        res.status(400).render("s_edit/s_edit", {
-            userId: shopDetail,
-            "error": "Must provide the Shop name"
-        });
-        return;
-    }
+    // if (!shopkeeper_info.ShopName) {
+    //     res.status(400).render("s_edit/s_edit", {
+    //         userId: shopDetail,
+    //         "error": "Must provide the Shop name"
+    //     });
+    //     return;
+    // }
     if (!shopkeeper_info.username) {
         res.status(400).render("s_edit/s_edit", {
             userId: shopDetail,
@@ -248,7 +284,6 @@ router.put("/edit/shop/:id", async (req, res) => {
             "error": "Must provide phone number"
         });
     }
-    routesvalidation.routeshopNamevalidation(xss(req.body.ShopName));
     routesvalidation.routeuserNamevalidation(xss(req.body.username));
     routesvalidation.routefirstnamevalidation(xss(req.body.ownerFirstname));
     routesvalidation.routelastnamevalidation(xss(req.body.ownerLastname));
@@ -259,9 +294,7 @@ router.put("/edit/shop/:id", async (req, res) => {
     try {
         await shop.get(req.params.id)
     } catch (e) {
-        res.status(500).json({
-            error: "Internal server error"
-        });
+        res.status(500).render('pages/error500', {message:"Internal server error"})
         return;
     }
     try {
@@ -269,7 +302,6 @@ router.put("/edit/shop/:id", async (req, res) => {
         console.log(req.body.password);
         const newShopkeeper = await shop.updateShopkeeper(
             req.params.id,
-            xss(shopkeeper_info.ShopName),
             xss(shopkeeper_info.username),
             xss(shopkeeper_info.ownerFirstname),
             xss(shopkeeper_info.ownerLastname),
@@ -281,7 +313,7 @@ router.put("/edit/shop/:id", async (req, res) => {
         console.log(newShopkeeper);
         if (newShopkeeper.updateInserted) {
             res.redirect(`/shopId/${idd}`);
-            console.log("EDIT//");
+            // console.log("EDIT//");
             return;
         }
     } catch (e) {

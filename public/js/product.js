@@ -7,8 +7,8 @@ $('#additemformb1').submit(function(event) {
         producthighlights=$("#producthighlights").val().trim()
         price=$("#pricetotalAmt").val().trim()
         quantityremaining=$("#quantityremaining").val().trim()
-        dateofmanufacture=$("#dateofmanufacture").val().trim()
-        dateofexpiry=$("#dateofexpiry").val().trim()
+        dateofmanufacture=$("#dateofmanufacture").val()
+        dateofexpiry=$("#dateofexpiry").val()
        
         var message;
 
@@ -75,8 +75,8 @@ $('#additemformb1').submit(function(event) {
         throw message
     }
 
-    if ((!quantityremaining) || typeof qtyRem != 'number' || (!quantityremaining.match(/^[0-9]$/))) {
-        message = 'Enter valid number of Qty. is remine'
+    if ((!quantityremaining) || typeof qtyRem != 'number' ) {
+        message = 'Enter valid number of Quantity'
         throw message
     }
 

@@ -19,15 +19,15 @@ $('#updateitemform').submit(function(event) {
     var qtyRem = parseInt(quantityremaining)
 
     //else if (/^\s+$/.test(keyword))
-    if (!productname || (/^\s+$/.test(productname))) {
+    if (!productname ) {
         message = ('Please enter product name');
         throw message
     }
-    if (!productdetails || (/^\s+$/.test(productdetails))) {
+    if (!productdetails ) {
         message = ('Please enter product details');
         throw message
     }
-    if (!producthighlights || (/^\s+$/.test(producthighlights))) {
+    if (!producthighlights ) {
         message = ('Please enter product highlights');
         throw message
     }
@@ -75,7 +75,7 @@ $('#updateitemform').submit(function(event) {
         throw message
     }
 
-    if ((!quantityremaining) || typeof qtyRem != 'number' || (!quantityremaining.match(/^[0-9]$/))) {
+    if ((!quantityremaining) || typeof qtyRem != 'number' ) {
         message = 'Enter valid number of Qty. is remine'
         throw message
     }

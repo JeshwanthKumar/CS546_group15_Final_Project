@@ -13,6 +13,8 @@ router.get('/:id', async function (req, res) {
 
 
         const shopDetail = await shopData.getAllDataOfShop(idd);
+
+        console.log(shopDetail)
         var shopName = shopDetail.ShopName;
         var shopId = shopDetail._id;
         var shopMessage = shopDetail.message;
@@ -68,9 +70,7 @@ router.get('/:id', async function (req, res) {
         res.render('allItem', dataa);
       
     } catch (e) {
-        res.status(500).json({
-            error: e.message
-        });
+        res.status(404).render('pages/error404', {message:"page not found"})
     }
 });
 
@@ -114,9 +114,8 @@ router.put('/:id', async function (req, res) {
         var restDetail = await productData.getShopIdForEditItem(iddProduct);
         var itemDetail = await productData.getProductDetail(restDetail._id, iddProduct)
     } catch (e) {
-        res.status(500).json({
-            error: e.message
-        });
+        res.status(404).render('pages/error404', {message:"page not found"})
+
     }
     var priceNum = parseInt(price)
     var qtyRem = parseInt(quantityremaining)
@@ -128,14 +127,12 @@ router.put('/:id', async function (req, res) {
                 shopId: restDetail._id,
                 itemDetail: itemDetail
             }
-            res.status(400)
+            res.status(403)
             res.render('edititem', data)
             return;
         }
     } catch (e) {
-        res.status(500).json({
-            error: e.message
-        });
+        res.status(404).render('pages/error404', {message:"page not found"})
     }
     try {
         if ((!productdetails) || typeof productdetails != 'string' || (!productdetails.match(/^[0-9A-z]{5,}$/))) {
@@ -149,9 +146,8 @@ router.put('/:id', async function (req, res) {
             return;
         }
     } catch (e) {
-        res.status(500).json({
-            error: e.message
-        });
+        res.status(404).render('pages/error404', {message:"page not found"})
+
     }
     try {
         if ((!producthighlights) || typeof producthighlights != 'string') {
@@ -165,9 +161,7 @@ router.put('/:id', async function (req, res) {
             return;
         }
     } catch (e) {
-        res.status(500).json({
-            error: e.message
-        });
+        res.status(404).render('pages/error404', {message:"page not found"})
     }
     try {
         if ((!price) || (!price.match(/^(?!0\d)\d*(\.\d+)?$/))) {
@@ -181,9 +175,8 @@ router.put('/:id', async function (req, res) {
             return;
         }
     } catch (e) {
-        res.status(500).json({
-            error: e.message
-        });
+        res.status(404).render('pages/error404', {message:"page not found"})
+
     }
 
     try {
@@ -198,9 +191,8 @@ router.put('/:id', async function (req, res) {
             return;
         }
     } catch (e) {
-        res.status(500).json({
-            error: e.message
-        });
+        res.status(404).render('pages/error404', {message:"page not found"})
+
     }
 
     try {
@@ -229,9 +221,8 @@ router.put('/:id', async function (req, res) {
         var shopId = updateStore._id;
         res.redirect(`/shopId/${shopId}`)
     } catch (e) {
-        res.status(500).json({
-            error: e.message
-        });
+        res.status(404).render('pages/error404', {message:"page not found"})
+
     }
 });
 
@@ -242,12 +233,13 @@ router.post('/:iduser/:storeId', async function (req, res) {
         replayMessage
     } = req.body;
     try {
-        await userData.replayMessage(iduser, storeId, xss(replayMessage))
+        var repXss = xss(replayMessage)
+        console.log(replayMessage + "===")
+        await userData.replayMessage(iduser, storeId,repXss)
         res.redirect(`/shopId/${storeId}`)
     } catch (e) {
-        res.status(500).json({
-            error: e.message
-        });
+        res.status(404).render('pages/error404', {message:"page not found"})
+
     }
 })
 
@@ -276,7 +268,7 @@ router.post('/:id', async function (req, res) {
             xss(dateofexpiry)
         );
         if (typeof newItem == "string") {
-            // console.log(newItem)
+            console.log(newItem)
             const shopDetail = await shopData.getAllDataOfShop(idProduct);
             var shopMessage = shopDetail.message;
             var shopComment = shopDetail.comment;
@@ -338,9 +330,8 @@ router.post('/:id', async function (req, res) {
         }
         res.redirect(`/shopId/${idProduct}`)
     } catch (e) {
-        res.status(500).json({
-            error: e.message
-        });
+        res.status(404).render('pages/error404', {message:"page not found"})
+
     }
 });
 
@@ -357,9 +348,8 @@ router.delete('/delete/:id', async function (req, res) {
             res.redirect(`/shopId/${shopDetail}`)
         }
     } catch (e) {
-        res.status(500).json({
-            error: e.message
-        });
+        res.status(404).render('pages/error404', {message:"page not found"})
+
     }
 
 })

@@ -60,7 +60,7 @@ function checkValidations(productname, productdetails, producthighlights, price,
         return message
     }
     if ((!productdetails) || typeof productdetails != 'string' || (!productdetails.match(/^[0-9A-z ]{5,}$/))) {
-        message = `productdetails "${productdetails}" is not valid.`
+        message = `productdetails "${productdetails}" is not valid or atleast 5 chatcture.`
         return message
     }
     if ((!producthighlights) || typeof producthighlights != 'string') {
@@ -82,7 +82,15 @@ function checkValidations(productname, productdetails, producthighlights, price,
 
 
 const exportedMethods = {
-
+    async getProductsViaSearch(search) {
+        if (!search) throw "Error (getProductsViaSearch): Must provide search.";
+        if (typeof(search) !== "string") throw "Error (getProductsViaSearch): Search must be a string.";
+        const productCollection = await products();
+        const query = new RegExp(search, "i");
+        // console.log(query)
+        const productList = await productCollection.find({ $or: [ {productname: {$regex: query}}, {productdetails: {$regex: query}} ] }).toArray();
+        return productList;
+    },
     async getAll() {
         const allProduct = await products();
         var allproduct = await allProduct.find({}).toArray();
@@ -99,6 +107,54 @@ const exportedMethods = {
         });
 
         return allProducts;
+    },
+    async createProductSeed(shopId, productname, productdetails, producthighlights, price, quantityremaining, dateofmanufacture, dateofexpiry, shopName, address, pincode) {
+        const productCollection = await products();
+
+        var id = mongoose.Types.ObjectId();
+        var convertId = mongoose.Types.ObjectId(shopId);
+        var shopDetails = await shop.get(shopId);
+   
+        var message;
+        const shopCollection = await shops();
+        const newItem = {
+            _id: id,
+            shopId: shopId,
+            shopName: shopName,
+            address: address,
+            pincode: pincode,
+            productname: productname,
+            productdetails: productdetails,
+            producthighlights: producthighlights,
+            price: price,
+            quantityremaining: quantityremaining,
+            dateofmanufacture: dateofmanufacture,
+            dateofexpiry: dateofexpiry
+        };
+        const findStore = await shopCollection.findOne({
+            _id: convertId
+        });
+        findStore.item.forEach(x => {
+            if (x.productname == newItem.productname) {
+                message = (`${newItem.productname} is available in your Database`)
+            }
+        })
+        if (message) {
+            return message;
+        }
+
+        const newaddedItem = await productCollection.insertOne(newItem);
+        const newId = newaddedItem.insertedId;
+        const newInsertInformation = await shopCollection.updateOne({
+            _id: convertId
+        }, {
+            $push: {
+                item: newItem
+            }
+        })
+        const shopDetail = await shop.getAllDataOfShop(shopId);
+        var shopItem = shopDetail.item;
+        return shopItem;
     },
     async allProductBeforeExpire(id) {
         var idd = mongoose.Types.ObjectId(id);
@@ -205,6 +261,7 @@ const exportedMethods = {
         if (y) {
             return y;
         }
+        // console.log(y)
         var message;
         const shopCollection = await shops();
         const newItem = {
