@@ -75,7 +75,7 @@
         <label class = "password-text" for = "pincode">
             Pincode :
         </label>
-        <input name = "pincode" id = "ed_pincode" type = "number" value = "{{userId.pincode}}">
+        <input name = "pincode" id = "ed_pincode" type = "number" pattern="[0-9]{5}" value = "{{userId.pincode}}">
         <br>
         <div class="form-group">
         <label class = "password-text" for = "phoneNumber">
