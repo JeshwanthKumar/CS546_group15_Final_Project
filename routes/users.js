@@ -89,7 +89,7 @@ router.get('/:idUser/shop/:shopId', async (req, res) => {
 
 
         var shopName = shopDetail.ShopName;
-        var shopAdd = shopDetail.address;
+        var shopAdd = shopDetail.Address;
         var shopIdd = shopDetail._id;
         var shopPin = shopDetail.pincode;
         if (getShopbyId) {
