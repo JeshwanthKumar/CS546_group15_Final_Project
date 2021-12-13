@@ -118,6 +118,7 @@
                     <div class="col-lg-9">
                         <h2 style="font-family:Georgia; color: Brown; font-size: 25px;">View Products</h2>
                         <p class="lead">Below are the list of products available</p>
+    {{#if allItem}}
     <table >
 
         <tr>
@@ -130,7 +131,7 @@
             <th style="font-family:Georgia; color: black; font-size: 15px;"> Date of Expiry </th>
             <th></th>
         </tr>
-        {{#if allItem}}
+        
         {{#each allItem}}
         <tr>
             <td><label type="text" name="productname" id="productname" value="{{this.productname}}" style="font-family:Georgia; color: Brown; font-size: 15px;">{{this.productname}}</label>
@@ -160,6 +161,9 @@
          
         </tr>
         {{/each}}
+
+{{else}}
+<h4>No Products available</h4>
 
         {{/if}}
     </table>
