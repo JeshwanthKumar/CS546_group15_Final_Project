@@ -110,6 +110,10 @@ label {
   text-align: center;
   border: 2px solid silver;
 }
+.comment123 {
+  width: 60px;
+  border-width: 5px;
+}
 
 #content {
   padding: 100px 100px;
