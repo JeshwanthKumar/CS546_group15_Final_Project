@@ -203,7 +203,7 @@ if(signupform){
             s_pincode.hidden =false;
             return;
         } 
-        if(typeof s_pin_text !== 'number'){
+        if(typeof s_pin_text !== 'string'){
             event.preventDefault();
             s_pincode.hidden =false;
             return;
@@ -213,11 +213,16 @@ if(signupform){
             s_pincode.hidden = false;
             return;
         }
-        var pinregex =new RegExp(/^[0-9]{5}(?:-[0-9]{4})?$/);
-        if(!(pinregex.test(s_pin_text))){
-            s_pin.hidden = false;
+        if(s_pin_text.length>5){
+            event.preventDefault();
+            s_pincode.hidden = false;
             return;
         }
+        // var pinregex =new RegExp(/^[0-9]{5}(?:-[0-9]{4})?$/);
+        // if(!(pinregex.test(s_pin_text))){
+        //     s_pin.hidden = false;
+        //     return;
+        // }
         //----pincode-----//
         
         let s_phone_text = document.getElementById("phoneNumber").value;

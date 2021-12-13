@@ -1,20 +1,19 @@
 const editform = document.getElementById("edit-form");   
-const e_user = document.getElementById("e_username");
+const e_user = document.getElementById("ed_username");
 const e_user_error = document.getElementById("e_user_error");
-const e_ownerfirst = document.getElementById("e_ownerFirstname");
+const e_ownerfirst = document.getElementById("ed_ownerFirstname");
 const e_first_error = document.getElementById("e_first_error");
-const e_ownerlast = document.getElementById("e_ownerLastname");
+const e_ownerlast = document.getElementById("ed_ownerLastname");
 const e_last_error = document.getElementById("e_last_error");
-const e_Address = document.getElementById("e_Address");
-const e_email = document.getElementById("e_email");
+const e_Address = document.getElementById("ed_Address");
+const e_email = document.getElementById("ed_email");
 const e_email_error = document.getElementById("e_email_error");
-const e_pincode = document.getElementById("e_pincode");
-const e_phoneNumber = document.getElementById("e_phoneNumber");
+const e_pincode = document.getElementById("ed_pincode");
+const e_phoneNumber = document.getElementById("ed_phoneNumber");
 const e_phone_error = document.getElementById("e_phone_error");
-const e_password = document.getElementById("e_password");
 const e_space = document.getElementById("e_space");
 if(editform){
-    editform.onsubmit()= (event)=>{
+    editform.onsubmit = (event)=>{
         e_user.hidden = true;
         e_user_error.hidden = true;
         e_ownerfirst.hidden = true;
@@ -28,7 +27,7 @@ if(editform){
         e_phone_error.hidden = true;
         e_password.hidden = true;
         e_space.hidden = true;
-    let e_user_text = document.getElementById("username").value;
+    let e_user_text = document.getElementById("ed_username").value;
     if(e_user_text.length === 0){
         event.preventDefault();
         e_user.hidden =false;
@@ -58,7 +57,7 @@ if(editform){
     // if(e_user_text)
     //------user name -------//
    
-    let e_first_text = document.getElementById("ownerFirstname").value;
+    let e_first_text = document.getElementById("ed_ownerFirstname").value;
     if(e_first_text.length === 0){
         event.preventDefault();
         e_ownerfirst.hidden =false;
@@ -87,7 +86,7 @@ if(editform){
     }
     //------first name-------//
 
-    let e_last_text = document.getElementById("ownerLastname").value;
+    let e_last_text = document.getElementById("ed_ownerLastname").value;
     if(e_last_text.length === 0){
         event.preventDefault();
         e_ownerlast.hidden =false;
@@ -116,7 +115,7 @@ if(editform){
     }
     //----last name---//
     
-    let e_add_text = document.getElementById("Address").value;
+    let e_add_text = document.getElementById("ed_Address").value;
     if(e_add_text.length === 0){
         event.preventDefault();
         e_Address.hidden =false;
@@ -139,7 +138,7 @@ if(editform){
     }
     //------address-----//
     
-    let e_email_text = document.getElementById("email").value;
+    let e_email_text = document.getElementById("ed_email").value;
     if(e_add_text.length === 0){
         event.preventDefault();
         e_email.hidden =false;
@@ -168,7 +167,7 @@ if(editform){
     }
     //----email----//
     
-    let e_pin_text = document.getElementById("pincode").value;
+    let e_pin_text = document.getElementById("ed_pincode").value;
     if(e_pin_text.length === 0){
         event.preventDefault();
         e_pincode.hidden =false;
@@ -179,7 +178,7 @@ if(editform){
         e_pincode.hidden =false;
         return;
     }
-    if(e_pin_text.length< 5){
+    if(e_pin_text.length> 5 ){
         event.preventDefault();
         e_pincode.hidden = false;
         return;
@@ -191,7 +190,7 @@ if(editform){
     }
     //----pincode-----//
     
-    let e_phone_text = document.getElementById("phoneNumber").value;
+    let e_phone_text = document.getElementById("ed_phoneNumber").value;
     if(e_phone_text.length === 0){
         event.preventDefault();
         e_phoneNumber.hidden =false;
