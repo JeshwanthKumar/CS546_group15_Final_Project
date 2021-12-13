@@ -39,11 +39,11 @@ if(loginform){
             pass_error.hidden =false;
             return;
         }
-        if(pass_text.length < 6){
-            event.preventDefault();
-            user_error.hidden = false;
-            return;
-        }
+        // if(pass_text.length < 6){
+        //     event.preventDefault();
+        //     user_error.hidden = false;
+        //     return;
+        // }
         if(pass_text.trim().length === 0){
             event.preventDefault();
             pass_error.hidden = false;
