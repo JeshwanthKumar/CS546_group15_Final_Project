@@ -1,4 +1,4 @@
-<h1 align="center">CS_546_B Final Project Group 9</h1>
+<h1 align="center">CS_546_B Final Project Group 15</h1>
 <h3 align="center"> Hirpara Parthkumar Shirbhate Aishwarya Solanki Kaushal Kumar Jeshwanth Deng Xiong  </h3>
 
 ## Implemented Core Features
