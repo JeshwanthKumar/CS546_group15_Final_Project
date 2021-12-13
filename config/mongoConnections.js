@@ -33,12 +33,12 @@
 const MongoClient = require('mongodb').MongoClient;
 const settings = {
   mongoConfig: {
-    //   serverUrl: 'mongodb+srv://smart:007@qwerT@cluster0.cunqm.mongodb.net/',
-    //   database: 'Group_15'
-    // }
-    serverUrl: 'mongodb://localhost:27017/',
-    database: 'GROUP15'
- }
+      serverUrl: 'mongodb+srv://smart:007@qwerT@cluster0.cunqm.mongodb.net/',
+     database: 'Group_15'
+    }
+   // serverUrl: 'mongodb://localhost:27017/',
+   // database: 'GROUP15'
+ //}
 };
 const mongoConfig = settings.mongoConfig;
 
