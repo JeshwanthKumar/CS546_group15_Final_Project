@@ -147,6 +147,7 @@ router.post("/login", async (req, res) => {
                 var shopId = existingUser.authenticatedUser._id.toString();
                 req.session.userId = existingUser.authenticatedUser._id.toString();
                 res.redirect(`/shopId/${shopId}`);
+                res.status(200).json({message : "Successfully logged in", shopId : shopId});
                 return;
             } else {
                 res.status(400).render("s_login/s_login", {
