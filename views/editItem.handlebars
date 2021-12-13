@@ -30,7 +30,7 @@
     <div class="card">
     <div class="card-body">
 
-            <form method="post" id="updateitemform" action="/shopId/{{itemDetail._id}}?_method=PUT">
+ <form method="post" id="updateitemform" action="/shopId/{{itemDetail._id}}?_method=PUT">
 
         <input type="hidden" name="_method" value="PUT">
 
@@ -38,7 +38,7 @@
     <div class="form-group"></div>
     
         <br>
-        </div>
+      
 
         <div class="form-group">
         <label class = "user-text" for = "prodn" style="font-family:Georgia; color: Brown; font-size: 25px;">
@@ -48,7 +48,7 @@
         </label>
      </div>
 
- <div class="form-group">
+    <div class="form-group">
         <label class = "user-text" for = "prodd" style="font-family:Georgia; color: Brown; font-size: 20px;">
             Product Details : 
         </label>
@@ -96,22 +96,21 @@
       </label>  <br>
      </div>
 
-     <label for="" style="font-family:Georgia; color: Brown; font-size: 25px;">
-<input type="submit" name="Edit" value='Edit' /></div></label>
-                <div id="errorDiv"  ><p>{{error}}</p>
+     <label for="Edit" style="font-family:Georgia; color: Brown; font-size: 25px;">
+<input type="submit" name="Edit" value='Edit' id="Edit"/></label>
+                <div id="errorDiv"><p>{{error}}</p>
 
             {{#if message}}
             <p id="message">{{message}}</p>
             {{/if}}
-        <div>
-        
-    </form>
- 
+        </div>
+</form>
+ </div>
 </div>
 </div>
 </div>
 </div>
-</div>
+
 </article>
 <section>
 
