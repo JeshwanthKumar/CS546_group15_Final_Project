@@ -44,7 +44,11 @@ app.use(session({
 
         return  res.redirect(`/users/${req.session.user.id}/allshop`)
       }else if(req.session.shop){
-        res.redirect(`/shopId/${req.session.shop.authenticatedUser._id}`);
+        if(req.session.shop.authenticatedUser ){
+        res.redirect(`/shopId/${req.session.shop.authenticatedUser._id}`);}
+        else{
+          res.redirect(`/shopId/${req.session.shop._id}`)
+        }
 
       }else{
         next()
@@ -61,8 +65,11 @@ app.use(session({
      // res.redirect(`/users/${id2}/allshop`)
      //console.log(req.session.user)
       return  res.redirect(`/users/${req.session.user.id}/allshop`)
-    } else if(req.session.shop) {
-      res.redirect(`/shopId/${req.session.shop.authenticatedUser._id}`)}
+    } else if(req.session.shop) { if(req.session.shop.authenticatedUser ){
+      res.redirect(`/shopId/${req.session.shop.authenticatedUser._id}`);}
+      else{
+        res.redirect(`/shopId/${req.session.shop._id}`)
+      }}
      else{
       //here I',m just manually setting the req.method to post since it's usually coming from a form
      next()
@@ -112,8 +119,11 @@ app.get('/users/signup', (req, res, next) => {
   if (req.session.user) {
     //req.method = 'GET';
     return res.redirect(`/users/${req.session.user.id}/allshop`);
-  } else if(req.session.shop){
-    res.redirect(`/shopId/${req.session.shop.authenticatedUser._id}`)
+  } else if(req.session.shop){ if(req.session.shop.authenticatedUser ){
+    res.redirect(`/shopId/${req.session.shop.authenticatedUser._id}`);}
+    else{
+      res.redirect(`/shopId/${req.session.shop._id}`)
+    }
   } else{
     //here I',m just manually setting the req.method to post since it's usually coming from a form
    next()
@@ -124,9 +134,11 @@ app.get('/users/signup', (req, res, next) => {
 app.get('/users/logout',(req,res,next)=>{
   if(req.session.user){
      req.session.destroy()
-    } else if(req.session.shop) {
-      res.redirect(`/shopId/${req.session.shop.authenticatedUser._id}`)
-    }
+    } else if(req.session.shop) { if(req.session.shop.authenticatedUser ){
+      res.redirect(`/shopId/${req.session.shop.authenticatedUser._id}`);}
+      else{
+        res.redirect(`/shopId/${req.session.shop._id}`)
+      }    }
   else{
     return res.redirect('/users/login');
   }
@@ -171,7 +183,12 @@ app.get('/users/seeprofile', (req, res, next) => {
 
       app.use('/shop/signup', (req,res,next)=>{
         if(req.session.shop){
-          res.redirect(`/shopId/${req.session.shop.authenticatedUser._id}`)
+
+           if(req.session.shop.authenticatedUser ){
+        res.redirect(`/shopId/${req.session.shop.authenticatedUser._id}`);}
+        else{
+          res.redirect(`/shopId/${req.session.shop._id}`)
+        }
         }else if(req.session.user){
            res.redirect(`/users/${req.session.user.id}/allshop`)
         }
@@ -181,8 +198,11 @@ app.get('/users/seeprofile', (req, res, next) => {
       });
       app.use('/shop/login', (req,res,next)=>{
         if(req.session.shop){
-          res.redirect(`/shopId/${req.session.shop.authenticatedUser._id}`);
-          
+          if(req.session.shop.authenticatedUser ){
+            res.redirect(`/shopId/${req.session.shop.authenticatedUser._id}`);}
+            else{
+              res.redirect(`/shopId/${req.session.shop._id}`)
+            } 
         } else if(req.session.user){
           res.redirect(`/users/${req.session.user.id}/allshop`)
         }
