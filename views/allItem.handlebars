@@ -13,8 +13,6 @@
                         <li class="nav-item"><a class="nav-link" href="#ViewProducts">View Products</a></li>
                         <li class="nav-item"><a class="nav-link" href="#Messagefromcustomer">Message from customers</a></li>
                         <li class="nav-item"><a class="nav-link" href="#ViewRatings">View Ratings</a></li>
-
-                        <li class="nav-item"><a class="nav-link" href="#ContactUs">Contact Us</a></li>
                         <li class="nav-item"><a class="nav-link" href="/shop/edit/{{shopId}}">Edit your Profile</a></li>
                         <li class="nav-item"><a class="nav-link" href="/shop/logout">Logout</a></li>
                     </ul>
@@ -42,82 +40,75 @@
                   <div class="col-sm-9"> 
                     <div class="col-lg-8">
                         <h1 style="font-family:Georgia; color: Brown; font-size: 25px;">Add Products</h1>
-<tr>
+
 
    
 
-</tr>
 
-<td>
+
+
     <div class="form-group">
 <form method="post" id="additemformb1" action="/shopId/{{shopId}}">
 <div class="form-group">
 <label for="productname" style="font-family:Georgia; color: Brown; font-size: 15px;"><b>Product Name</b></label>
     <input size="18" type="text" id="productname" name="productname" placeholder="Product Name" >
 </div> 
-</td>
+
    
-<td>
+
     <div class="form-group">
 <label for="productdetails" style="font-family:Georgia; color: Brown; font-size: 15px;"><b>Product Details</b></label>
-    <input id="productdetails" type="text" id="productdetails" name="productdetails" placeholder="ProductDetails">
+    <input id="productdetails" type="text" name="productdetails" placeholder="ProductDetails">
 </div>
-</td>
-<td>
+
 
      <div class="form-group">
 <label for="producthighlights" style="font-family:Georgia; color: Brown; font-size: 15px;"><b>Product highlights</b></label>
-    <input id="producthighlights" type="text" id="producthighlights" name="producthighlights" placeholder="Product Highlights">
+    <input id="producthighlights" type="text" name="producthighlights" placeholder="Product Highlights">
 </div>
-</td>
 
-
-<td>
      <div class="form-group">
 <label for="pricetotalAmt" style="font-family:Georgia; color: Brown; font-size: 15px;"><b>Product total Amount</b></label>
-    <input size="10" type="text" id="pricetotalAmt" step="0.5" name="price" placeholder="Price ( $ )"  value="">
+    <input size="10" type="text" id="pricetotalAmt" name="price" placeholder="Price ( $ )"  value="">
 </div>
-</td>
 
-
-<td>
      <div class="form-group">
 <label for="quantityremaining" style="font-family:Georgia; color: Brown; font-size: 15px;"><b>Quantity Remaining</b></label>
-    <input id="quantityremaining" type="text" id="quantityremaining" name="quantityremaining" placeholder="quantityremaining"  value="" >
-  </td>
- <br>
-<td>
+    <input id="quantityremaining" type="text" name="quantityremaining" placeholder="quantityremaining"  value="" >
+ 
+
     </div>
  <div class="form-group">  
 <label for="dateofmanufacture" style="font-family:Georgia; color: Brown; font-size: 15px;"><b>Date of manufacturing</b></label>
-    <input id="dateofmanufacture" type="date" id="dateofmanufacture" name="dateofmanufacture" placeholder="dateofmanufacture"  value="" >
-  </td>
+    <input id="dateofmanufacture" type="date" name="dateofmanufacture"  value="" >
+ 
  <br>
- <td>
+ 
      </div> 
  <div class="form-group">
 <label for="dateofexpiry" style="font-family:Georgia; color: Brown; font-size: 15px;"><b>Date of Expiry</b></label>
-    <input id="dateofexpiry" type="date" id="dateofexpiry" name="dateofexpiry" placeholder="dateofexpiry"  value="" >
-  </td>
+    <input id="dateofexpiry" type="date" name="dateofexpiry"   value="" >
+ 
  <br>
 </div> 
 
 <div class="form-group">
-            <td>
-                <div class="" id="addNew b2" >
-                    <button type="submit" id="submit addNew" style="font-family:Georgia; color: Brown; font-size: 15px;">Add Product</button>
+            
+                <div class="" id="submitaddNew" >
+                    <button type="submit" id="submitaddNew" style="font-family:Georgia; color: Brown; font-size: 15px;">Add Product</button>
                 </div>
-            </td>
+           
 </div>
 </form>
-               </tr>
+               
        
   <div id="errorDiv"  ><p>{{messagetoCreateProduct}}</p></div>
   </div>
   </div>
   </div>
    </div>
-    </div>
+</div>
+</div>
   </section>
 
   {{!-- view prods --}}
@@ -127,7 +118,7 @@
                     <div class="col-lg-9">
                         <h2 style="font-family:Georgia; color: Brown; font-size: 25px;">View Products</h2>
                         <p class="lead">Below are the list of products available</p>
-    <table width="120%" border="2">
+    <table >
 
         <tr>
             <th style="font-family:Georgia; color: black; font-size: 15px;"> Product Name </th>

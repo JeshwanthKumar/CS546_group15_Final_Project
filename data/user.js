@@ -12,7 +12,7 @@ const replayMessages = mongoCollections.replayMessages;
 var validator = require("email-validator");
 const bcrypt = require('bcrypt');
 const ObjectId = require('mongodb').ObjectId
-const saltRounds = 10;
+const saltRounds = 5;
 
 
 const exportedMethods = {
@@ -24,13 +24,22 @@ const exportedMethods = {
     },
 
     async getUser(id) {
+        try{
         var x = id.toString()
+        if (!id.match(/^[0-9A-Fa-f]{24}$/)) {
+            return '404'
+          }
         var convertId = mongoose.Types.ObjectId(id);
+        
         const findShopItem = await user();
         const findShop = await findShopItem.findOne({
             _id: convertId
         });
-        return findShop;
+
+        return findShop;}
+        catch(e){
+            return '404'
+        }
     },
 
 

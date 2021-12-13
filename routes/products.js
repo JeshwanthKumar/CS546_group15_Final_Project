@@ -70,7 +70,7 @@ router.get('/:id', async function (req, res) {
         res.render('allItem', dataa);
       
     } catch (e) {
-        res.status(500).render('pages/error500', {message:"Internal server error"})
+        res.status(404).render('pages/error404', {message:"page not found"})
     }
 });
 
@@ -114,7 +114,7 @@ router.put('/:id', async function (req, res) {
         var restDetail = await productData.getShopIdForEditItem(iddProduct);
         var itemDetail = await productData.getProductDetail(restDetail._id, iddProduct)
     } catch (e) {
-        res.status(500).render('pages/error500', {message:e})
+        res.status(404).render('pages/error404', {message:"page not found"})
 
     }
     var priceNum = parseInt(price)
@@ -132,7 +132,7 @@ router.put('/:id', async function (req, res) {
             return;
         }
     } catch (e) {
-        res.status(500).render('pages/error500', {message:e})
+        res.status(404).render('pages/error404', {message:"page not found"})
     }
     try {
         if ((!productdetails) || typeof productdetails != 'string' || (!productdetails.match(/^[0-9A-z]{5,}$/))) {
@@ -146,7 +146,7 @@ router.put('/:id', async function (req, res) {
             return;
         }
     } catch (e) {
-        res.status(500).render('pages/error500', {message:e})
+        res.status(404).render('pages/error404', {message:"page not found"})
 
     }
     try {
@@ -161,7 +161,7 @@ router.put('/:id', async function (req, res) {
             return;
         }
     } catch (e) {
-        res.status(500).render('pages/error500', {message:e})
+        res.status(404).render('pages/error404', {message:"page not found"})
     }
     try {
         if ((!price) || (!price.match(/^(?!0\d)\d*(\.\d+)?$/))) {
@@ -175,7 +175,7 @@ router.put('/:id', async function (req, res) {
             return;
         }
     } catch (e) {
-        res.status(500).render('pages/error500', {message:e})
+        res.status(404).render('pages/error404', {message:"page not found"})
 
     }
 
@@ -191,7 +191,7 @@ router.put('/:id', async function (req, res) {
             return;
         }
     } catch (e) {
-        res.status(500).render('pages/error500', {message:e})
+        res.status(404).render('pages/error404', {message:"page not found"})
 
     }
 
@@ -221,7 +221,7 @@ router.put('/:id', async function (req, res) {
         var shopId = updateStore._id;
         res.redirect(`/shopId/${shopId}`)
     } catch (e) {
-        res.status(500).render('pages/error500', {message:e})
+        res.status(404).render('pages/error404', {message:"page not found"})
 
     }
 });
@@ -238,7 +238,7 @@ router.post('/:iduser/:storeId', async function (req, res) {
         await userData.replayMessage(iduser, storeId,repXss)
         res.redirect(`/shopId/${storeId}`)
     } catch (e) {
-        res.status(500).render('pages/error500', {message:e})
+        res.status(404).render('pages/error404', {message:"page not found"})
 
     }
 })
@@ -330,7 +330,7 @@ router.post('/:id', async function (req, res) {
         }
         res.redirect(`/shopId/${idProduct}`)
     } catch (e) {
-        res.status(500).render('pages/error500', {message:e})
+        res.status(404).render('pages/error404', {message:"page not found"})
 
     }
 });
@@ -348,7 +348,7 @@ router.delete('/delete/:id', async function (req, res) {
             res.redirect(`/shopId/${shopDetail}`)
         }
     } catch (e) {
-        res.status(500).render('pages/error500', {message:e})
+        res.status(404).render('pages/error404', {message:"page not found"})
 
     }
 

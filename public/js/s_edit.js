@@ -169,6 +169,7 @@ if(editform){
     
     let e_pin_text = document.getElementById("ed_pincode").value;
     if(e_pin_text.length === 0){
+        
         event.preventDefault();
         e_pincode.hidden =false;
         return;
