@@ -36,7 +36,7 @@ router.get('/:id1/allshop', async (req, res) => {
         const restaurantList = await shopData.getShopWithItem();
 
         const userInfo = await user.getUser(userid);
-        if(userInfo=='404'){
+        if(userInfo=='404'|userInfo==null|!userInfo){
             res.status(404).render('pages/error404', {message:"page not found"})
             return
         }

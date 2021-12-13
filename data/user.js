@@ -24,6 +24,7 @@ const exportedMethods = {
     },
 
     async getUser(id) {
+        try{
         var x = id.toString()
         if (!id.match(/^[0-9A-Fa-f]{24}$/)) {
             return '404'
@@ -35,7 +36,10 @@ const exportedMethods = {
             _id: convertId
         });
 
-        return findShop;
+        return findShop;}
+        catch(e){
+            return '404'
+        }
     },
 
 
