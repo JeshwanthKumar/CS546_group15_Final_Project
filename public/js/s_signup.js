@@ -10,6 +10,7 @@ const s_Address = document.getElementById("s_Address");
 const s_email = document.getElementById("s_email");
 const s_email_error = document.getElementById("s_email_error");
 const s_pincode = document.getElementById("s_pincode");
+const s_pin = document.getElementById("s_pin");
 const s_phoneNumber = document.getElementById("s_phoneNumber");
 const s_phone_error = document.getElementById("s_phone_error");
 const s_password = document.getElementById("s_password");
@@ -28,6 +29,7 @@ if(signupform){
         s_email.hidden = true;
         s_email_error.hidden = true;
         s_pincode.hidden = true;
+        s_pin.hidden = true;
         s_phoneNumber.hidden = true;
         s_phone_error.hidden = true;
         s_password.hidden = true;
@@ -201,19 +203,19 @@ if(signupform){
             s_pincode.hidden =false;
             return;
         } 
-        if(typeof s_pin_text !== 'string'){
+        if(typeof s_pin_text !== 'number'){
             event.preventDefault();
             s_pincode.hidden =false;
-            return;
-        }
-        if(s_pin_text.length< 4){
-            event.preventDefault();
-            s_pincode.hidden = false;
             return;
         }
         if(s_pin_text.trim().length === 0){
             event.preventDefault();
             s_pincode.hidden = false;
+            return;
+        }
+        var pinregex =new RegExp(/^[0-9]{5}(?:-[0-9]{4})?$/);
+        if(!(pinregex.test(s_pin_text))){
+            s_pin.hidden = false;
             return;
         }
         //----pincode-----//
@@ -239,12 +241,12 @@ if(signupform){
             s_phoneNumber.hidden = false;
             return;
         }
-        // var phoneregex = new RegExp(/^\(?([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$/);
-        // if((phoneregex.test(s_phone_text))){
-        //     event.preventDefault();
-        //     s_phone_error.hidden = false;
-        //     return;
-        // }
+        var phoneregex = new RegExp(/^\(?([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$/);
+        if(!(phoneregex.test(s_phone_text))){
+            event.preventDefault();
+            s_phone_error.hidden = false;
+            return;
+        }
         //----phone number----//
         
         let s_pass_text = document.getElementById("spassword").value;

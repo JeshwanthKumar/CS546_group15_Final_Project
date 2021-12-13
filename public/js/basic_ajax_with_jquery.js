@@ -1,7 +1,11 @@
-(function($){
-	const username = $("#username");
-	const password = $("#passowrd");
-	let html = "You have entered wrong credentials";
+// console.log("AJAX");
+
+	$('#login-form').submit((event) => {
+		console.log("SUBmitted form")
+	event.preventDefault();
+	const username = $("#username").val();
+	const password = $("#password").val();
+	const error_cred = $("#error-cred");
 
 	let requestConfig = {
 		method : "POST",
@@ -11,13 +15,43 @@
 			password : password,
 		}
 	}
-	$.ajax(requestConfig).append((responseMessage)=>{
+	console.log(requestConfig)
+	$.ajax(requestConfig).then((responseMessage)=>{
+		console.log(responseMessage);
 		window.location.href = "/shopId/"+responseMessage.shopId
-	}),
+	},
 	(responseMessage)=>{
-		$('.login-heading').append(html);
-	}
+		// let html = "<div><p>You have entered wrong credentials</p></div>";
+		// $('.btn-dark').append(html);
+		document.getElementById('pass-error').hidden = false;
+	})
 })
+
+// $('#loginForm').submit((event) => {
+// 	// console.log("SUBmitted form")
+// event.preventDefault();
+// const email = $("#email").val();
+// const password = $("#password").val();
+
+
+// let requestConfig = {
+// 	method : "POST",
+// 	url : "/shop/login",
+// 	data : {
+// 		email : email,
+// 		password : password,
+// 	}
+// }
+// console.log(requestConfig)
+// $.ajax(requestConfig).then((responseMessage)=>{
+// 	console.log(responseMessage);
+// 	window.location.href = "/shopId/"+responseMessage.shopId
+// },
+// (responseMessage)=>{
+// 	let html = "<div><p>You have entered wrong credentials</p></div>";
+// 	$('.btn-dark').next().append(html);
+// })
+// });
 
 // (function($) {
 // 	// Let's start writing AJAX calls!

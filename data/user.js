@@ -33,28 +33,7 @@ const exportedMethods = {
         return findShop;
     },
 
-//     async create(firstname, lastname, email, address, city, zipcode, password) {
 
-//         const mongoColl = await user()
-
-//         let newres = {
-//             firstname: firstname,
-//             lastname: lastname,
-//             address: address,
-//             city: city,
-//             zipcode: zipcode,
-//             item: [],
-//             replayMessages: []
-
-//         }
-//         const insertInfo = await mongoColl.insertOne(newres)
-//         if (insertInfo.length = 0) {
-//             throw "There has been some server issue"
-//         } else {
-//             return true
-//         }
-
-//     },
 
     async removeMessage(messageId) {
         var iddItem = mongoose.Types.ObjectId(messageId);
@@ -132,17 +111,7 @@ console.log(shopDetail.ShopName)
         return;
     },
 
-// }
 
-// module.exports = exportedMethods;
-// =======
-// var validator = require("email-validator");
-// const bcrypt = require('bcrypt');
-// const ObjectId = require('mongodb').ObjectId
-// const saltRounds = 10;
-// const user= mongoCollections.user;
-// module.exports={
-//user database
     async create(firstname, lastname,email,address,city, zipcode,password){
 
         if(!firstname) throw "enter the first name"

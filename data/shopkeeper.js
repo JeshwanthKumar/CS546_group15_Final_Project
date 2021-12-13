@@ -151,7 +151,7 @@ const exportedMethods = {
         var convertId = mongoose.Types.ObjectId(shopId);
         var userId = mongoose.Types.ObjectId(userInfo._id);
         const resaurantCollection = await shop();
-        var findStore;
+    
         const store = await resaurantCollection.findOne({
             _id: convertId
         })
@@ -165,7 +165,7 @@ const exportedMethods = {
             }
             return
         })
-        return xx;
+       // return xx;
 
     },
     async review(userInfo, shopId, reviewss) {
