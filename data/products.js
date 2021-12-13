@@ -108,6 +108,54 @@ const exportedMethods = {
 
         return allProducts;
     },
+    async createProductSeed(shopId, productname, productdetails, producthighlights, price, quantityremaining, dateofmanufacture, dateofexpiry, shopName, address, pincode) {
+        const productCollection = await products();
+
+        var id = mongoose.Types.ObjectId();
+        var convertId = mongoose.Types.ObjectId(shopId);
+        var shopDetails = await shop.get(shopId);
+   
+        var message;
+        const shopCollection = await shops();
+        const newItem = {
+            _id: id,
+            shopId: shopId,
+            shopName: shopName,
+            address: address,
+            pincode: pincode,
+            productname: productname,
+            productdetails: productdetails,
+            producthighlights: producthighlights,
+            price: price,
+            quantityremaining: quantityremaining,
+            dateofmanufacture: dateofmanufacture,
+            dateofexpiry: dateofexpiry
+        };
+        const findStore = await shopCollection.findOne({
+            _id: convertId
+        });
+        findStore.item.forEach(x => {
+            if (x.productname == newItem.productname) {
+                message = (`${newItem.productname} is available in your Database`)
+            }
+        })
+        if (message) {
+            return message;
+        }
+
+        const newaddedItem = await productCollection.insertOne(newItem);
+        const newId = newaddedItem.insertedId;
+        const newInsertInformation = await shopCollection.updateOne({
+            _id: convertId
+        }, {
+            $push: {
+                item: newItem
+            }
+        })
+        const shopDetail = await shop.getAllDataOfShop(shopId);
+        var shopItem = shopDetail.item;
+        return shopItem;
+    },
     async allProductBeforeExpire(id) {
         var idd = mongoose.Types.ObjectId(id);
         const productCollection = await products();
