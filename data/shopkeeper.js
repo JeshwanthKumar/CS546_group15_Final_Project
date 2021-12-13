@@ -45,13 +45,20 @@ const exportedMethods = {
     },
 //getAllDataOfShop
     async getAllDataOfShop(id) {
+        try{
         var x = id.toString()
+        if (!id.match(/^[0-9A-Fa-f]{24}$/)) {
+            return '404'
+          }
         var convertId = mongoose.Types.ObjectId(id);
         const findShop = await shop();
         const shopData = await findShop.findOne({
             _id: convertId
         });
-        return shopData;
+        return shopData;}
+        catch(e){
+            return '404'
+        }
     },
 
 //     async create(name, address, pincode, item) {

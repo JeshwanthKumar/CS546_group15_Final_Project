@@ -213,6 +213,10 @@ router.get("/edit/:id", async (req, res) => {
 
     var shopDetail = await shop.getAllDataOfShop(idd);
    // console.log(shopDetail)
+   if(shopDetail=='404' |!shopDetail|shopDetail==null){
+    res.status(404).render('pages/error404', {message:"page not found"})
+    return;
+   }
     req.session.shop = shopDetail;
     console.log(req.session.shop)
     // console.log(details)
