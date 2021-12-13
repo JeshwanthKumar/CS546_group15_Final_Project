@@ -6,7 +6,7 @@
                 <!-- <a class="navbar-brand" href="#page-top">S-Mart</a> -->
                 <a href="#page-top"><img class="logo-img" src="/public/Aishwarya/Shoppage/images/S-Mart-logos.jpeg" width="90" height="90" ALT="align box"></a>
                
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <button class="navbar-toggler" type="button" bs-toggle="collapse" bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="#AddProducts">Add Products</a></li>
@@ -50,21 +50,21 @@
     <div class="form-group">
 <form method="post" id="additemformb1" action="/shopId/{{shopId}}">
 <div class="form-group">
-<label for="productnname" style="font-family:Georgia; color: Brown; font-size: 15px;"><b>Product Name</b></label>
-    <input size="18" type="text" id="productnname" name="product name" placeholder="Product Name" >
+<label for="productname" style="font-family:Georgia; color: Brown; font-size: 15px;"><b>Product Name</b></label>
+    <input size="18" type="text" id="productname" name="productname" placeholder="Product Name" >
 </div> 
 
    
 
     <div class="form-group">
 <label for="productdetails" style="font-family:Georgia; color: Brown; font-size: 15px;"><b>Product Details</b></label>
-    <input id="productdetails" type="text" name="product details" placeholder="ProductDetails">
+    <input id="productdetails" type="text" name="productdetails" placeholder="ProductDetails">
 </div>
 
 
      <div class="form-group">
-<label for="producthhighlights" style="font-family:Georgia; color: Brown; font-size: 15px;"><b>Product highlights</b></label>
-    <input id="producthhighlights" type="text" name="product highlights" placeholder="Product Highlights">
+<label for="producthighlights" style="font-family:Georgia; color: Brown; font-size: 15px;"><b>Product highlights</b></label>
+    <input id="producthighlights" type="text" name="producthighlights" placeholder="Product Highlights">
 </div>
 
      <div class="form-group">
@@ -73,21 +73,21 @@
 </div>
 
      <div class="form-group">
-<label for="qquantityremaining" style="font-family:Georgia; color: Brown; font-size: 15px;"><b>Quantity Remaining</b></label>
-    <input id="qquantityremaining" type="text" name="quantity remaining" placeholder="quantityremaining"  value="" >
+<label for="quantityremaining" style="font-family:Georgia; color: Brown; font-size: 15px;"><b>Quantity Remaining</b></label>
+    <input id="quantityremaining" type="text" name="quantityremaining" placeholder="quantityremaining"  value="" >
  
 
     </div>
  <div class="form-group">  
-<label for="ddateofmanufacture" style="font-family:Georgia; color: Brown; font-size: 15px;"><b>Date of manufacturing</b></label>
-    <input id="ddateofmanufacture" type="date" name="date of manufacture"  value="" >
+<label for="dateofmanufacture" style="font-family:Georgia; color: Brown; font-size: 15px;"><b>Date of manufacturing</b></label>
+    <input id="dateofmanufacture" type="date" name="dateofmanufacture"  value="" >
  
  <br>
  
      </div> 
  <div class="form-group">
-<label for="ddateofexpiry" style="font-family:Georgia; color: Brown; font-size: 15px;"><b>Date of Expiry</b></label>
-    <input id="ddateofexpiry" type="date" name="date of expiry"   value="" >
+<label for="dateofexpiry" style="font-family:Georgia; color: Brown; font-size: 15px;"><b>Date of Expiry</b></label>
+    <input id="dateofexpiry" type="date" name="dateofexpiry"   value="" >
  
  <br>
 </div> 
@@ -133,18 +133,18 @@
         {{#if allItem}}
         {{#each allItem}}
         <tr>
-            <td><label type="text" name="product name" id="productnamee" data-value="{{this.productname}}" style="font-family:Georgia; color: Brown; font-size: 15px;">{{this.productname}}</label>
+            <td><label type="text" name="productname" id="productname" value="{{this.productname}}" style="font-family:Georgia; color: Brown; font-size: 15px;">{{this.productname}}</label>
             </td>
-            <td><label type="text" name="product details" id="productdetailss" data-value="{{this.productdetails}}" style="font-family:Georgia; color: Brown; font-size: 15px;">{{this.productdetails}}</label>
+            <td><label type="text" name="productdetails" id="productdetails" value="{{this.productdetails}}" style="font-family:Georgia; color: Brown; font-size: 15px;">{{this.productdetails}}</label>
             </td>
-            <td><label type="text" name="product highlights" id="producthighlightss"
-                    data-value="{{this.producthighlights}}" style="font-family:Georgia; color: Brown; font-size: 15px;">{{this.producthighlights}}</label></td>
-            <td><label type="text" name="price" id="pricep" data-value="{{this.price}}" style="font-family:Georgia; color: Brown; font-size: 15px;">{{this.price}}</label></td>
-            <td><label type="text" name="quantity remaining" id="quantityremainingg"
-                    data-value="{{this.quantityremaining}}" style="font-family:Georgia; color: Brown; font-size: 15px;">{{this.quantityremaining}}</label></td>
-            <td><label type="text" name="date of manufacture" id="dateofmanufacturee"
-                    data-value="{{this.dateofmanufacture}}" style="font-family:Georgia; color: Brown; font-size: 15px;">{{this.dateofmanufacture}}</label></td>
-            <td><label type="text" name="date of expiry" id="dateofexpiryy" data-value="{{this.dateofexpiry}}" style="font-family:Georgia; color: Brown; font-size: 15px;">{{this.dateofexpiry}}</label>
+            <td><label type="text" name="producthighlights" id="producthighlights"
+                    value="{{this.producthighlights}}" style="font-family:Georgia; color: Brown; font-size: 15px;">{{this.producthighlights}}</label></td>
+            <td><label type="text" name="price" id="pricep" value="{{this.price}}" style="font-family:Georgia; color: Brown; font-size: 15px;">{{this.price}}</label></td>
+            <td><label type="text" name="quantityremaining" id="quantityremaining"
+                    value="{{this.quantityremaining}}" style="font-family:Georgia; color: Brown; font-size: 15px;">{{this.quantityremaining}}</label></td>
+            <td><label type="text" name="dateofmanufacture" id="dateofmanufacture"
+                    value="{{this.dateofmanufacture}}" style="font-family:Georgia; color: Brown; font-size: 15px;">{{this.dateofmanufacture}}</label></td>
+            <td><label type="text" name="dateofexpiry" id="dateofexpiry" value="{{this.dateofexpiry}}" style="font-family:Georgia; color: Brown; font-size: 15px;">{{this.dateofexpiry}}</label>
             </td> 
              <td>
                 <form method="get" action="/shopId/editItem/{{this._id}}">
@@ -213,7 +213,7 @@
         </td>
         <td>
 
-            <form method="post" id="shopToUserMessaagee" action="/shopId/{{this.idUser}}/{{this.shopId}}">
+            <form method="post" id="shopToUserMessaage" action="/shopId/{{this.idUser}}/{{this.shopId}}">
                 <label for="shopmessage" style="font-family:Georgia; color: Brown; font-size: 15px;">Reply Message</label>
          <label for="shopmessage"><input type="text" name="replayMessage" id="shopmessage" /></label>
          <button type="submit" id="submitaddNeww" style="font-family:Georgia; color: Brown; font-size: 15px;">Send Reply</button>

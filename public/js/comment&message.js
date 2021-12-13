@@ -3,7 +3,7 @@ $('#commentsection').submit(function (event) {
     $('#errorDiv').empty()
     try {
         comment = $("#usercomment").val().trim().toString()
-        if (comment = "" | (!typeof comment === 'string')) {
+        if (comment == "" | (!typeof comment === 'string')) {
             throw " enter a valid comment"
         }
 
@@ -22,7 +22,7 @@ $('#userToShopMessaage').submit(function (event) {
     $('#errorDiv1').empty()
     try {
         comment = $("#usermessage").val().trim().toString()
-        if (comment = "" | (!typeof comment === 'string')) {
+        if (comment == "" | (!typeof comment === 'string')) {
             throw " enter a valid message"
         }
 
@@ -41,7 +41,7 @@ $('#shopToUserMessaage').submit(function (event) {
     $('#errorDiv1').empty()
     try {
         comment = $("#shopmessage").val().trim().toString()
-        if (comment = "" | (!typeof comment === 'string')) {
+        if (comment == "" | (!typeof comment === 'string')) {
             throw " enter a valid message"
         }
 
